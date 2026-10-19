@@ -43,6 +43,9 @@ def main() -> None:
         assert "turnaround" in sc.loc["VCPE", "eps_note"] and not sc.loc["VCPE", "eps_pass"]
         assert sc.loc["VCPD", "eps_pass"]
         assert set(sc["sector"].dropna()) <= set(C.SECTOR_ETFS.values()) | {""}, set(sc["sector"])
+        for col in ("corr_depth", "corr_ratio", "held_up", "rs_line_high", "rs_line_leads"):
+            assert col in sc.columns and col in wl.columns, col
+        assert sc["rs_line_high"].notna().all()
 
         again = FakeClient()
         pipeline.run_weekly(again)

@@ -29,6 +29,13 @@ MIN_ABOVE_52W_LOW = 0.30     # price at least 30% above 52-week low
 MAX_BELOW_52W_HIGH = 0.25    # price within 25% of 52-week high
 MIN_RS_RATING = 70
 
+# --- Leadership during a market correction ---------------------------------
+# Correction window starts at SPY's 52-week high. A stock "held up" if its
+# own max drawdown in that window is no more than this multiple of SPY's.
+MAX_CORRECTION_MULT = 2.5
+MIN_MARKET_CORRECTION = 0.03  # below this SPY isn't really correcting -> no ratio
+RS_LINE_NEW_HIGH_TOL = 0.01   # RS line within 1% of its 52-week high counts
+
 # --- VCP heuristic ---------------------------------------------------------
 VCP_LOOKBACK = 130           # bars (~6 months) to look for the base
 VCP_SWING_PCT = 0.03         # zigzag threshold for swing highs/lows

@@ -88,6 +88,11 @@ Bookmark the app URL. It works from your phone or any browser, with nothing inst
 | 🔵 Extended | Above the pivot, but buying now would put the stop more than 8% away (or it's over 10% above the pivot). Don't chase it; wait for a pullback toward the pivot or a new base. |
 | 🔴 Failed | Closed below the suggested stop |
 
+**Leadership columns.** These help you find leaders in a weak market:
+- **RS line** is the stock ÷ S&P 500. ✓ means the RS line is at a 52-week high. ★ means it got there *before* the price did, the classic early-leader tell.
+- **Fell vs SPY** is the stock's deepest fall since the S&P 500's last high, divided by the S&P 500's fall. ✓ means 2.5× or less, so the stock held up. Minervini: *"The best stocks make their lows before the general market averages do."*
+- Both are filters on the Screener tab.
+
 **Risk at entry** is the distance to the stop if you buy now (or at the pivot, if it hasn't broken out yet). Keep it under 8%.
 
 The **market banner** uses SPY and QQQ: green when both are in an uptrend, amber in a correction (below the 50-day), red when either is below its 200-day. Red is Minervini's cue to stay mostly in cash.

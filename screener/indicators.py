@@ -105,6 +105,56 @@ def perf(close: pd.Series, bars: int) -> float:
 
 
 # ---------------------------------------------------------------------------
+# Leadership: how a stock behaved while the market corrected
+# ---------------------------------------------------------------------------
+def max_drawdown(high: pd.Series, low: pd.Series) -> float:
+    """Largest peak-to-trough fall inside the window (peak from highs, trough from lows)."""
+    if high.empty:
+        return math.nan
+    peak = high.cummax()
+    return _f((1 - low / peak).max())
+
+
+def market_correction(spy: pd.DataFrame | None) -> dict:
+    """SPY's correction window: from its 52-week high to today."""
+    if spy is None or len(spy) < 30:
+        return {"start": None, "depth": math.nan}
+    last = spy.tail(252)
+    start = last["high"].idxmax()
+    w = last.loc[start:]
+    return {"start": start, "depth": max_drawdown(w["high"], w["low"])}
+
+
+def leadership(df: pd.DataFrame, spy: pd.DataFrame | None, mkt: dict | None = None) -> dict:
+    out = {"corr_depth": math.nan, "mkt_corr_depth": math.nan, "corr_ratio": math.nan,
+           "held_up": None, "rs_line_high": None, "rs_line_leads": None}
+    if spy is None or df is None or len(df) < 30:
+        return out
+    mkt = mkt or market_correction(spy)
+    start, mdepth = mkt["start"], mkt["depth"]
+    out["mkt_corr_depth"] = mdepth
+    if start is not None:
+        w = df.loc[df.index >= start]
+        if len(w) >= 2:
+            out["corr_depth"] = max_drawdown(w["high"], w["low"])
+            if mdepth >= C.MIN_MARKET_CORRECTION:
+                out["corr_ratio"] = out["corr_depth"] / mdepth
+                out["held_up"] = bool(out["corr_ratio"] <= C.MAX_CORRECTION_MULT)
+
+    # RS line = stock close / SPY close on matching dates
+    joined = pd.concat([df["close"], spy["close"]], axis=1, keys=["s", "m"], join="inner").dropna()
+    if len(joined) >= 60:
+        line = (joined["s"] / joined["m"]).tail(252)
+        at_high = bool(line.iloc[-1] >= line.max() * (1 - C.RS_LINE_NEW_HIGH_TOL))
+        out["rs_line_high"] = at_high
+        price_hi = df["high"].tail(252).max()
+        price_at_high = bool(df["close"].iloc[-1] >= price_hi * (1 - 0.02))
+        # RS line at a new high before price is: the classic leader tell
+        out["rs_line_leads"] = bool(at_high and not price_at_high)
+    return out
+
+
+# ---------------------------------------------------------------------------
 # VCP
 # ---------------------------------------------------------------------------
 def zigzag(high: np.ndarray, low: np.ndarray, pct: float) -> list[tuple[int, float, str]]:

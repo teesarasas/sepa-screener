@@ -20,7 +20,8 @@ import pandas as pd
 import config as C
 from screener import fundamentals as F
 from screener import market as M
-from screener.indicators import EMPTY_VCP, detect_vcp, entry_status, rs_raw, rs_rating, trend_template
+from screener.indicators import (EMPTY_VCP, detect_vcp, entry_status, leadership, market_correction,
+                                 rs_raw, rs_rating, trend_template)
 from screener.td_client import TwelveDataClient
 
 log = logging.getLogger("pipeline")
@@ -154,7 +155,9 @@ def run_weekly(client, rebuild: bool = False) -> None:
     prices = fetch_prices(client, syms + [s for s in MARKET_SYMBOLS if s not in names])
     as_of = last_bar_date(prices)
 
-    # --- trend template + liquidity -------------------------------------
+    # --- trend template + liquidity + leadership ------------------------
+    spy = prices.get("SPY")
+    mkt_corr = market_correction(spy)
     rows = []
     for sym in syms:
         df = prices.get(sym)
@@ -165,6 +168,7 @@ def run_weekly(client, rebuild: bool = False) -> None:
             continue
         tt["symbol"] = sym
         tt["rs_raw"] = rs_raw(df["close"])
+        tt.update(leadership(df, spy, mkt_corr))
         rows.append(tt)
     screen = pd.DataFrame(rows)
     if screen.empty:
@@ -224,7 +228,8 @@ def run_weekly(client, rebuild: bool = False) -> None:
             wl[col] = None
     wl = wl[["symbol", "name", "sector", "rs_rating", "pivot", "pivot_date", "stop", "risk_pct",
              "close", "dist_to_pivot", "entry_risk", "vcp_status", "breakout_date", "breakout_vol_ratio",
-             "contractions", "depths", "eps_pass", "eps_note"]].copy()
+             "contractions", "depths", "eps_pass", "eps_note",
+             "corr_depth", "corr_ratio", "held_up", "rs_line_high", "rs_line_leads"]].copy()
     wl["added"] = as_of
     if not old.empty and "added" in old:
         keep_added = old.set_index("symbol")["added"].to_dict()
@@ -246,6 +251,7 @@ def run_weekly(client, rebuild: bool = False) -> None:
         "vcp_setups": int(len(wl)),
         "tt_pass_by_sector": passers["sector"].replace("", "Unknown").value_counts().to_dict(),
     }
+    mk["correction"] = _corr_json(mkt_corr)
     mk["as_of"] = as_of
     mk["weekly_scan_at"] = now_utc()
     mk["daily_check_at"] = None
@@ -266,8 +272,15 @@ def run_daily(client) -> None:
     prices = fetch_prices(client, syms + MARKET_SYMBOLS)
     as_of = last_bar_date(prices)
 
+    spy = prices.get("SPY")
+    mkt_corr = market_correction(spy)
     if not wl.empty:
         old = wl.copy()
+        for col in ("corr_depth", "corr_ratio"):
+            if col not in wl:
+                wl[col] = float("nan")
+        for col in ("held_up", "rs_line_high", "rs_line_leads"):
+            wl[col] = wl[col].astype(object) if col in wl else None
         if "entry_risk" not in wl:
             wl["entry_risk"] = float("nan")
         for col in ("vcp_status", "breakout_date", "updated"):
@@ -286,6 +299,9 @@ def run_daily(client) -> None:
             wl.at[i, "breakout_date"] = st["breakout_date"]
             wl.at[i, "breakout_vol_ratio"] = st["breakout_vol_ratio"]
             wl.at[i, "tt_ok"] = bool(all(tt.get(f"c{k}") for k in range(1, 8)))
+            for k, v in leadership(df, spy, mkt_corr).items():
+                if k in ("corr_depth", "corr_ratio", "held_up", "rs_line_high", "rs_line_leads"):
+                    wl.at[i, k] = v
             wl.at[i, "updated"] = df.index[-1].strftime("%Y-%m-%d")
         _log_new_breakouts(old, wl, as_of)
         wl.to_csv(WATCH_PATH, index=False, float_format="%.6g")
@@ -293,6 +309,7 @@ def run_daily(client) -> None:
     mk = load_json(MARKET_PATH, {})
     fresh = M.build(prices)
     mk["indexes"], mk["sectors"] = fresh["indexes"], fresh["sectors"]
+    mk["correction"] = _corr_json(mkt_corr)
     mk["daily_as_of"] = as_of
     mk["daily_check_at"] = now_utc()
     save_json(MARKET_PATH, mk)
@@ -301,6 +318,11 @@ def run_daily(client) -> None:
     meta.update(last_daily=now_utc(), last_daily_credits=client.credits_used)
     save_json(META_PATH, meta)
     log.info("daily done: %d symbols, %d credits", len(syms), client.credits_used)
+
+
+def _corr_json(c: dict) -> dict:
+    start = c.get("start")
+    return {"since": start.strftime("%Y-%m-%d") if start is not None else None, "spy_depth": c.get("depth")}
 
 
 def _log_new_breakouts(old: pd.DataFrame, new: pd.DataFrame, as_of: str | None) -> None:

@@ -149,6 +149,28 @@ def eps_label(passed, note) -> str:
     return "pending"
 
 
+def truthy(x) -> bool:
+    return x is True or x == "True" or (isinstance(x, (int, float)) and not isinstance(x, bool) and x == 1)
+
+
+def corr_label(ratio) -> str:
+    r = num(ratio)
+    if math.isnan(r):
+        return "—"
+    mark = "✓" if r <= C.MAX_CORRECTION_MULT else "✗"
+    return f"{mark} {r:.1f}×"
+
+
+def rs_line_label(high, leads) -> str:
+    if truthy(leads):
+        return "★ leads price"
+    if truthy(high):
+        return "✓ new high"
+    if high is None or (isinstance(high, float) and math.isnan(high)):
+        return "—"
+    return "✗"
+
+
 def theme_type() -> str:
     try:
         t = st.context.theme.type
@@ -203,7 +225,8 @@ def market_strip(mk: dict) -> None:
     else:
         below50 = ", ".join(lagging) or "Indexes"
         st.warning(f"**Market: correction / under pressure.** {below50} not in a clean uptrend "
-                   "(below the 50-day MA or 200-day). Be very selective, size down, or wait for the "
+                   "(below the 50-day MA or 200-day). Only small pilot positions in true leaders "
+                   "(RS line at a new high, held up vs SPY, volume-confirmed breakout), or wait for the "
                    "indexes to reclaim their 50-day lines.", icon="⚠️")
 
     icon = {"Uptrend": "✓", "Under pressure": "~", "Downtrend": "✗"}
@@ -212,6 +235,11 @@ def market_strip(mk: dict) -> None:
         col.metric(f"{sym} · {icon.get(v.get('trend'), '')} {v.get('trend', '')}", money(v.get("close")),
                    pct(v.get("chg_1w")) + " 1w",
                    help=f"{v.get('name', sym)} · above 50-day: {v.get('above_50')} · above 200-day: {v.get('above_200')}")
+    corr = mk.get("correction") or {}
+    if corr.get("since") and num(corr.get("spy_depth")) >= C.MIN_MARKET_CORRECTION:
+        st.caption(f"S&P 500 has fallen up to **{num(corr['spy_depth']):.1%}** since its high on {corr['since']}. "
+                   f"Leaders are the stocks that fell no more than {C.MAX_CORRECTION_MULT:g}× that "
+                   "and whose RS line is at a new high.")
     k = len(idx)
     cols[k].metric("Trend Template passes", br.get("tt_pass", "—"), help=f"Out of {br.get('liquid', '—')} liquid stocks")
     cols[k + 1].metric("Stocks above 200-day", pct(br.get("pct_above_200"), 0).lstrip("+"),
@@ -239,8 +267,12 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
     if "entry_risk" not in df:
         df["entry_risk"] = df["risk_pct"]
     df["sector"] = df["sector"].fillna("—").replace("", "—")
+    df["Fell vs SPY"] = [corr_label(r) for r in df.get("corr_ratio", [math.nan] * len(df))]
+    df["RS line"] = [rs_line_label(h, l) for h, l in zip(df.get("rs_line_high", [None] * len(df)),
+                                                        df.get("rs_line_leads", [None] * len(df)))]
     show = df[["symbol", "name", "Status", "close", "pivot", "dist_to_pivot", "stop", "entry_risk",
-               "breakout_vol_ratio", "rs_rating", "EPS", "Trend", "sector", "depths", "updated"]]
+               "breakout_vol_ratio", "rs_rating", "RS line", "Fell vs SPY", "EPS", "Trend", "sector",
+               "depths", "updated"]]
     st.dataframe(
         show, hide_index=True, width="stretch",
         column_config={
@@ -256,6 +288,11 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
             "breakout_vol_ratio": st.column_config.NumberColumn("Breakout vol ×", format="%.1f×"),
             "rs_rating": st.column_config.NumberColumn("RS", format="%d"),
             "sector": "Sector", "depths": "Contractions", "updated": "Last bar",
+            "RS line": st.column_config.TextColumn(
+                "RS line", help="Stock ÷ S&P 500. ★ = RS line at a 52-week high before the price is (classic leader tell)."),
+            "Fell vs SPY": st.column_config.TextColumn(
+                "Fell vs SPY", help=f"Stock's deepest fall since the S&P 500's high ÷ the S&P 500's fall. "
+                                    f"✓ = {C.MAX_CORRECTION_MULT:g}× or less (held up)."),
         },
     )
     if not signals.empty:
@@ -287,6 +324,10 @@ def tab_screener(sc: pd.DataFrame) -> None:
     sectors = sorted(s for s in sc["sector"].dropna().unique() if s)
     pick = f4.multiselect("Sector", sectors, placeholder="All sectors")
     vcp_only = f5.toggle("VCP only", value=False)
+    g1, g2, _ = st.columns([1.3, 1.3, 3])
+    held_only = g1.toggle(f"Held up vs SPY (≤ {C.MAX_CORRECTION_MULT:g}×)", value=False,
+                          help="Fell no more than this multiple of the S&P 500 since its high")
+    rsl_only = g2.toggle("RS line at new high", value=False)
 
     d = sc.copy()
     if tt == "All 8 pass":
@@ -300,6 +341,10 @@ def tab_screener(sc: pd.DataFrame) -> None:
             d = d[d["eps_accel"] == True]  # noqa: E712
     if pick:
         d = d[d["sector"].isin(pick)]
+    if held_only and "held_up" in d:
+        d = d[d["held_up"].map(truthy)]
+    if rsl_only and "rs_line_high" in d:
+        d = d[d["rs_line_high"].map(truthy)]
     if vcp_only:
         d = d[d["vcp"] == True]  # noqa: E712
 
@@ -310,6 +355,10 @@ def tab_screener(sc: pd.DataFrame) -> None:
     cols = ["symbol", "name", "sector", "close", "rs_rating", "tt_score", "pct_above_low",
             "pct_below_high", "sma200_months_rising", "VCP", "dist_to_pivot", "entry_risk", "eps_g0", "eps_g1",
             "eps_accel", "eps_note", "surprise_streak", "next_report", "industry"]
+    if "corr_ratio" in d:
+        d = d.assign(**{"RS line": [rs_line_label(h, l) for h, l in zip(d["rs_line_high"], d["rs_line_leads"])],
+                        "Fell vs SPY": [corr_label(r) for r in d["corr_ratio"]]})
+        cols[cols.index("rs_rating") + 1:cols.index("rs_rating") + 1] = ["RS line", "corr_depth", "Fell vs SPY"]
     if detail:
         cols[6:6] = list(CRITERIA)
     cols = [c for c in cols if c in d]
@@ -328,6 +377,7 @@ def tab_screener(sc: pd.DataFrame) -> None:
         "eps_accel": st.column_config.CheckboxColumn("EPS accel."),
         "eps_note": "EPS note",
         "entry_risk": st.column_config.NumberColumn("Risk at entry", format="percent"),
+        "corr_depth": st.column_config.NumberColumn("Max fall since SPY high", format="percent"),
         "surprise_streak": st.column_config.NumberColumn("Beats in a row", format="%d"),
         "next_report": "Next report",
     }
@@ -432,6 +482,10 @@ def tab_chart(sc: pd.DataFrame, wl: pd.DataFrame) -> None:
         else:
             reason = row.get("vcp_reason")
             st.caption(f"No VCP detected{': ' + reason if isinstance(reason, str) and reason else ''}.")
+        st.markdown("**Leadership**")
+        st.markdown(f"RS line: {rs_line_label(row.get('rs_line_high'), row.get('rs_line_leads'))}  \n"
+                    f"Fell {pct(-num(row.get('corr_depth')), 0)} since the S&P 500's high "
+                    f"({corr_label(row.get('corr_ratio'))} the index's fall)")
         st.markdown("**Earnings (EPS)**")
         g0 = num(row.get("eps_g0"))
         note = row.get("eps_note") if isinstance(row.get("eps_note"), str) else ""
