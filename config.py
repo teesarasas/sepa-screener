@@ -8,9 +8,9 @@ CACHE_DIR = DATA_DIR / "cache"
 
 # --- Twelve Data -----------------------------------------------------------
 API_KEY = os.environ.get("TWELVE_DATA_API_KEY", "")
-# Credits per minute on your plan. Check your Twelve Data dashboard and set the
+# Credits per minute on your plan (Grow 377). Check your Twelve Data dashboard and set the
 # GitHub variable TD_CREDITS_PER_MIN if yours differs.
-CREDITS_PER_MIN = int(os.environ.get("TD_CREDITS_PER_MIN", "55"))
+CREDITS_PER_MIN = int(os.environ.get("TD_CREDITS_PER_MIN", "377"))
 HISTORY_BARS = 300  # enough for 52-week stats, SMA200 + 1 month, and 12-month RS
 
 # --- Universe (option 2: liquid US common stocks) --------------------------
@@ -47,7 +47,7 @@ MAX_STOP_PCT = 0.08          # suggested stop never wider than 8% below pivot
 MIN_EPS_GROWTH = 0.25
 EARNINGS_REFRESH_DAYS = 100  # refetch at least this often, or after a report
 PROFILE_REFRESH_DAYS = 180
-FUNDAMENTAL_CREDIT_BUDGET = int(os.environ.get("TD_FUNDAMENTAL_BUDGET", "6000"))
+FUNDAMENTAL_CREDIT_BUDGET = int(os.environ.get("TD_FUNDAMENTAL_BUDGET", "20000"))
 
 # --- Market context --------------------------------------------------------
 BENCHMARKS = {"SPY": "S&P 500", "QQQ": "Nasdaq 100", "IWM": "Russell 2000"}
