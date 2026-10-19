@@ -1,0 +1,76 @@
+name: Screener data
+
+on:
+  schedule:
+    - cron: "0 2 * * 6"      # weekly scan:   Saturday 09:00 Bangkok (after Friday's US close)
+    - cron: "30 22 * * 1-5"  # daily check:   Tue–Sat 05:30 Bangkok (after each US close)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Which job to run"
+        type: choice
+        options: [weekly, daily]
+        default: weekly
+      rebuild:
+        description: "Weekly only: re-check ALL US stocks for liquidity (slower)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: screener-data
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Pick mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "0 2 * * 6" ]; then
+            echo "mode=weekly" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=daily" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run pipeline
+        env:
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+          TD_CREDITS_PER_MIN: ${{ vars.TD_CREDITS_PER_MIN || '55' }}
+          TD_FUNDAMENTAL_BUDGET: ${{ vars.TD_FUNDAMENTAL_BUDGET || '6000' }}
+        run: |
+          ARGS="${{ steps.mode.outputs.mode }}"
+          if [ "${{ inputs.rebuild }}" = "true" ]; then ARGS="$ARGS --rebuild"; fi
+          python pipeline.py $ARGS
+
+      - name: Save data to the repo
+        # also runs after a failure so fetched fundamentals aren't lost
+        if: success() || failure()
+        run: |
+          git config user.name "screener-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes"
+            exit 0
+          fi
+          git commit -m "data: ${{ steps.mode.outputs.mode }} $(date -u +%F)"
+          for i in 1 2 3; do
+            git pull --rebase && git push && break
+            sleep 10
+          done
