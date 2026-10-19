@@ -43,7 +43,7 @@ def vcp_stock(rng, n=300, start=20.0, breakout=False):
     vol = 2e6 * np.exp(rng.normal(0, 0.15, n))
     vol[-25:] *= 0.55  # dry-up
     if breakout:
-        close[-1] = top * 0.955 * 1.02
+        close[-1] = top * 0.955 * 1.008
         vol[-1] = 2e6 * 2.2
     return _ohlc(close, rng, 2e6, vol)
 
@@ -76,6 +76,9 @@ class FakeClient:
             self.data[f"DN{chr(65 + i // 26)}{chr(65 + i % 26)}"] = down_stock(rng)
         for i in range(10):
             self.data[f"IL{chr(65 + i)}"] = illiquid_stock(rng)
+        # an old ticker that returns the same bars as VCPA (like CDEV vs PR)
+        self.data["OLDA"] = self.data["VCPA"]
+        self.no_profile = {"OLDA"}
         for sym in ["SPY", "QQQ", "IWM", "XLK", "XLF", "XLE", "XLV", "XLY", "XLP", "XLI", "XLB",
                     "XLU", "XLRE", "XLC"]:
             self.data[sym] = trend_stock(rng, drift=rng.uniform(-0.001, 0.0015))
@@ -110,6 +113,10 @@ class FakeClient:
         for q in range(10):
             vals.append(eps)
             eps *= (0.80 + 0.015 * q) if good else rng.uniform(0.95, 1.05)
+        if symbol == "VCPC":  # year-ago quarter of $0.02 -> % growth is meaningless
+            vals = [1.40, 1.10, 0.90, 0.50, 0.02, 0.01, 0.30, 0.20, 0.10, 0.05]
+        if symbol == "VCPE":  # loss a year ago, profit now
+            vals = [0.60, 0.40, 0.20, -0.10, -0.30, -0.20, -0.10, 0.05, 0.10, 0.10]
         for q, v in enumerate(vals):  # q=0 latest
             recs.append({"date": (today - timedelta(days=20 + 91 * q)).isoformat(),
                          "eps_actual": round(v, 3), "eps_estimate": round(v * 0.95, 3),
@@ -119,6 +126,8 @@ class FakeClient:
     def profile(self, symbol):
         self.credits_used += 10
         self.calls.append(f"profile {symbol}")
+        if symbol in self.no_profile:
+            return {}
         sectors = ["Technology", "Healthcare", "Industrials", "Financial Services", "Energy"]
         return {"sector": sectors[hash(symbol) % len(sectors)], "industry": "Test Industry",
                 "name": f"{symbol} Corp"}

@@ -136,6 +136,19 @@ def money(x) -> str:
     return "—" if math.isnan(x) else f"${x:,.2f}"
 
 
+def eps_label(passed, note) -> str:
+    note = note if isinstance(note, str) else ""
+    if passed is True or passed == "True":
+        return "✓"
+    if "turnaround" in note:
+        return "turnaround"
+    if "too small" in note:
+        return "✗ tiny base"
+    if passed is False or passed == "False":
+        return "✗"
+    return "pending"
+
+
 def theme_type() -> str:
     try:
         t = st.context.theme.type
@@ -176,13 +189,22 @@ def market_strip(mk: dict) -> None:
     if not idx:
         st.info("No market data yet. Run the weekly scan once (see README).")
         return
-    up = [s for s, v in idx.items() if v.get("trend") == "Uptrend"]
-    if {"SPY", "QQQ"} <= set(up):
-        st.success("**Market: uptrend.** Indexes above rising 50/200-day MAs. Breakouts have the odds on their side.", icon="✅")
-    elif any(v.get("trend") == "Downtrend" for v in idx.values()):
-        st.error("**Market: downtrend.** At least one index is below its 200-day MA. Minervini cuts exposure here; most breakouts fail.", icon="⛔")
+    trend = {s: v.get("trend") for s, v in idx.items()}
+    lead = [s for s in ("SPY", "QQQ") if s in trend]
+    lagging = [s for s, t in trend.items() if t != "Uptrend"]
+    if lead and all(trend[s] == "Uptrend" for s in lead):
+        note = f" {', '.join(lagging)} still lagging." if lagging else ""
+        st.success("**Market: uptrend.** S&P 500 and Nasdaq above rising 50- and 200-day MAs. "
+                   f"Breakouts have the odds on their side.{note}", icon="✅")
+    elif any(trend[s] == "Downtrend" for s in lead):
+        down = ", ".join(s for s in lead if trend[s] == "Downtrend")
+        st.error(f"**Market: downtrend.** {down} below its 200-day MA. Minervini stays mostly in cash here; "
+                 "most breakouts fail.", icon="⛔")
     else:
-        st.warning("**Market: under pressure.** Indexes above the 200-day MA but not in a clean uptrend. Be selective, size down.", icon="⚠️")
+        below50 = ", ".join(lagging) or "Indexes"
+        st.warning(f"**Market: correction / under pressure.** {below50} not in a clean uptrend "
+                   "(below the 50-day MA or 200-day). Be very selective, size down, or wait for the "
+                   "indexes to reclaim their 50-day lines.", icon="⚠️")
 
     icon = {"Uptrend": "✓", "Under pressure": "~", "Downtrend": "✗"}
     cols = st.columns(6)
@@ -203,16 +225,21 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
         return
     st.caption(
         "Checked after every US close against the pivot set by the weekly scan. "
-        f"**Breakout** = close above pivot on ≥ {C.BREAKOUT_VOL_MULT:g}× average volume, "
-        f"not more than {C.VCP_MAX_CHASE:.0%} above it. **Ready** = within {C.VCP_READY_WITHIN:.0%} below pivot."
+        f"**Breakout** = close above pivot on ≥ {C.BREAKOUT_VOL_MULT:g}× average volume. "
+        f"**Extended** = buying at today's close would put the stop more than {C.MAX_ENTRY_RISK:.0%} away. "
+        f"**Ready** = within {C.VCP_READY_WITHIN:.0%} below pivot. "
+        "**Risk at entry** = stop distance if you buy now (or at the pivot, if it hasn't broken out)."
     )
     df = wl.copy()
     df["_order"] = df["vcp_status"].map({s: i for i, s in enumerate(STATUS_ORDER)}).fillna(99)
     df = df.sort_values(["_order", "dist_to_pivot"], ascending=[True, False])
     df["Status"] = df["vcp_status"].map(STATUS_LABEL).fillna(df["vcp_status"])
     df["Trend"] = df["tt_ok"].map({True: "✓ intact", False: "✗ broken"})
-    df["EPS"] = df["eps_pass"].map({True: "✓", False: "✗"}).fillna("pending")
-    show = df[["symbol", "name", "Status", "close", "pivot", "dist_to_pivot", "stop", "risk_pct",
+    df["EPS"] = [eps_label(p, n) for p, n in zip(df["eps_pass"], df.get("eps_note", [None] * len(df)))]
+    if "entry_risk" not in df:
+        df["entry_risk"] = df["risk_pct"]
+    df["sector"] = df["sector"].fillna("—").replace("", "—")
+    show = df[["symbol", "name", "Status", "close", "pivot", "dist_to_pivot", "stop", "entry_risk",
                "breakout_vol_ratio", "rs_rating", "EPS", "Trend", "sector", "depths", "updated"]]
     st.dataframe(
         show, hide_index=True, width="stretch",
@@ -223,7 +250,9 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
             "pivot": st.column_config.NumberColumn("Pivot", format="$%.2f"),
             "dist_to_pivot": st.column_config.NumberColumn("vs pivot", format="percent"),
             "stop": st.column_config.NumberColumn("Stop", format="$%.2f"),
-            "risk_pct": st.column_config.NumberColumn("Risk", format="percent", help="Pivot to stop"),
+            "entry_risk": st.column_config.NumberColumn(
+                "Risk at entry", format="percent",
+                help=f"Distance to the stop if bought at max(close, pivot). Above {C.MAX_ENTRY_RISK:.0%} = too far."),
             "breakout_vol_ratio": st.column_config.NumberColumn("Breakout vol ×", format="%.1f×"),
             "rs_rating": st.column_config.NumberColumn("RS", format="%d"),
             "sector": "Sector", "depths": "Contractions", "updated": "Last bar",
@@ -247,9 +276,10 @@ def tab_screener(sc: pd.DataFrame) -> None:
         st.info("No screen yet. Run the weekly scan once (see README).")
         return
     for col in ("eps_g0", "eps_g1", "eps_g2", "eps_accel", "eps_pass", "sector", "vcp_status",
-                "surprise_streak", "next_report"):
+                "surprise_streak", "next_report", "eps_note", "entry_risk"):
         if col not in sc:
             sc[col] = None
+    sc["sector"] = sc["sector"].fillna("")
     f1, f2, f3, f4, f5 = st.columns([1.3, 1, 1.3, 2, 1])
     tt = f1.selectbox("Trend Template", ["All 8 pass", "7 of 8 (near misses)", "Any"], index=0)
     min_rs = f2.number_input("Min RS", 1, 99, C.MIN_RS_RATING, step=5)
@@ -278,8 +308,8 @@ def tab_screener(sc: pd.DataFrame) -> None:
     d = d.assign(VCP=d["vcp_status"].map(STATUS_LABEL).where(d["vcp"] == True, ""))  # noqa: E712
     detail = st.toggle("Show each Trend Template criterion", value=False)
     cols = ["symbol", "name", "sector", "close", "rs_rating", "tt_score", "pct_above_low",
-            "pct_below_high", "sma200_months_rising", "VCP", "dist_to_pivot", "eps_g0", "eps_g1",
-            "eps_accel", "surprise_streak", "next_report", "industry"]
+            "pct_below_high", "sma200_months_rising", "VCP", "dist_to_pivot", "entry_risk", "eps_g0", "eps_g1",
+            "eps_accel", "eps_note", "surprise_streak", "next_report", "industry"]
     if detail:
         cols[6:6] = list(CRITERIA)
     cols = [c for c in cols if c in d]
@@ -296,6 +326,8 @@ def tab_screener(sc: pd.DataFrame) -> None:
         "eps_g0": st.column_config.NumberColumn("EPS YoY (last Q)", format="percent"),
         "eps_g1": st.column_config.NumberColumn("EPS YoY (prior Q)", format="percent"),
         "eps_accel": st.column_config.CheckboxColumn("EPS accel."),
+        "eps_note": "EPS note",
+        "entry_risk": st.column_config.NumberColumn("Risk at entry", format="percent"),
         "surprise_streak": st.column_config.NumberColumn("Beats in a row", format="%d"),
         "next_report": "Next report",
     }
@@ -393,7 +425,8 @@ def tab_chart(sc: pd.DataFrame, wl: pd.DataFrame) -> None:
             st.markdown(f"{STATUS_LABEL.get(row.get('vcp_status'), row.get('vcp_status'))}  \n"
                         f"Contractions: {row.get('depths')}  \n"
                         f"Pivot {money(row.get('pivot'))} · stop {money(row.get('stop'))} "
-                        f"({pct(-num(row.get('risk_pct')))})  \n"
+                        f"({pct(-num(row.get('risk_pct')))} from pivot, "
+                        f"{pct(-num(row.get('entry_risk')))} if bought now)  \n"
                         f"Volume dry-up: {'yes' if row.get('vol_dryup') in (True, 'True') else 'no'} · "
                         f"tight last 2 weeks: {'yes' if row.get('tight') in (True, 'True') else 'no'}")
         else:
@@ -401,7 +434,11 @@ def tab_chart(sc: pd.DataFrame, wl: pd.DataFrame) -> None:
             st.caption(f"No VCP detected{': ' + reason if isinstance(reason, str) and reason else ''}.")
         st.markdown("**Earnings (EPS)**")
         g0 = num(row.get("eps_g0"))
-        if math.isnan(g0) and not row.get("eps_turnaround"):
+        note = row.get("eps_note") if isinstance(row.get("eps_note"), str) else ""
+        if note:
+            st.caption(f"Note: {note}. Growth % not shown when the year-ago quarter is negative or under "
+                       f"${C.EPS_MIN_BASE:.2f}.")
+        if math.isnan(g0) and not note:
             st.caption("Not fetched yet (only Trend Template passes, within the weekly credit budget).")
         else:
             st.markdown(f"Last Q YoY {pct(row.get('eps_g0'), 0)} · prior {pct(row.get('eps_g1'), 0)} · "
@@ -444,7 +481,8 @@ def tab_sectors(mk: dict) -> None:
 
 
 def tab_sizing(wl: pd.DataFrame) -> None:
-    st.caption("Shares = (account × risk per trade) ÷ (entry − stop). Defaults come from the watchlist.")
+    st.caption("Shares = (account × risk per trade) ÷ (entry − stop). Default entry is the pivot, "
+               "or today's close if the stock is already above it.")
     syms = ["(manual)"] + (wl["symbol"].tolist() if not wl.empty else [])
     c0, c1, c2 = st.columns(3)
     sym = c0.selectbox("Symbol", syms)
@@ -453,7 +491,7 @@ def tab_sizing(wl: pd.DataFrame) -> None:
     entry_d, stop_d = 100.0, 93.0
     if sym != "(manual)":
         r = wl[wl["symbol"] == sym].iloc[0]
-        entry_d, stop_d = float(r["pivot"]), float(r["stop"])
+        entry_d, stop_d = max(float(r["pivot"]), float(r["close"])), float(r["stop"])
     c3, c4 = st.columns(2)
     entry = c3.number_input("Entry ($)", min_value=0.01, value=round(entry_d, 2), key=f"e_{sym}")
     stop = c4.number_input("Stop ($)", min_value=0.0, value=round(stop_d, 2), key=f"s_{sym}")

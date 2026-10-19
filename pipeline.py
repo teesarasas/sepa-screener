@@ -33,7 +33,7 @@ META_PATH = C.DATA_DIR / "run_meta.json"
 SIGNALS_PATH = C.DATA_DIR / "signals_log.csv"
 
 MARKET_SYMBOLS = list(C.BENCHMARKS) + list(C.SECTOR_ETFS)
-WATCH_STATUSES = {"Forming", "Ready", "Breakout", "Breakout (weak volume)"}
+WATCH_STATUSES = {"Forming", "Ready", "Breakout", "Breakout (weak volume)", "Extended"}
 SYMBOL_OK = re.compile(r"^[A-Z]{1,5}(\.[A-Z])?$")
 
 
@@ -93,6 +93,34 @@ def now_utc() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
 
+def drop_duplicate_tickers(client, prices: dict[str, pd.DataFrame], symbols: list[str]) -> set[str]:
+    """Old tickers of renamed or merged companies (e.g. CDEV -> PR) can still
+    be listed and return the same price history as the new ticker. Group
+    symbols with identical recent bars and keep one per group: the one whose
+    company profile has a sector, then the shorter / alphabetically first."""
+    groups: dict[tuple, list[str]] = {}
+    for sym in symbols:
+        df = prices.get(sym)
+        if df is None or len(df) < 30:
+            continue
+        tail = df.tail(30)
+        key = (tail.index[-1],
+               tuple(tail["close"].round(4)),
+               tuple(tail["volume"].fillna(-1).round(0)))
+        groups.setdefault(key, []).append(sym)
+    dupes = [g for g in groups.values() if len(g) > 1]
+    if not dupes:
+        return set()
+    profs = F.profiles_for(client, sorted({s for g in dupes for s in g}))
+    dropped: set[str] = set()
+    for g in dupes:
+        keep = sorted(g, key=lambda s: (not profs.get(s, {}).get("sector"), len(s), s))[0]
+        gone = [s for s in g if s != keep]
+        dropped.update(gone)
+        log.info("duplicate price history: keeping %s, dropping %s", keep, ", ".join(gone))
+    return dropped
+
+
 # ---------------------------------------------------------------------------
 # universe
 # ---------------------------------------------------------------------------
@@ -141,6 +169,9 @@ def run_weekly(client, rebuild: bool = False) -> None:
     screen = pd.DataFrame(rows)
     if screen.empty:
         raise RuntimeError("no liquid stocks scored; aborting without overwriting data")
+    dropped = drop_duplicate_tickers(client, prices, screen["symbol"].tolist())
+    if dropped:
+        screen = screen[~screen["symbol"].isin(dropped)]
     log.info("liquid stocks scored: %d", len(screen))
 
     if rebuilding:
@@ -172,16 +203,11 @@ def run_weekly(client, rebuild: bool = False) -> None:
     earn, prof, spent = F.refresh(client, passes["symbol"].tolist(), C.FUNDAMENTAL_CREDIT_BUDGET)
     log.info("fundamentals: %d credits", spent)
 
-    def eps_of(sym):
-        e = earn.get(sym)
-        return e["metrics"] if e else {}
-
-    eps = pd.DataFrame([{"symbol": s, **eps_of(s)} for s in screen["symbol"]])
+    eps_cache = {s: F.metrics_for(earn.get(s)) for s in screen["symbol"]}
+    eps = pd.DataFrame([{"symbol": s, **m} for s, m in eps_cache.items()])
     screen = screen.merge(eps, on="symbol", how="left")
-    screen["eps_pass"] = [
-        F.eps_pass(eps_of(s)) if s in earn else None for s in screen["symbol"]
-    ]
-    screen["sector"] = [prof.get(s, {}).get("sector", "") for s in screen["symbol"]]
+    screen["eps_pass"] = [F.eps_pass(m) if m else None for m in eps_cache.values()]
+    screen["sector"] = [F.normalize_sector(prof.get(s, {}).get("sector")) for s in screen["symbol"]]
     screen["industry"] = [prof.get(s, {}).get("industry", "") for s in screen["symbol"]]
     screen["name"] = [names.get(s, {}).get("name", "") for s in screen["symbol"]]
     screen["exchange"] = [names.get(s, {}).get("exchange", "") for s in screen["symbol"]]
@@ -193,9 +219,12 @@ def run_weekly(client, rebuild: bool = False) -> None:
     # --- watchlist --------------------------------------------------------
     old = pd.read_csv(WATCH_PATH) if WATCH_PATH.exists() else pd.DataFrame()
     wl = screen[screen["vcp"] & screen["vcp_status"].isin(WATCH_STATUSES)].copy()
+    for col in ("eps_note", "eps_pass"):
+        if col not in wl:
+            wl[col] = None
     wl = wl[["symbol", "name", "sector", "rs_rating", "pivot", "pivot_date", "stop", "risk_pct",
-             "close", "dist_to_pivot", "vcp_status", "breakout_date", "breakout_vol_ratio",
-             "contractions", "depths", "eps_pass"]].copy()
+             "close", "dist_to_pivot", "entry_risk", "vcp_status", "breakout_date", "breakout_vol_ratio",
+             "contractions", "depths", "eps_pass", "eps_note"]].copy()
     wl["added"] = as_of
     if not old.empty and "added" in old:
         keep_added = old.set_index("symbol")["added"].to_dict()
@@ -239,6 +268,8 @@ def run_daily(client) -> None:
 
     if not wl.empty:
         old = wl.copy()
+        if "entry_risk" not in wl:
+            wl["entry_risk"] = float("nan")
         for col in ("vcp_status", "breakout_date", "updated"):
             wl[col] = wl[col].astype(object)
         for i, r in wl.iterrows():
@@ -250,6 +281,7 @@ def run_daily(client) -> None:
             tt = trend_template(df)
             wl.at[i, "close"] = float(df["close"].iloc[-1])
             wl.at[i, "dist_to_pivot"] = st["dist_to_pivot"]
+            wl.at[i, "entry_risk"] = st["entry_risk"]
             wl.at[i, "vcp_status"] = st["vcp_status"]
             wl.at[i, "breakout_date"] = st["breakout_date"]
             wl.at[i, "breakout_vol_ratio"] = st["breakout_vol_ratio"]

@@ -39,12 +39,16 @@ VCP_MIN_FIRST_DEPTH = 0.08   # first pullback at least 8% (filters noise)
 VCP_MAX_FIRST_DEPTH = 0.35   # first pullback no deeper than 35%
 VCP_MAX_LAST_DEPTH = 0.10    # final contraction no deeper than 10%
 VCP_READY_WITHIN = 0.05      # "Ready" = close within 5% below pivot
-VCP_MAX_CHASE = 0.05         # beyond 5% above pivot = "Extended"
+# "Extended" is risk-based: buying at today's close would put the stop more
+# than MAX_ENTRY_RISK away. Hard cap as a sanity limit regardless of the stop.
+MAX_ENTRY_RISK = 0.08
+VCP_MAX_CHASE = 0.10         # never a buy more than 10% above the pivot
 BREAKOUT_VOL_MULT = 1.4      # breakout day volume vs 50-day average
 MAX_STOP_PCT = 0.08          # suggested stop never wider than 8% below pivot
 
 # --- Fundamentals (Grow plan: /earnings + /profile) ------------------------
 MIN_EPS_GROWTH = 0.25
+EPS_MIN_BASE = 0.05          # base-quarter EPS below $0.05 -> growth % not meaningful
 EARNINGS_REFRESH_DAYS = 100  # refetch at least this often, or after a report
 PROFILE_REFRESH_DAYS = 180
 FUNDAMENTAL_CREDIT_BUDGET = int(os.environ.get("TD_FUNDAMENTAL_BUDGET", "20000"))

@@ -81,14 +81,16 @@ Bookmark the app URL. It works from your phone or any browser, with nothing inst
 
 | Status | Meaning |
 |---|---|
-| 🟢 Breakout | Closed above the pivot on ≥ 1.4× average volume, and no more than 5% above it |
+| 🟢 Breakout | Closed above the pivot on ≥ 1.4× average volume, and buying now keeps the stop within 8% |
 | 🟠 Breakout, weak volume | Above the pivot, but volume didn't confirm. Minervini treats these with suspicion. |
 | 🟡 Ready | Within 5% below the pivot. Consider a buy-stop order at the pivot. |
 | ⚪ Forming | Base still developing |
-| 🔵 Extended | More than 5% above the pivot. Don't chase it. |
+| 🔵 Extended | Above the pivot, but buying now would put the stop more than 8% away (or it's over 10% above the pivot). Don't chase it; wait for a pullback toward the pivot or a new base. |
 | 🔴 Failed | Closed below the suggested stop |
 
-The **market banner** uses SPY, QQQ and IWM. When it's red, most breakouts fail; that's Minervini's cue to cut exposure.
+**Risk at entry** is the distance to the stop if you buy now (or at the pivot, if it hasn't broken out yet). Keep it under 8%.
+
+The **market banner** uses SPY and QQQ: green when both are in an uptrend, amber in a correction (below the 50-day), red when either is below its 200-day. Red is Minervini's cue to stay mostly in cash.
 
 ---
 
@@ -99,7 +101,7 @@ The **market banner** uses SPY, QQQ and IWM. When it's red, most breakouts fail;
 | Trend Template, criteria 1–7 | ✅ Automated | Daily bars from `/time_series` |
 | RS rating, criterion 8 | ✅ Automated | IBD-style approximation: 40% last 3 months + 20% each for the 6-, 9- and 12-month periods, ranked 1–99 across the liquid universe |
 | VCP base, pivot, stop | ⚠️ Heuristic | A swing-point detector finds 2–6 shrinking pullbacks. It shortlists candidates; **always confirm on the chart.** |
-| EPS growth, acceleration, earnings beats | ✅ Automated | `/earnings` on the Grow plan, for Trend Template passes only |
+| EPS growth, acceleration, earnings beats | ✅ Automated | `/earnings` on the Grow plan, for Trend Template passes only. Growth % is hidden when the year-ago quarter is negative or under $0.05 (shown as *turnaround* or *tiny base* instead), and those don't count as EPS ✓. |
 | Sales growth, margins ("Code 33") | ❌ Manual | Needs Twelve Data's Pro plan. Check by hand using the Finviz link on the Chart tab. |
 | Sector strength | ✅ Automated | SPDR sector ETFs, plus a count of leaders per sector |
 | Catalyst | ❌ Manual | |
@@ -107,6 +109,7 @@ The **market banner** uses SPY, QQQ and IWM. When it's red, most breakouts fail;
 **Known limitations**
 - **RS is an approximation, not IBD's number.** It's a percentile within this universe, so values won't match MarketSmith.
 - **The screen uses today's listed stocks only.** That's fine for a live screen, but don't use these files to backtest; that would carry survivorship bias.
+- **Duplicate tickers are removed automatically.** Old tickers of renamed or merged companies (e.g. CDEV → PR) that return identical prices are dropped, keeping the one with a company profile.
 - **If EPS data runs out of budget**, the remaining names show "pending" and are filled in the following week.
 
 ---

@@ -34,6 +34,15 @@ def main() -> None:
         wl = pd.read_csv(tmp / "watchlist.csv")
         assert len(wl) >= 5, f"expected synthetic VCP setups, got {len(wl)}"
         assert set(wl["vcp_status"]) <= pipeline.WATCH_STATUSES
+        assert wl["entry_risk"].notna().all()
+
+        sc = pd.read_csv(tmp / "screen.csv").set_index("symbol")
+        assert "OLDA" not in sc.index and "VCPA" in sc.index, "duplicate ticker not removed"
+        assert pd.isna(sc.loc["VCPC", "eps_g0"]) and "too small" in sc.loc["VCPC", "eps_note"]
+        assert not sc.loc["VCPC", "eps_pass"]
+        assert "turnaround" in sc.loc["VCPE", "eps_note"] and not sc.loc["VCPE", "eps_pass"]
+        assert sc.loc["VCPD", "eps_pass"]
+        assert set(sc["sector"].dropna()) <= set(C.SECTOR_ETFS.values()) | {""}, set(sc["sector"])
 
         again = FakeClient()
         pipeline.run_weekly(again)

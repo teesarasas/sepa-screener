@@ -151,7 +151,7 @@ EMPTY_VCP = {
     "depths": "", "base_depth": math.nan, "last_depth": math.nan, "base_weeks": math.nan,
     "pivot": math.nan, "pivot_date": None, "stop": math.nan, "risk_pct": math.nan,
     "dist_to_pivot": math.nan, "vol_dryup": False, "tight": False,
-    "breakout_date": None, "breakout_vol_ratio": math.nan,
+    "breakout_date": None, "breakout_vol_ratio": math.nan, "entry_risk": math.nan,
 }
 
 
@@ -257,9 +257,14 @@ def entry_status(df: pd.DataFrame, pivot: float, stop: float, pivot_date: str | 
         a = avg50.loc[d]
         res["breakout_vol_ratio"] = _f(vol.loc[d] / a) if a else math.nan
 
+    # risk if you buy now: entry is today's close once above the pivot,
+    # otherwise the pivot itself (a buy-stop order there)
+    entry = max(last, pivot)
+    res["entry_risk"] = (entry - stop) / entry if entry > 0 else math.nan
+
     if last < stop:
         status = "Failed"
-    elif last > pivot * (1 + C.VCP_MAX_CHASE):
+    elif last > pivot and (res["entry_risk"] > C.MAX_ENTRY_RISK or last > pivot * (1 + C.VCP_MAX_CHASE)):
         status = "Extended"
     elif last > pivot:
         r = res["breakout_vol_ratio"]
