@@ -1,0 +1,9 @@
+date,symbol,vcp_status,pivot,close,breakout_vol_ratio,stop
+2026-10-16,CDEV,Breakout (weak volume),24.5,24.59,0.883449,23.37
+2026-10-16,CNC,Breakout (weak volume),66.18,69.16,0.802441,63.35
+2026-10-16,PR,Breakout (weak volume),24.5,24.59,0.883326,23.37
+2026-10-16,SLDE,Breakout,25.88,27.07,1.45909,25
+2026-10-16,DBX,Breakout (weak volume),34.68,35.57,0.687514,32.94
+2026-10-16,OXY,Breakout (weak volume),62.35,62.38,1.36896,60.28
+2026-10-16,BBY,Breakout (weak volume),89.23,92.63,1.218,84.75
+2026-10-16,MTCH,Breakout (weak volume),42.84,42.95,0.817793,41.09

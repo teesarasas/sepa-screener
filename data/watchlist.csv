@@ -1,0 +1,14 @@
+symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,added,tt_ok,updated
+CLMT,"Calumet, Inc.",Basic Materials,97,59.16,2026-10-14,56.34,0.0476673,57.75,-0.0238337,Ready,,,5,13% → 8% → 5% → 4% → 5%,True,2026-10-16,True,2026-10-16
+DK,"Delek US Holdings, Inc.",Energy,96,81.72,2026-10-13,75.1824,0.08,76.59,-0.0627753,Forming,,,2,20% → 8%,True,2026-10-16,True,2026-10-16
+CDEV,Centennial Resource Development Inc-DE,,91,24.5,2026-10-14,23.37,0.0461224,24.59,0.00367347,Breakout (weak volume),2026-10-16,0.883449,4,8% → 9% → 6% → 5%,True,2026-10-16,True,2026-10-16
+CNC,Centene Corp.,Healthcare,91,66.18,2026-10-07,63.35,0.0427622,69.16,0.0450287,Breakout (weak volume),2026-10-12,0.802441,3,12% → 7% → 4%,True,2026-10-16,True,2026-10-16
+PR,Permian Resources Corp Class A Common Stock,Energy,91,24.5,2026-10-14,23.37,0.0461224,24.59,0.00367347,Breakout (weak volume),2026-10-16,0.883326,4,8% → 9% → 6% → 5%,True,2026-10-16,True,2026-10-16
+SLDE,"Slide Insurance Holdings, Inc. Common Stock",Financial Services,91,25.88,2026-10-13,25,0.0340031,27.07,0.0459815,Breakout,2026-10-15,1.45909,3,15% → 7% → 3%,True,2026-10-16,True,2026-10-16
+DBX,Dropbox Inc. Class A Common Stock,Technology,82,34.68,2026-10-06,32.94,0.050173,35.57,0.0256632,Breakout (weak volume),2026-10-12,0.687514,3,13% → 9% → 5%,True,2026-10-16,True,2026-10-16
+OXY,Occidental Petroleum Corp.,Energy,82,62.35,2026-10-14,60.28,0.0331997,62.38,0.000481155,Breakout (weak volume),2026-10-16,1.36896,4,12% → 7% → 3% → 3%,True,2026-10-16,True,2026-10-16
+KNTK,Kinetik Holdings Inc.,Energy,81,56.22,2026-10-14,52.67,0.0631448,55.3,-0.0163643,Ready,,,2,14% → 6%,False,2026-10-16,True,2026-10-16
+BBY,"Best Buy Co., Inc.",Consumer Cyclical,79,89.23,2026-10-08,84.75,0.0502073,92.63,0.0381038,Breakout (weak volume),2026-10-15,1.218,3,11% → 6% → 5%,False,2026-10-16,True,2026-10-16
+MTCH,Match Group Inc.,Communication Services,78,42.84,2026-10-12,41.09,0.0408497,42.95,0.00256769,Breakout (weak volume),2026-10-15,0.817793,3,12% → 6% → 4%,False,2026-10-16,True,2026-10-16
+LNG,Cheniere Energy Inc.,Energy,77,289.46,2026-10-14,273.95,0.0535825,289.43,-0.000103641,Ready,,,4,12% → 6% → 5% → 5%,False,2026-10-16,True,2026-10-16
+SPNT,SiriusPoint Ltd.,Financial Services,70,25.91,2026-10-13,24.68,0.047472,25.12,-0.0304902,Ready,,,2,9% → 5%,False,2026-10-16,True,2026-10-16

@@ -1,0 +1,188 @@
+{
+ "indexes": {
+  "SPY": {
+   "name": "S&P 500",
+   "close": 763.25,
+   "chg_1d": -0.011065160498714977,
+   "chg_1w": -0.019677112916281048,
+   "chg_1m": 0.0008523734815728545,
+   "sma50": 768.5017965800001,
+   "sma200": 725.0145990300001,
+   "above_50": false,
+   "above_200": true,
+   "sma200_rising": true,
+   "trend": "Under pressure"
+  },
+  "QQQ": {
+   "name": "Nasdaq 100",
+   "close": 709.79999,
+   "chg_1d": -0.025000013736263815,
+   "chg_1w": -0.05519990003061759,
+   "chg_1m": -0.009931359424520503,
+   "sma50": 726.77340066,
+   "sma200": 674.90924983,
+   "above_50": false,
+   "above_200": true,
+   "sma200_rising": true,
+   "trend": "Under pressure"
+  },
+  "IWM": {
+   "name": "Russell 2000",
+   "close": 270.44,
+   "chg_1d": -0.016867773808641462,
+   "chg_1w": -0.030472503047250354,
+   "chg_1m": -0.05251722147346882,
+   "sma50": 289.06980118,
+   "sma200": 277.650400615,
+   "above_50": false,
+   "above_200": false,
+   "sma200_rising": true,
+   "trend": "Downtrend"
+  }
+ },
+ "sectors": [
+  {
+   "etf": "XLE",
+   "sector": "Energy",
+   "rs_score": 0.3220444823448179,
+   "perf_1m": 0.058312655086848464,
+   "perf_3m": 0.17777010700724882,
+   "perf_6m": 0.24027626317702633,
+   "above_50": true,
+   "above_200": true,
+   "rank": 1
+  },
+  {
+   "etf": "XLK",
+   "sector": "Technology",
+   "rs_score": 0.1657954217187686,
+   "perf_1m": -0.02440709374037109,
+   "perf_3m": 0.0441636193635182,
+   "perf_6m": 0.1886620545084512,
+   "above_50": false,
+   "above_200": true,
+   "rank": 2
+  },
+  {
+   "etf": "XLV",
+   "sector": "Health Care",
+   "rs_score": 0.15444436421810329,
+   "perf_1m": 0.04679823470173572,
+   "perf_3m": 0.10963899529042398,
+   "perf_6m": 0.18756727150537622,
+   "above_50": true,
+   "above_200": true,
+   "rank": 3
+  },
+  {
+   "etf": "XLP",
+   "sector": "Consumer Staples",
+   "rs_score": 0.05945102771131908,
+   "perf_1m": 0.04946700203617205,
+   "perf_3m": 0.032524157435776635,
+   "perf_6m": 0.0625757943245211,
+   "above_50": true,
+   "above_200": true,
+   "rank": 4
+  },
+  {
+   "etf": "XLB",
+   "sector": "Materials",
+   "rs_score": 0.04102350071005807,
+   "perf_1m": 0.00414119503056587,
+   "perf_3m": 0.017789346747738355,
+   "perf_6m": -0.018504240555127227,
+   "above_50": false,
+   "above_200": true,
+   "rank": 5
+  },
+  {
+   "etf": "XLF",
+   "sector": "Financials",
+   "rs_score": 0.02087076592463517,
+   "perf_1m": -0.006442376521116677,
+   "perf_3m": -0.00927910404569754,
+   "perf_6m": 0.05893572382223922,
+   "above_50": false,
+   "above_200": true,
+   "rank": 6
+  },
+  {
+   "etf": "XLI",
+   "sector": "Industrials",
+   "rs_score": -0.007635490617931784,
+   "perf_1m": -0.0073960389366205526,
+   "perf_3m": -0.058163092297327745,
+   "perf_6m": -0.03313930223844752,
+   "above_50": false,
+   "above_200": false,
+   "rank": 7
+  },
+  {
+   "etf": "XLRE",
+   "sector": "Real Estate",
+   "rs_score": -0.034134491145644374,
+   "perf_1m": -0.018164881229622787,
+   "perf_3m": -0.06787530400176878,
+   "perf_6m": -0.05215827338129497,
+   "above_50": false,
+   "above_200": false,
+   "rank": 8
+  },
+  {
+   "etf": "XLC",
+   "sector": "Communication Services",
+   "rs_score": -0.035417742270290355,
+   "perf_1m": -0.01806853582554513,
+   "perf_3m": -0.0043321299638989785,
+   "perf_6m": -0.07371954783743995,
+   "above_50": false,
+   "above_200": false,
+   "rank": 9
+  },
+  {
+   "etf": "XLY",
+   "sector": "Consumer Discretionary",
+   "rs_score": -0.04572558477605735,
+   "perf_1m": 0.009605889218062602,
+   "perf_3m": -0.018759270569758346,
+   "perf_6m": -0.06602441657669633,
+   "above_50": false,
+   "above_200": false,
+   "rank": 10
+  },
+  {
+   "etf": "XLU",
+   "sector": "Utilities",
+   "rs_score": -0.06609018536667194,
+   "perf_1m": 0.012473015111537533,
+   "perf_3m": -0.06074766355140182,
+   "perf_6m": -0.08557192374350076,
+   "above_50": true,
+   "above_200": false,
+   "rank": 11
+  }
+ ],
+ "breadth": {
+  "liquid": 1675,
+  "tt_pass": 216,
+  "pct_above_200": 0.4734328358208955,
+  "pct_above_50": 0.34865671641791046,
+  "vcp_setups": 13,
+  "tt_pass_by_sector": {
+   "Healthcare": 53,
+   "Energy": 45,
+   "Technology": 38,
+   "Consumer Cyclical": 21,
+   "Financial Services": 16,
+   "Industrials": 16,
+   "Consumer Defensive": 13,
+   "Basic Materials": 7,
+   "Communication Services": 5,
+   "Unknown": 2
+  }
+ },
+ "as_of": "2026-10-16",
+ "weekly_scan_at": "2026-10-19 03:09 UTC",
+ "daily_check_at": null
+}
