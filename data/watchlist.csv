@@ -1,14 +1,14 @@
 symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,added,tt_ok,updated,corr_depth,corr_ratio,held_up,rs_line_high,rs_line_leads,entry_risk
-CLMT,"Calumet, Inc.",Basic Materials,97,59.16,2026-10-14,56.34,0.0476673,49.89,-0.156694,Failed,,,5,13% → 8% → 5% → 4% → 5%,True,2026-10-16,False,2026-10-28,0.184415,,,False,False,0.0476673
-DK,"Delek US Holdings, Inc.",Energy,96,81.72,2026-10-13,75.1824,0.08,70.3,-0.139745,Failed,,,2,20% → 8%,True,2026-10-16,False,2026-10-28,0.156694,,,False,False,0.08
+CLMT,"Calumet, Inc.",Basic Materials,97,59.16,2026-10-14,56.34,0.0476673,48.525,-0.179767,Failed,,,5,13% → 8% → 5% → 4% → 5%,True,2026-10-16,False,2026-10-29,0.187965,,,False,False,0.0476673
+DK,"Delek US Holdings, Inc.",Energy,96,81.72,2026-10-13,75.1824,0.08,71.1,-0.129956,Failed,,,2,20% → 8%,True,2026-10-16,False,2026-10-29,0.156755,,,False,False,0.08
 CDEV,Centennial Resource Development Inc-DE,,91,24.5,2026-10-14,23.37,0.0461224,25.46,0.0391837,Extended,2026-10-16,0.883449,4,8% → 9% → 6% → 5%,True,2026-10-16,True,2026-10-27,0.0461538,,,False,False,0.0820896
-CNC,Centene Corp.,Healthcare,91,66.18,2026-10-07,63.35,0.0427622,67.05,0.013146,Breakout (weak volume),2026-10-12,0.802441,3,12% → 7% → 4%,True,2026-10-16,True,2026-10-28,0.0942069,,,False,False,0.0551827
-PR,Permian Resources Corp Class A Common Stock,Energy,91,24.5,2026-10-14,23.37,0.0461224,25.52,0.0416327,Extended,2026-10-16,0.883326,4,8% → 9% → 6% → 5%,True,2026-10-16,True,2026-10-28,0.0461538,,,False,False,0.0842476
-SLDE,"Slide Insurance Holdings, Inc. Common Stock",Financial Services,91,25.88,2026-10-13,25,0.0340031,27.19,0.0506182,Extended,2026-10-15,1.45909,3,15% → 7% → 3%,True,2026-10-16,True,2026-10-28,0.078058,,,False,False,0.0805443
-DBX,Dropbox Inc. Class A Common Stock,Technology,82,34.68,2026-10-06,32.94,0.050173,36.51,0.0527682,Extended,2026-10-12,0.687514,3,13% → 9% → 5%,True,2026-10-16,True,2026-10-28,0.0637493,,,False,False,0.0977814
-OXY,Occidental Petroleum Corp.,Energy,82,62.35,2026-10-14,60.28,0.0331997,62.86,0.00817963,Breakout (weak volume),2026-10-16,1.36896,4,12% → 7% → 3% → 3%,True,2026-10-16,True,2026-10-28,0.0369323,,,False,False,0.0410436
-KNTK,Kinetik Holdings Inc.,Energy,81,56.22,2026-10-14,52.67,0.0631448,56.61,0.00693703,Breakout (weak volume),2026-10-28,1.28656,2,14% → 6%,False,2026-10-16,True,2026-10-28,0.0631448,,,False,False,0.069599
-BBY,"Best Buy Co., Inc.",Consumer Cyclical,79,89.23,2026-10-08,84.75,0.0502073,96.96,0.0866301,Extended,2026-10-15,1.218,3,11% → 6% → 5%,False,2026-10-16,True,2026-10-28,0.0567251,,,False,False,0.125928
-MTCH,Match Group Inc.,Communication Services,78,42.84,2026-10-12,41.09,0.0408497,42.06,-0.0182073,Ready,2026-10-15,0.817793,3,12% → 6% → 4%,False,2026-10-16,False,2026-10-28,0.100921,,,False,False,0.0408497
-LNG,Cheniere Energy Inc.,Energy,77,289.46,2026-10-14,273.95,0.0535825,297.77,0.0287086,Breakout (weak volume),2026-10-23,1.26509,4,12% → 6% → 5% → 5%,False,2026-10-16,True,2026-10-28,0.0535825,,,False,False,0.0799946
-SPNT,SiriusPoint Ltd.,Financial Services,70,25.91,2026-10-13,24.68,0.047472,25.27,-0.0247009,Ready,2026-10-22,1.46131,2,9% → 5%,False,2026-10-16,True,2026-10-28,0.0482439,,,False,False,0.047472
+CNC,Centene Corp.,Healthcare,91,66.18,2026-10-07,63.35,0.0427622,68.62,0.0368691,Breakout (weak volume),2026-10-12,0.802441,3,12% → 7% → 4%,True,2026-10-16,True,2026-10-29,0.0942069,,,False,False,0.0767998
+PR,Permian Resources Corp Class A Common Stock,Energy,91,24.5,2026-10-14,23.37,0.0461224,25.57,0.0436735,Extended,2026-10-16,0.883326,4,8% → 9% → 6% → 5%,True,2026-10-16,True,2026-10-29,0.0461538,,,False,False,0.0860383
+SLDE,"Slide Insurance Holdings, Inc. Common Stock",Financial Services,91,25.88,2026-10-13,25,0.0340031,27.54,0.0641422,Extended,2026-10-15,1.45909,3,15% → 7% → 3%,True,2026-10-16,True,2026-10-29,0.078058,,,False,False,0.0922295
+DBX,Dropbox Inc. Class A Common Stock,Technology,82,34.68,2026-10-06,32.94,0.050173,36.3,0.0467128,Extended,2026-10-12,0.687514,3,13% → 9% → 5%,True,2026-10-16,True,2026-10-29,0.07138,,,False,False,0.092562
+OXY,Occidental Petroleum Corp.,Energy,82,62.35,2026-10-14,60.28,0.0331997,63.01,0.0105854,Breakout (weak volume),2026-10-16,1.36896,4,12% → 7% → 3% → 3%,True,2026-10-16,True,2026-10-29,0.0447198,,,False,False,0.0433264
+KNTK,Kinetik Holdings Inc.,Energy,81,56.22,2026-10-14,52.67,0.0631448,58.09,0.0332622,Extended,2026-10-28,1.28658,2,14% → 6%,False,2026-10-16,True,2026-10-29,0.0631448,,,False,False,0.0933035
+BBY,"Best Buy Co., Inc.",Consumer Cyclical,79,89.23,2026-10-08,84.75,0.0502073,100.39,0.12507,Extended,2026-10-15,1.218,3,11% → 6% → 5%,False,2026-10-16,True,2026-10-29,0.0567251,,,True,False,0.155792
+MTCH,Match Group Inc.,Communication Services,78,42.84,2026-10-12,41.09,0.0408497,42.65,-0.00443511,Ready,2026-10-15,0.817793,3,12% → 6% → 4%,False,2026-10-16,True,2026-10-29,0.108099,,,False,False,0.0408497
+LNG,Cheniere Energy Inc.,Energy,77,289.46,2026-10-14,273.95,0.0535825,318.94,0.101845,Extended,2026-10-23,1.26509,4,12% → 6% → 5% → 5%,False,2026-10-16,True,2026-10-29,0.0535825,,,False,False,0.141061
+SPNT,SiriusPoint Ltd.,Financial Services,70,25.91,2026-10-13,24.68,0.047472,25.95,0.00154381,Breakout,2026-10-22,1.46131,2,9% → 5%,False,2026-10-16,True,2026-10-29,0.0482439,,,False,False,0.0489403
