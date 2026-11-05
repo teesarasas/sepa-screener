@@ -18,3 +18,4 @@ date,symbol,vcp_status,pivot,close,breakout_vol_ratio,stop
 2026-11-02,PR,Breakout (weak volume),24.5,24.56,0.883326,23.37
 2026-11-02,DBX,Breakout (weak volume),34.68,35.64,0.687514,32.94
 2026-11-02,SPNT,Breakout,25.91,26.01,1.46131,24.68
+2026-11-04,LNG,Breakout (weak volume),289.46,292.02,1.26509,273.95
