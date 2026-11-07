@@ -105,9 +105,7 @@ def drop_duplicate_tickers(client, prices: dict[str, pd.DataFrame], symbols: lis
         if df is None or len(df) < 30:
             continue
         tail = df.tail(30)
-        key = (tail.index[-1],
-               tuple(tail["close"].round(4)),
-               tuple(tail["volume"].fillna(-1).round(0)))
+        key = (tail.index[-1], tuple(tail["close"].round(4)))
         groups.setdefault(key, []).append(sym)
     dupes = [g for g in groups.values() if len(g) > 1]
     if not dupes:
@@ -129,7 +127,8 @@ def universe_candidates(client, rebuild: bool, meta: dict) -> tuple[pd.DataFrame
     built = meta.get("universe_built")
     stale = (not built) or (date.today() - date.fromisoformat(built)).days >= C.UNIVERSE_REBUILD_DAYS
     if UNIVERSE_PATH.exists() and not (rebuild or stale):
-        return pd.read_csv(UNIVERSE_PATH), False
+        cached = pd.read_csv(UNIVERSE_PATH)
+        return cached[~cached["symbol"].isin(C.EXCLUDE_SYMBOLS)].reset_index(drop=True), False
 
     log.info("rebuilding universe from all US common stocks")
     raw = client.stocks()
@@ -137,6 +136,7 @@ def universe_candidates(client, rebuild: bool, meta: dict) -> tuple[pd.DataFrame
         raise RuntimeError("/stocks returned nothing; check the API key")
     raw = raw[raw["exchange"].isin(C.EXCHANGES)]
     raw = raw[raw["symbol"].astype(str).str.match(SYMBOL_OK)]
+    raw = raw[~raw["symbol"].isin(C.EXCLUDE_SYMBOLS)]
     raw = raw.drop_duplicates("symbol")[["symbol", "name", "exchange"]]
     log.info("universe candidates: %d", len(raw))
     return raw.reset_index(drop=True), True
@@ -268,6 +268,8 @@ def run_weekly(client, rebuild: bool = False) -> None:
 def run_daily(client) -> None:
     C.CACHE_DIR.mkdir(parents=True, exist_ok=True)
     wl = pd.read_csv(WATCH_PATH) if WATCH_PATH.exists() else pd.DataFrame()
+    if not wl.empty:
+        wl = wl[~wl["symbol"].isin(C.EXCLUDE_SYMBOLS)].reset_index(drop=True)
     syms = wl["symbol"].tolist() if not wl.empty else []
     prices = fetch_prices(client, syms + MARKET_SYMBOLS)
     as_of = last_bar_date(prices)

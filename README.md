@@ -93,11 +93,25 @@ Bookmark the app URL. It works from your phone or any browser, with nothing inst
 - **Fell vs SPY** is the stock's deepest fall since the S&P 500's last high, divided by the S&P 500's fall. ✓ means 2.5× or less, so the stock held up. Minervini: *"The best stocks make their lows before the general market averages do."*
 - Both are filters on the Screener tab.
 
+**Earnings** shows each stock's next report date; ⚠️ means it's within 7 trading days. Avoid new buys before a report, since one can gap a stock 10–20% either way. Every tab also has a **How to read this** panel explaining its columns.
+
 **Risk at entry** is the distance to the stop if you buy now (or at the pivot, if it hasn't broken out yet). Keep it under 8%.
 
 The **market banner** uses SPY and QQQ: green when both are in an uptrend, amber in a correction (below the 50-day), red when either is below its 200-day. Red is Minervini's cue to stay mostly in cash.
 
 ---
+
+## Trading journal (Journal tab)
+
+Stores your trades in your Supabase project, in the tables `sepa_stock_trade` and `sepa_stock_trade_exit`. Create them once with `setup/supabase_trades.sql`.
+
+- **Setup:** add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` (Supabase → Project Settings → API → service_role) to the Streamlit app's secrets. Also set `APP_PASSWORD`, because the journal can write to your database.
+- **Open positions** show the price, return, R-multiple and the next action from the exit plan:
+  - at 2R: sell half and move the stop to breakeven;
+  - at 3R: set a back stop at +1R, then raise it one R per R gained;
+  - also flagged: stop hit, earnings soon, and a close below the 50-day line.
+- **Forms:** log a new trade (the setup at entry is filled in from the dashboard), record a partial or full sell, raise a stop (stops can only move up), or delete a trade.
+- **Performance:** win rate, average gain and loss, average R, and total P&L, also split by setup (RS line, EPS, market state, signal at entry), so you can see which setups make you money.
 
 ## What's automated and what isn't
 

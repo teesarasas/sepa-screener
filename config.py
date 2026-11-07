@@ -23,6 +23,13 @@ MIN_AVG_VOLUME = 500_000  # 50-day average shares
 UNIVERSE_REBUILD_DAYS = 28
 BATCH_SIZE = 50  # symbols per /time_series request (kept <= credits per minute)
 
+# Old tickers that some data feeds still list under their pre-merger symbol.
+# They're dropped everywhere: scans, watchlist and dashboard. Add more as found.
+EXCLUDE_SYMBOLS = {
+    "CDEV": "renamed Permian Resources, trades as PR",
+    "OAS": "merged into Chord Energy, trades as CHRD",
+}
+
 # --- Trend Template --------------------------------------------------------
 SMA200_RISING_LOOKBACK = 21  # trading days (~1 month)
 MIN_ABOVE_52W_LOW = 0.30     # price at least 30% above 52-week low

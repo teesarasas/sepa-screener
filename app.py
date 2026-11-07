@@ -10,6 +10,7 @@ import json
 import math
 from datetime import date, datetime
 
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import requests
@@ -25,6 +26,7 @@ _DEFAULTS = {
     "MAX_ENTRY_RISK": 0.08, "VCP_MAX_CHASE": 0.10, "EPS_MIN_BASE": 0.05,
     "MAX_CORRECTION_MULT": 2.5, "MIN_MARKET_CORRECTION": 0.03, "RS_LINE_NEW_HIGH_TOL": 0.01,
     "EXCLUDE_SYMBOLS": {"CDEV": "renamed PR", "OAS": "merged into CHRD"},
+    "EARNINGS_WARN_DAYS": 7,
 }
 _STALE_CONFIG = [k for k in _DEFAULTS if not hasattr(C, k)]
 for _k in _STALE_CONFIG:
@@ -182,6 +184,94 @@ def rs_line_label(high, leads) -> str:
     return "✗"
 
 
+def trading_days_until(d) -> int | None:
+    """Trading days from today until date d (weekends skipped; US holidays not)."""
+    if not isinstance(d, str) or not d:
+        return None
+    try:
+        target = date.fromisoformat(d[:10])
+    except ValueError:
+        return None
+    return int(np.busday_count(date.today(), target))
+
+
+def earnings_label(d) -> str:
+    n = trading_days_until(d)
+    if n is None or n < 0:
+        return "—"
+    when = date.fromisoformat(d[:10]).strftime("%b %d")
+    if n <= C.EARNINGS_WARN_DAYS:
+        return f"⚠️ {when} ({'today' if n == 0 else f'{n}d'})"
+    return when
+
+
+def soon_reporting(df: pd.DataFrame) -> list[str]:
+    if "next_report" not in df:
+        return []
+    out = []
+    for sym, d in zip(df["symbol"], df["next_report"]):
+        n = trading_days_until(d)
+        if n is not None and 0 <= n <= C.EARNINGS_WARN_DAYS:
+            out.append(f"{sym} ({'today' if n == 0 else f'{n}d'})")
+    return out
+
+
+GLOSSARY = {
+    "signals": f"""
+**Statuses**
+- 🟢 **Breakout**: closed above the pivot on ≥ {C.BREAKOUT_VOL_MULT:g}× average volume, and buying now keeps the stop within {C.MAX_ENTRY_RISK:.0%}. The buy signal.
+- 🟠 **Breakout, weak volume**: above the pivot but volume didn't confirm. Many fall back; treat with suspicion.
+- 🟡 **Ready**: within {C.VCP_READY_WITHIN:.0%} *below* the pivot. Not a buy yet; set a buy-stop order at the pivot.
+- ⚪ **Forming**: base still developing.
+- 🔵 **Extended**: already broke out and ran too far. Buying now would put the stop more than {C.MAX_ENTRY_RISK:.0%} away. Don't chase; wait for a pullback or a new base.
+- 🔴 **Failed**: closed below the stop. Setup is broken.
+
+**Columns**
+- **Pivot**: the buy point, i.e. the top of the last, tightest contraction in the base.
+- **Stop**: where the setup is proven wrong (low of the last contraction, max {C.MAX_STOP_PCT:.0%} below the pivot).
+- **Risk at entry**: how far the stop is if you buy now (or at the pivot, if not broken out). Keep it under {C.MAX_ENTRY_RISK:.0%}.
+- **RS**: 1–99 rank of price performance vs all liquid US stocks (last 3 months weighted double). 90+ = leader.
+- **RS line**: stock ÷ S&P 500. ✓ = at a 52-week high. ★ = at a high *before* the price is, the earliest leader sign.
+- **Fell vs SPY**: stock's deepest drop since the S&P 500's high ÷ the index's drop. ✓ = {C.MAX_CORRECTION_MULT:g}× or less (held up). "—" = market isn't really correcting.
+- **EPS**: ✓ = latest quarter's earnings up ≥ {C.MIN_EPS_GROWTH:.0%} year on year. *turnaround* = loss to profit. *tiny base* = year-ago EPS too small for a % to mean anything.
+- **Earnings**: next report date. ⚠️ = within {C.EARNINGS_WARN_DAYS} trading days. A report can gap a stock 10–20% either way; avoid new buys before it, and don't hold through it without a profit cushion.
+- **Trend**: whether the Trend Template (price above rising 50/150/200-day lines) still holds today.
+
+**The best setups have all of these:** 🟢 Breakout · RS 90+ · RS line ✓/★ · EPS ✓ · leading sector · no ⚠️ earnings · market banner green.
+""",
+    "screener": f"""
+- **TT**: how many of the 8 Trend Template criteria pass. Only 8/8 is Stage 2. Tick *Show each criterion* to see which failed.
+- **RS**, **RS line**, **Fell vs SPY**: see the Signals tab panel. The two toggles keep only stocks that held up or have the RS line at a new high, i.e. the leaders.
+- **Above 52w low / Below 52w high**: Minervini wants ≥ {C.MIN_ABOVE_52W_LOW:.0%} above the low and within {C.MAX_BELOW_52W_HIGH:.0%} of the high.
+- **200MA rising (mo)**: months the 200-day line has been rising. 4–5+ is ideal.
+- **VCP / vs pivot / Risk at entry**: the base and buy point (VCP stocks only).
+- **EPS YoY / EPS accel. / Beats in a row**: earnings growth vs the same quarter last year, whether it's speeding up, and how many quarters in a row it beat estimates.
+- **Next report**: ⚠️ = within {C.EARNINGS_WARN_DAYS} trading days.
+- Fundamentals are fetched only for 8/8 passes. Sales growth and margins aren't on the Grow plan; check them on Finviz for your final picks.
+""",
+    "chart": """
+- **Candles**: green = closed up, red = closed down. **Lines**: blue 50-day, orange 150-day, purple 200-day moving average. In Stage 2 the price is above all three and they're stacked 50 > 150 > 200.
+- **Dashed grey line**: pivot (buy point). **Dotted red line**: stop.
+- **Volume panel**: grey line is the 50-day average. A real breakout has volume well above it; the right side of a good base has volume well *below* it ("dry-up").
+- Confirm the base by eye: each pullback should be smaller than the one before, and the last one tight and quiet.
+""",
+    "sectors": """
+- **Table**: SPDR sector ETFs ranked by the same weighted performance used for stock RS. Prefer stocks from the top 2–3 sectors; avoid sectors below their 200-day line.
+- **Where the leaders are**: how many stocks in each sector pass all 8 Trend Template criteria. Leadership usually clusters in a few groups.
+""",
+    "sizing": """
+- **Shares** = (account × risk per trade) ÷ (entry − stop). This keeps every loss the same size in dollars, whatever the stock's price or stop distance.
+- **Risk per trade**: Minervini uses roughly 1–2.5% of the account. Start at the low end, and use quarter-size positions while the market banner isn't green.
+- **Warnings**: stop more than 10% away = don't take the trade. Position over 25% of the account = too concentrated.
+""",
+}
+
+
+def how_to_read(key: str) -> None:
+    with st.expander("How to read this", icon="ℹ️"):
+        st.markdown(GLOSSARY[key])
+
+
 def theme_type() -> str:
     try:
         t = st.context.theme.type
@@ -259,17 +349,18 @@ def market_strip(mk: dict) -> None:
 
 
 def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
+    how_to_read("signals")
     if wl.empty:
         st.info("Watchlist is empty. Either the weekly scan hasn't run yet, or no stock passed the Trend Template with a VCP base this week.")
         return
-    st.caption(
-        "Checked after every US close against the pivot set by the weekly scan. "
-        f"**Breakout** = close above pivot on ≥ {C.BREAKOUT_VOL_MULT:g}× average volume. "
-        f"**Extended** = buying at today's close would put the stop more than {C.MAX_ENTRY_RISK:.0%} away. "
-        f"**Ready** = within {C.VCP_READY_WITHIN:.0%} below pivot. "
-        "**Risk at entry** = stop distance if you buy now (or at the pivot, if it hasn't broken out)."
-    )
+    st.caption("Checked after every US close against the pivot set by the weekly scan.")
+    soon = soon_reporting(wl)
+    if soon:
+        st.warning(f"**Earnings within {C.EARNINGS_WARN_DAYS} trading days:** {', '.join(soon)}. "
+                   "Avoid new buys before the report; if you hold one, decide now whether your profit "
+                   "cushion is big enough to hold through it.", icon="📅")
     df = wl.copy()
+    df["Earnings"] = [earnings_label(d) for d in df.get("next_report", [None] * len(df))]
     df["_order"] = df["vcp_status"].map({s: i for i, s in enumerate(STATUS_ORDER)}).fillna(99)
     df = df.sort_values(["_order", "dist_to_pivot"], ascending=[True, False])
     df["Status"] = df["vcp_status"].map(STATUS_LABEL).fillna(df["vcp_status"])
@@ -282,8 +373,8 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
     df["RS line"] = [rs_line_label(h, l) for h, l in zip(df.get("rs_line_high", [None] * len(df)),
                                                         df.get("rs_line_leads", [None] * len(df)))]
     show = df[["symbol", "name", "Status", "close", "pivot", "dist_to_pivot", "stop", "entry_risk",
-               "breakout_vol_ratio", "rs_rating", "RS line", "Fell vs SPY", "EPS", "Trend", "sector",
-               "depths", "updated"]]
+               "breakout_vol_ratio", "rs_rating", "RS line", "Fell vs SPY", "EPS", "Earnings", "Trend",
+               "sector", "depths", "updated"]]
     st.dataframe(
         show, hide_index=True, width="stretch",
         column_config={
@@ -320,6 +411,7 @@ def tab_signals(wl: pd.DataFrame, signals: pd.DataFrame) -> None:
 
 
 def tab_screener(sc: pd.DataFrame) -> None:
+    how_to_read("screener")
     if sc.empty:
         st.info("No screen yet. Run the weekly scan once (see README).")
         return
@@ -365,7 +457,8 @@ def tab_screener(sc: pd.DataFrame) -> None:
     detail = st.toggle("Show each Trend Template criterion", value=False)
     cols = ["symbol", "name", "sector", "close", "rs_rating", "tt_score", "pct_above_low",
             "pct_below_high", "sma200_months_rising", "VCP", "dist_to_pivot", "entry_risk", "eps_g0", "eps_g1",
-            "eps_accel", "eps_note", "surprise_streak", "next_report", "industry"]
+            "eps_accel", "eps_note", "surprise_streak", "Next report", "industry"]
+    d = d.assign(**{"Next report": [earnings_label(x) for x in d["next_report"]]})
     if "corr_ratio" in d:
         d = d.assign(**{"RS line": [rs_line_label(h, l) for h, l in zip(d["rs_line_high"], d["rs_line_leads"])],
                         "Fell vs SPY": [corr_label(r) for r in d["corr_ratio"]]})
@@ -391,6 +484,7 @@ def tab_screener(sc: pd.DataFrame) -> None:
         "corr_depth": st.column_config.NumberColumn("Max fall since SPY high", format="percent"),
         "surprise_streak": st.column_config.NumberColumn("Beats in a row", format="%d"),
         "next_report": "Next report",
+        "Next report": "Next report",
     }
     for k, label in CRITERIA.items():
         cfg[k] = st.column_config.CheckboxColumn(k.upper(), help=label)
@@ -436,6 +530,7 @@ def price_chart(df: pd.DataFrame, row: dict | None) -> go.Figure:
 
 
 def tab_chart(sc: pd.DataFrame, wl: pd.DataFrame) -> None:
+    how_to_read("chart")
     wl_syms = wl["symbol"].tolist() if not wl.empty else []
     tt_syms = sc.loc[sc["tt_pass"] == True, "symbol"].tolist() if not sc.empty else []  # noqa: E712
     options = wl_syms + [s for s in tt_syms if s not in wl_syms]
@@ -510,10 +605,15 @@ def tab_chart(sc: pd.DataFrame, wl: pd.DataFrame) -> None:
                         f"before {pct(row.get('eps_g2'), 0)}  \n"
                         f"Accelerating: {'yes' if row.get('eps_accel') in (True, 'True') else 'no'} · "
                         f"beats in a row: {num(row.get('surprise_streak')):.0f}  \n"
-                        f"Next report: {row.get('next_report') or '—'}")
+                        f"Next report: {earnings_label(row.get('next_report'))}")
+        n = trading_days_until(row.get("next_report"))
+        if n is not None and 0 <= n <= C.EARNINGS_WARN_DAYS:
+            st.warning(f"Reports earnings in {n} trading day(s). Avoid buying before the report; "
+                       "if you hold it, decide whether your profit cushion can absorb a gap.", icon="📅")
 
 
 def tab_sectors(mk: dict) -> None:
+    how_to_read("sectors")
     secs = pd.DataFrame(mk.get("sectors", []))
     if secs.empty:
         st.info("No sector data yet.")
@@ -546,6 +646,7 @@ def tab_sectors(mk: dict) -> None:
 
 
 def tab_sizing(wl: pd.DataFrame) -> None:
+    how_to_read("sizing")
     st.caption("Shares = (account × risk per trade) ÷ (entry − stop). Default entry is the pivot, "
                "or today's close if the stock is already above it.")
     syms = ["(manual)"] + (wl["symbol"].tolist() if not wl.empty else [])
@@ -593,6 +694,13 @@ def main() -> None:
     sc, wl, sig = data("screen.csv"), data("watchlist.csv"), data("signals_log.csv")
     # hide old/renamed tickers even in data written before they were excluded
     sc, wl, sig = [d[~d["symbol"].isin(C.EXCLUDE_SYMBOLS)] if "symbol" in d else d for d in (sc, wl, sig)]
+    if not wl.empty and not sc.empty and "next_report" in sc:
+        nr = sc.set_index("symbol")["next_report"].to_dict()
+        wl = wl.copy()
+        if "next_report" not in wl:
+            wl["next_report"] = None
+        wl["next_report"] = [r if isinstance(r, str) and r else nr.get(sym)
+                             for sym, r in zip(wl["symbol"], wl["next_report"])]
     header(mk, meta)
     market_strip(mk)
     t1, t2, t3, t4, t5 = st.tabs(["Signals", "Screener", "Chart", "Sectors", "Position size"])
