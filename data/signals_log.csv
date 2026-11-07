@@ -22,3 +22,4 @@ date,symbol,vcp_status,pivot,close,breakout_vol_ratio,stop
 2026-11-05,SLDE,Breakout,25.88,26.43,1.45909,25
 2026-11-05,DBX,Breakout (weak volume),34.68,35.76,0.687514,32.94
 2026-11-05,SPNT,Breakout,25.91,26.27,1.46131,24.68
+2026-11-06,VRNS,Breakout,48.57,48.8,22.0946,45.65
