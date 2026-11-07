@@ -19,6 +19,17 @@ from plotly.subplots import make_subplots
 import config as C
 from screener.td_client import values_to_frame
 
+# Defaults for settings added after the first release. If config.py on GitHub
+# is older than app.py (e.g. a partial upload), the app still runs.
+_DEFAULTS = {
+    "MAX_ENTRY_RISK": 0.08, "VCP_MAX_CHASE": 0.10, "EPS_MIN_BASE": 0.05,
+    "MAX_CORRECTION_MULT": 2.5, "MIN_MARKET_CORRECTION": 0.03, "RS_LINE_NEW_HIGH_TOL": 0.01,
+    "EXCLUDE_SYMBOLS": {"CDEV": "renamed PR", "OAS": "merged into CHRD"},
+}
+_STALE_CONFIG = [k for k in _DEFAULTS if not hasattr(C, k)]
+for _k in _STALE_CONFIG:
+    setattr(C, _k, _DEFAULTS[_k])
+
 st.set_page_config(page_title="SEPA Screener", page_icon="📈", layout="wide")
 
 STATUS_ORDER = ["Breakout", "Ready", "Breakout (weak volume)", "Forming", "Extended", "Failed"]
@@ -575,6 +586,9 @@ def tab_sizing(wl: pd.DataFrame) -> None:
 # ---------------------------------------------------------------------------
 def main() -> None:
     password_gate()
+    if _STALE_CONFIG:
+        st.warning("config.py on GitHub is older than app.py, so defaults are used for: "
+                   f"{', '.join(_STALE_CONFIG)}. Upload the latest config.py.", icon="⚠️")
     mk, meta = data("market.json"), data("run_meta.json")
     sc, wl, sig = data("screen.csv"), data("watchlist.csv"), data("signals_log.csv")
     # hide old/renamed tickers even in data written before they were excluded
