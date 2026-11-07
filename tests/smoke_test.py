@@ -51,7 +51,12 @@ def main() -> None:
         pipeline.run_weekly(again)
         assert not any(c.startswith(("earnings", "profile")) for c in again.calls), "cache not reused"
 
+        # an excluded ticker sneaking into the watchlist is dropped by the daily check
+        wl_raw = pd.read_csv(tmp / "watchlist.csv")
+        fake = wl_raw.iloc[[0]].assign(symbol="CDEV")
+        pd.concat([wl_raw, fake]).to_csv(tmp / "watchlist.csv", index=False)
         pipeline.run_daily(FakeClient(breakout=True))
+        assert "CDEV" not in set(pd.read_csv(tmp / "watchlist.csv")["symbol"])
         wl = pd.read_csv(tmp / "watchlist.csv").set_index("symbol")
         assert wl.loc["VCPA", "vcp_status"] == "Breakout", wl.loc["VCPA", "vcp_status"]
         log = pd.read_csv(tmp / "signals_log.csv")

@@ -577,6 +577,8 @@ def main() -> None:
     password_gate()
     mk, meta = data("market.json"), data("run_meta.json")
     sc, wl, sig = data("screen.csv"), data("watchlist.csv"), data("signals_log.csv")
+    # hide old/renamed tickers even in data written before they were excluded
+    sc, wl, sig = [d[~d["symbol"].isin(C.EXCLUDE_SYMBOLS)] if "symbol" in d else d for d in (sc, wl, sig)]
     header(mk, meta)
     market_strip(mk)
     t1, t2, t3, t4, t5 = st.tabs(["Signals", "Screener", "Chart", "Sectors", "Position size"])
