@@ -9,7 +9,7 @@ on:
       mode:
         description: "Which job to run"
         type: choice
-        options: [weekly, daily]
+        options: [weekly, daily, test-alert]
         default: weekly
       rebuild:
         description: "Weekly only: re-check ALL US stocks for liquidity (slower)"
@@ -53,6 +53,10 @@ jobs:
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
           TD_CREDITS_PER_MIN: ${{ vars.TD_CREDITS_PER_MIN || '377' }}
           TD_FUNDAMENTAL_BUDGET: ${{ vars.TD_FUNDAMENTAL_BUDGET || '20000' }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
           ARGS="${{ steps.mode.outputs.mode }}"
           if [ "${{ inputs.rebuild }}" = "true" ]; then ARGS="$ARGS --rebuild"; fi

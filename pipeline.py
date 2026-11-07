@@ -10,6 +10,7 @@ import argparse
 import json
 import logging
 import math
+import os
 import re
 import sys
 import time
@@ -18,7 +19,9 @@ from datetime import date, datetime, timezone
 import pandas as pd
 
 import config as C
+from screener import alerts as A
 from screener import fundamentals as F
+from screener import journal as J
 from screener import market as M
 from screener.indicators import (EMPTY_VCP, detect_vcp, entry_status, leadership, market_correction,
                                  rs_raw, rs_rating, trend_template)
@@ -32,6 +35,7 @@ WATCH_PATH = C.DATA_DIR / "watchlist.csv"
 MARKET_PATH = C.DATA_DIR / "market.json"
 META_PATH = C.DATA_DIR / "run_meta.json"
 SIGNALS_PATH = C.DATA_DIR / "signals_log.csv"
+ALERT_STATE_PATH = C.DATA_DIR / "alerts_state.json"
 
 MARKET_SYMBOLS = list(C.BENCHMARKS) + list(C.SECTOR_ETFS)
 WATCH_STATUSES = {"Forming", "Ready", "Breakout", "Breakout (weak volume)", "Extended"}
@@ -223,12 +227,12 @@ def run_weekly(client, rebuild: bool = False) -> None:
     # --- watchlist --------------------------------------------------------
     old = pd.read_csv(WATCH_PATH) if WATCH_PATH.exists() else pd.DataFrame()
     wl = screen[screen["vcp"] & screen["vcp_status"].isin(WATCH_STATUSES)].copy()
-    for col in ("eps_note", "eps_pass"):
+    for col in ("eps_note", "eps_pass", "next_report"):
         if col not in wl:
             wl[col] = None
     wl = wl[["symbol", "name", "sector", "rs_rating", "pivot", "pivot_date", "stop", "risk_pct",
              "close", "dist_to_pivot", "entry_risk", "vcp_status", "breakout_date", "breakout_vol_ratio",
-             "contractions", "depths", "eps_pass", "eps_note",
+             "contractions", "depths", "eps_pass", "eps_note", "next_report",
              "corr_depth", "corr_ratio", "held_up", "rs_line_high", "rs_line_leads"]].copy()
     wl["added"] = as_of
     if not old.empty and "added" in old:
@@ -257,6 +261,12 @@ def run_weekly(client, rebuild: bool = False) -> None:
     mk["daily_check_at"] = None
     save_json(MARKET_PATH, mk)
 
+    if A.configured():
+        state = load_json(ALERT_STATE_PATH, {})
+        state["market"] = A.market_state(mk)
+        save_json(ALERT_STATE_PATH, state)
+        A.send(A.weekly_summary(mk, wl, as_of))
+
     meta.update(last_weekly=now_utc(), last_weekly_credits=client.credits_used, as_of=as_of)
     save_json(META_PATH, meta)
     log.info("weekly done: %d credits", client.credits_used)
@@ -271,13 +281,16 @@ def run_daily(client) -> None:
     if not wl.empty:
         wl = wl[~wl["symbol"].isin(C.EXCLUDE_SYMBOLS)].reset_index(drop=True)
     syms = wl["symbol"].tolist() if not wl.empty else []
-    prices = fetch_prices(client, syms + MARKET_SYMBOLS)
+    trades, exits = load_open_journal()
+    held = sorted(set(trades.loc[trades["status"] == "open", "symbol"])) if not trades.empty else []
+    fetch = list(dict.fromkeys(syms + held + MARKET_SYMBOLS))
+    prices = fetch_prices(client, fetch)
     as_of = last_bar_date(prices)
 
     spy = prices.get("SPY")
     mkt_corr = market_correction(spy)
+    old = wl.copy()
     if not wl.empty:
-        old = wl.copy()
         for col in ("corr_depth", "corr_ratio"):
             if col not in wl:
                 wl[col] = float("nan")
@@ -316,10 +329,40 @@ def run_daily(client) -> None:
     mk["daily_check_at"] = now_utc()
     save_json(MARKET_PATH, mk)
 
+    # --- alerts -----------------------------------------------------------
+    state = load_json(ALERT_STATE_PATH, {})
+    sc = pd.read_csv(SCREEN_PATH) if SCREEN_PATH.exists() else pd.DataFrame()
+    next_reports = sc.set_index("symbol")["next_report"].to_dict() if "next_report" in sc else {}
+    msgs = A.market_alert(mk, state)
+    msgs += A.position_alerts(trades, exits, prices, next_reports, state, date.today())
+    msgs += A.watchlist_alerts(old, wl, state)
+    send_alerts(msgs, f"<b>SEPA daily check</b> · close of {as_of}")
+    save_json(ALERT_STATE_PATH, state)
+
     meta = load_json(META_PATH, {})
     meta.update(last_daily=now_utc(), last_daily_credits=client.credits_used)
     save_json(META_PATH, meta)
     log.info("daily done: %d symbols, %d credits", len(syms), client.credits_used)
+
+
+def load_open_journal():
+    """(trades, exits) from Supabase, or empty frames if not configured / unreachable."""
+    url, key = os.environ.get("SUPABASE_URL"), os.environ.get("SUPABASE_SERVICE_KEY")
+    if not url or not key:
+        return pd.DataFrame(), pd.DataFrame()
+    try:
+        j = J.SupabaseJournal(url, key)
+        return j.trades(), j.exits()
+    except Exception as e:  # never let the journal break the data run
+        log.warning("journal unavailable: %s", e)
+        return pd.DataFrame(), pd.DataFrame()
+
+
+def send_alerts(messages: list[str], header: str) -> None:
+    if not messages:
+        log.info("no new alerts")
+        return
+    A.send(header + "\n\n" + "\n\n".join(messages))
 
 
 def _corr_json(c: dict) -> dict:
@@ -341,11 +384,21 @@ def _log_new_breakouts(old: pd.DataFrame, new: pd.DataFrame, as_of: str | None) 
 
 def main(argv=None) -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("mode", choices=["weekly", "daily"])
+    p.add_argument("mode", choices=["weekly", "daily", "test-alert"])
     p.add_argument("--rebuild", action="store_true", help="re-check all US stocks for liquidity")
     a = p.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     C.CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    if a.mode == "test-alert":
+        trades, _ = load_open_journal()
+        n_open = int((trades["status"] == "open").sum()) if not trades.empty else 0
+        journal = (f"Journal connected: {n_open} open trade(s)." if os.environ.get("SUPABASE_URL")
+                   else "Journal not connected (SUPABASE_URL / SUPABASE_SERVICE_KEY secrets missing).")
+        ok = A.send(f"✅ <b>SEPA alerts are working.</b>\n{journal}")
+        if not ok:
+            log.error("test alert failed: check TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID")
+            return 1
+        return 0
     client = TwelveDataClient(C.API_KEY, C.CREDITS_PER_MIN)
     if a.mode == "weekly":
         run_weekly(client, a.rebuild)

@@ -113,6 +113,16 @@ Stores your trades in your Supabase project, in the tables `sepa_stock_trade` an
 - **Forms:** log a new trade (the setup at entry is filled in from the dashboard), record a partial or full sell, raise a stop (stops can only move up), or delete a trade.
 - **Performance:** win rate, average gain and loss, average R, and total P&L, also split by setup (RS line, EPS, market state, signal at entry), so you can see which setups make you money.
 
+## Telegram alerts
+
+After each run the GitHub Action can message you on Telegram. Each alert is sent once (remembered in `data/alerts_state.json`).
+- **Daily, after the US close:**
+  - new volume-confirmed breakouts on the watchlist;
+  - for your open Journal trades: stop hit, each new R level from 2R up (with the next action), earnings within 3 trading days, and a close below the 50-day line;
+  - a change in market state (uptrend, correction or downtrend).
+- **Weekly (Saturday):** a summary covering the market state, Trend Template passes, top sectors, and the best setups to watch.
+- **Setup:** add GitHub secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`, then **Actions → Screener data → Run workflow → test-alert**.
+
 ## What's automated and what isn't
 
 | SEPA step | Status | Notes |
