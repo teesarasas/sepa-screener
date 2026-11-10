@@ -1,3 +1,3 @@
 symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,entry_risk,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,eps_note,next_report,corr_depth,corr_ratio,held_up,rs_line_high,rs_line_leads,added,tt_ok,updated
-VRNS,"Varonis Systems, Inc.",Technology,94,48.57,2026-10-14,45.65,0.0601194,48.8,0.00473543,0.0645492,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,1.48023,True,True,True,2026-11-06,True,2026-11-06
-SPNT,SiriusPoint Ltd.,Financials,80,26.11,2026-10-22,24.98,0.0432784,26.33,0.00842589,0.0512723,Breakout (weak volume),2026-11-05,1.24958,3,9% → 5% → 4%,False,,,0.0482439,0.770976,True,True,True,2026-10-16,True,2026-11-06
+VRNS,"Varonis Systems, Inc.",Technology,94,48.57,2026-10-14,45.65,0.0601194,48.96,0.00802965,0.0676062,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,1.48023,True,False,False,2026-11-06,True,2026-11-09
+SPNT,SiriusPoint Ltd.,Financials,80,26.11,2026-10-22,24.98,0.0432784,26.41,0.0114899,0.0541462,Breakout (weak volume),2026-11-05,1.24958,3,9% → 5% → 4%,False,,,0.0619469,0.98996,True,False,False,2026-10-16,True,2026-11-09
