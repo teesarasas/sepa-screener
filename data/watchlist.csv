@@ -1,3 +1,4 @@
 symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,entry_risk,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,eps_note,next_report,corr_depth,corr_ratio,held_up,rs_line_high,rs_line_leads,added,tt_ok,updated
-VRNS,"Varonis Systems, Inc.",Technology,94,48.57,2026-10-14,45.65,0.0601194,48.94,0.00761787,0.0672252,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,1.48023,True,False,False,2026-11-06,True,2026-11-13
-SPNT,SiriusPoint Ltd.,Financials,80,26.11,2026-10-22,24.98,0.0432784,26.57,0.0176178,0.0598419,Breakout (weak volume),2026-11-05,1.24958,3,9% → 5% → 4%,False,,,0.0619469,0.98996,True,False,False,2026-10-16,True,2026-11-13
+INTA,Intapp Inc.,Technology,93,47.11,2026-11-12,45.39,0.0365103,46.16,-0.0201656,0.0365103,Ready,,,4,21% → 10% → 8% → 4%,True,,,0.210832,3.36926,False,False,False,2026-11-13,True,2026-11-13
+VRNS,"Varonis Systems, Inc.",Technology,92,48.57,2026-10-14,45.65,0.0601194,48.94,0.00761787,0.0672252,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,1.48023,True,False,False,2026-11-06,True,2026-11-13
+UTZ,"Utz Brands, Inc. Class A Common Stock",Consumer Staples,89,7.65,2026-07-15,7.17,0.0627451,14.28,0.866667,0.497899,Extended,2026-07-21,31.2401,3,9% → 9% → 6%,False,turnaround (loss → profit),,0.00905292,0.144673,True,False,False,2026-11-13,True,2026-11-13

@@ -113,11 +113,23 @@
 "name": "Amneal Pharmaceuticals, Inc.",
 "sector": "Healthcare"
 },
+"ANET": {
+"fetched": "2026-11-14",
+"industry": "Computer Hardware",
+"name": "Arista Networks Inc.",
+"sector": "Technology"
+},
 "ANF": {
 "fetched": "2026-10-19",
 "industry": "Apparel Retail",
 "name": "Abercrombie & Fitch Co. Class A Common Stock",
 "sector": "Consumer Cyclical"
+},
+"ANRO": {
+"fetched": "2026-11-14",
+"industry": "Biotechnology",
+"name": "Alto Neuroscience Inc.",
+"sector": "Healthcare"
 },
 "APA": {
 "fetched": "2026-10-19",
@@ -130,6 +142,12 @@
 "industry": "Software - Infrastructure",
 "name": "Appian Corp Class A Common Stock",
 "sector": "Technology"
+},
+"ARQT": {
+"fetched": "2026-11-14",
+"industry": "Biotechnology",
+"name": "Arcutis Biotherapeutics, Inc.",
+"sector": "Healthcare"
 },
 "ARX": {
 "fetched": "2026-10-19",
@@ -256,6 +274,12 @@
 "industry": "Drug Manufacturers - General",
 "name": "Biogen Inc.",
 "sector": "Healthcare"
+},
+"BILL": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "BILL Holdings, Inc.",
+"sector": "Technology"
 },
 "BK": {
 "fetched": "2026-11-07",
@@ -413,11 +437,23 @@
 "name": "CECO Environmental Corp.",
 "sector": "Industrials"
 },
+"CF": {
+"fetched": "2026-11-14",
+"industry": "Agricultural Inputs",
+"name": "CF Industries Holdings, Inc.",
+"sector": "Basic Materials"
+},
 "CFX": {
 "fetched": "2026-11-07",
 "industry": "Medical Devices",
 "name": "Enovis Corporation",
 "sector": "Healthcare"
+},
+"CHD": {
+"fetched": "2026-11-14",
+"industry": "Household & Personal Products",
+"name": "Church & Dwight Co., Inc.",
+"sector": "Consumer Defensive"
 },
 "CHEF": {
 "fetched": "2026-10-19",
@@ -437,11 +473,23 @@
 "name": "Chime Financial Inc. Class A",
 "sector": "Technology"
 },
+"CLBK": {
+"fetched": "2026-11-14",
+"industry": "Banks - Regional",
+"name": "Columbia Financial Inc.",
+"sector": "Financial Services"
+},
 "CLMT": {
 "fetched": "2026-10-19",
 "industry": "Specialty Chemicals",
 "name": "Calumet, Inc.",
 "sector": "Basic Materials"
+},
+"CMBT": {
+"fetched": "2026-11-14",
+"industry": "Oil & Gas Midstream",
+"name": "Cmb.Tech NV",
+"sector": "Energy"
 },
 "CMPO": {
 "fetched": "2026-11-07",
@@ -460,6 +508,12 @@
 "industry": "Entertainment",
 "name": "Cinemark Holdings, Inc.",
 "sector": "Communication Services"
+},
+"CNNE": {
+"fetched": "2026-11-14",
+"industry": "Restaurants",
+"name": "Cannae Holdings, Inc.",
+"sector": "Consumer Cyclical"
 },
 "CNO": {
 "fetched": "2026-10-19",
@@ -611,11 +665,29 @@
 "name": "Delek US Holdings, Inc.",
 "sector": "Energy"
 },
+"DLTR": {
+"fetched": "2026-11-14",
+"industry": "Discount Stores",
+"name": "Dollar Tree Inc.",
+"sector": "Consumer Defensive"
+},
+"DMRA": {
+"fetched": "2026-11-14",
+"industry": "Biotechnology",
+"name": "Damora Therapeutics, Inc.",
+"sector": "Healthcare"
+},
 "DOCU": {
 "fetched": "2026-10-19",
 "industry": "Software - Application",
 "name": "DocuSign Inc.",
 "sector": "Technology"
+},
+"DRQ": {
+"fetched": "2026-11-14",
+"industry": "Oil & Gas Equipment & Services",
+"name": "Innovex International, Inc.",
+"sector": "Energy"
 },
 "DSGX": {
 "fetched": "2026-11-07",
@@ -725,6 +797,18 @@
 "name": "Etsy Inc.",
 "sector": "Consumer Cyclical"
 },
+"EURN": {
+"fetched": "2026-11-14",
+"industry": "Oil & Gas Midstream",
+"name": "Euronav NV",
+"sector": "Energy"
+},
+"EVER": {
+"fetched": "2026-11-14",
+"industry": "Internet Content & Information",
+"name": "EverQuote Inc. Class A Common Stock",
+"sector": "Communication Services"
+},
 "EW": {
 "fetched": "2026-11-07",
 "industry": "Medical Devices",
@@ -742,6 +826,12 @@
 "industry": "Biotechnology",
 "name": "Exelixis Inc.",
 "sector": "Healthcare"
+},
+"EXLS": {
+"fetched": "2026-11-14",
+"industry": "Information Technology Services",
+"name": "ExlService Holdings, Inc. Common Stock",
+"sector": "Technology"
 },
 "EXPD": {
 "fetched": "2026-10-19",
@@ -771,6 +861,18 @@
 "fetched": "2026-10-19",
 "industry": "Industrial Distribution",
 "name": "Fastenal Co.",
+"sector": "Industrials"
+},
+"FBHS": {
+"fetched": "2026-11-14",
+"industry": "",
+"name": "Fortune Brands Home & Security Inc",
+"sector": ""
+},
+"FBIN": {
+"fetched": "2026-11-14",
+"industry": "Building Products & Equipment",
+"name": "Fortune Brands Innovations, Inc.",
 "sector": "Industrials"
 },
 "FDS": {
@@ -851,11 +953,35 @@
 "name": "Fortrea Holdings Inc.",
 "sector": "Healthcare"
 },
+"GAP": {
+"fetched": "2026-11-14",
+"industry": "Apparel Retail",
+"name": "The Gap, Inc.",
+"sector": "Consumer Cyclical"
+},
 "GCT": {
 "fetched": "2026-10-19",
 "industry": "Software - Infrastructure",
 "name": "GigaCloud Technology Inc Class A Ordinary Shares",
 "sector": "Technology"
+},
+"GDDY": {
+"fetched": "2026-11-14",
+"industry": "Software - Infrastructure",
+"name": "GoDaddy Inc. Class A Common Stock",
+"sector": "Technology"
+},
+"GEN": {
+"fetched": "2026-11-14",
+"industry": "Software - Infrastructure",
+"name": "Gen Digital Inc.",
+"sector": "Technology"
+},
+"GEO": {
+"fetched": "2026-11-14",
+"industry": "Security & Protection Services",
+"name": "The GEO Group, Inc.",
+"sector": "Industrials"
 },
 "GKOS": {
 "fetched": "2026-11-07",
@@ -868,6 +994,12 @@
 "industry": "Internet Retail",
 "name": "Global-E Online Ltd.",
 "sector": "Consumer Cyclical"
+},
+"GLTO": {
+"fetched": "2026-11-14",
+"industry": "Biotechnology",
+"name": "Damora Therapeutics, Inc.",
+"sector": "Healthcare"
 },
 "GMTX": {
 "fetched": "2026-11-07",
@@ -904,6 +1036,12 @@
 "industry": "Oil & Gas E&P",
 "name": "GeoPark Limited",
 "sector": "Energy"
+},
+"GPS": {
+"fetched": "2026-11-14",
+"industry": "Apparel Retail",
+"name": "The Gap, Inc.",
+"sector": "Consumer Cyclical"
 },
 "GRDN": {
 "fetched": "2026-11-07",
@@ -957,6 +1095,12 @@
 "fetched": "2026-11-07",
 "industry": "Banks - Regional",
 "name": "Happen, Inc. Common Stock",
+"sector": "Financial Services"
+},
+"HBNC": {
+"fetched": "2026-11-14",
+"industry": "Banks - Regional",
+"name": "Horizon Bancorp, Inc.",
 "sector": "Financial Services"
 },
 "HCSG": {
@@ -1055,6 +1199,12 @@
 "name": "Intapp Inc.",
 "sector": "Technology"
 },
+"INVX": {
+"fetched": "2026-11-14",
+"industry": "Oil & Gas Equipment & Services",
+"name": "Innovex International Inc.",
+"sector": "Energy"
+},
 "IOT": {
 "fetched": "2026-11-07",
 "industry": "Software - Infrastructure",
@@ -1085,6 +1235,12 @@
 "name": "Integer Holdings Corporation",
 "sector": "Healthcare"
 },
+"J": {
+"fetched": "2026-11-14",
+"industry": "Engineering & Construction",
+"name": "Jacobs Solutions Inc.",
+"sector": "Industrials"
+},
 "JBIO": {
 "fetched": "2026-11-07",
 "industry": "Biotechnology",
@@ -1102,6 +1258,12 @@
 "industry": "Drug Manufacturers - General",
 "name": "Johnson & Johnson",
 "sector": "Healthcare"
+},
+"JXN": {
+"fetched": "2026-11-14",
+"industry": "Insurance - Life",
+"name": "Jackson Financial Inc.",
+"sector": "Financial Services"
 },
 "KAR": {
 "fetched": "2026-11-07",
@@ -1223,6 +1385,12 @@
 "name": "Life Time Group Holdings, Inc.",
 "sector": "Consumer Cyclical"
 },
+"M": {
+"fetched": "2026-11-14",
+"industry": "Department Stores",
+"name": "Macy's Inc.",
+"sector": "Consumer Cyclical"
+},
 "MA": {
 "fetched": "2026-11-07",
 "industry": "Credit Services",
@@ -1235,11 +1403,29 @@
 "name": "Manhattan Associates Inc.",
 "sector": "Technology"
 },
+"MAR": {
+"fetched": "2026-11-14",
+"industry": "Lodging",
+"name": "Marriott International, Inc. Class A Common Stock",
+"sector": "Consumer Cyclical"
+},
+"MAS": {
+"fetched": "2026-11-14",
+"industry": "Building Products & Equipment",
+"name": "Masco Corporation",
+"sector": "Industrials"
+},
 "MAX": {
 "fetched": "2026-11-07",
 "industry": "Internet Content & Information",
 "name": "MediaAlpha Inc. Class A Common Stock",
 "sector": "Communication Services"
+},
+"MBX": {
+"fetched": "2026-11-14",
+"industry": "Biotechnology",
+"name": "MBX Biosciences, Inc.",
+"sector": "Healthcare"
 },
 "MD": {
 "fetched": "2026-10-19",
@@ -1282,6 +1468,12 @@
 "industry": "Furnishings, Fixtures & Appliances",
 "name": "Mohawk Industries Inc.",
 "sector": "Consumer Cyclical"
+},
+"MITK": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Mitek Systems Inc.",
+"sector": "Technology"
 },
 "MMC": {
 "fetched": "2026-11-07",
@@ -1619,6 +1811,12 @@
 "name": "Perrigo Company plc",
 "sector": "Healthcare"
 },
+"PRGS": {
+"fetched": "2026-11-14",
+"industry": "Software - Infrastructure",
+"name": "Progress Software Corp.",
+"sector": "Technology"
+},
 "PSX": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas Refining & Marketing",
@@ -1641,6 +1839,12 @@
 "fetched": "2026-10-19",
 "industry": "Semiconductors",
 "name": "Qorvo Inc.",
+"sector": "Technology"
+},
+"QTWO": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Q2 Holdings, Inc.",
 "sector": "Technology"
 },
 "QXO": {
@@ -1709,6 +1913,12 @@
 "name": "Roku, Inc. Class A Common Stock",
 "sector": "Communication Services"
 },
+"ROP": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Roper Technologies Inc.",
+"sector": "Technology"
+},
 "ROST": {
 "fetched": "2026-10-19",
 "industry": "Apparel Retail",
@@ -1745,6 +1955,12 @@
 "name": "RXO Inc.",
 "sector": "Industrials"
 },
+"SAIL": {
+"fetched": "2026-11-14",
+"industry": "Software - Infrastructure",
+"name": "SailPoint, Inc.",
+"sector": "Technology"
+},
 "SBH": {
 "fetched": "2026-11-07",
 "industry": "Specialty Retail",
@@ -1774,6 +1990,12 @@
 "industry": "Oil & Gas Equipment & Services",
 "name": "Solaris Energy Infrastructure, Inc.",
 "sector": "Energy"
+},
+"SEIC": {
+"fetched": "2026-11-14",
+"industry": "Asset Management",
+"name": "SEI Investments Company",
+"sector": "Financial Services"
 },
 "SG": {
 "fetched": "2026-10-19",
@@ -1858,6 +2080,12 @@
 "industry": "Internet Content & Information",
 "name": "Spotify Technology S.A.",
 "sector": "Communication Services"
+},
+"SPT": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Sprout Social Inc Class A Common Stock",
+"sector": "Technology"
 },
 "SQ": {
 "fetched": "2026-11-07",
@@ -2063,6 +2291,12 @@
 "name": "TXNM Energy, Inc.",
 "sector": "Utilities"
 },
+"U": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Unity Software Inc.",
+"sector": "Technology"
+},
 "UCB": {
 "fetched": "2026-11-07",
 "industry": "Banks - Regional",
@@ -2122,6 +2356,18 @@
 "industry": "Oil & Gas E&P",
 "name": "Vermilion Energy Inc.",
 "sector": "Energy"
+},
+"VIA": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Via Transportation Inc. Class A Common Stock",
+"sector": "Technology"
+},
+"VIRT": {
+"fetched": "2026-11-14",
+"industry": "Capital Markets",
+"name": "Virtu Financial Inc. Class A Common Stock",
+"sector": "Financial Services"
 },
 "VLO": {
 "fetched": "2026-10-19",
@@ -2194,6 +2440,12 @@
 "industry": "Diagnostics & Research",
 "name": "Waters Corporation",
 "sector": "Healthcare"
+},
+"WDAY": {
+"fetched": "2026-11-14",
+"industry": "Software - Application",
+"name": "Workday Inc Class A Common Stock",
+"sector": "Technology"
 },
 "WKC": {
 "fetched": "2026-10-19",

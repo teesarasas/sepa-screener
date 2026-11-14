@@ -2,12 +2,12 @@
  "indexes": {
   "SPY": {
    "name": "S&P 500",
-   "close": 754.25,
-   "chg_1d": -0.0037906804733728316,
-   "chg_1w": 0.025785772301697873,
-   "chg_1m": -0.02272636397793093,
-   "sma50": 764.42539564,
-   "sma200": 731.9169490099999,
+   "close": 754.37,
+   "chg_1d": -0.0036321851225696866,
+   "chg_1w": 0.025948973220062177,
+   "chg_1m": -0.02257088126487472,
+   "sma50": 764.42779564,
+   "sma200": 731.9175490100001,
    "above_50": false,
    "above_200": true,
    "sma200_rising": true,
@@ -28,12 +28,12 @@
   },
   "IWM": {
    "name": "Russell 2000",
-   "close": 277.57999,
-   "chg_1d": -0.003088672604510845,
-   "chg_1w": 0.014287206698315291,
-   "chg_1m": 0.009088276567353448,
-   "sma50": 280.7638016,
-   "sma200": 279.411250555,
+   "close": 277.54001,
+   "chg_1d": -0.0032322582962218682,
+   "chg_1w": 0.01414111834906584,
+   "chg_1m": 0.008942937022895725,
+   "sma50": 280.763002,
+   "sma200": 279.411050655,
    "above_50": false,
    "above_200": false,
    "sma200_rising": true,
@@ -44,10 +44,10 @@
   {
    "etf": "XLV",
    "sector": "Health Care",
-   "rs_score": 0.19942980022887402,
-   "perf_1m": 0.06600253964670677,
-   "perf_3m": 0.13070928828417916,
-   "perf_6m": 0.3017572500511887,
+   "rs_score": 0.19920767535589184,
+   "perf_1m": 0.06580512444268871,
+   "perf_3m": 0.13049988990422223,
+   "perf_6m": 0.30151617494719685,
    "above_50": true,
    "above_200": true,
    "rank": 1
@@ -99,10 +99,10 @@
   {
    "etf": "XLK",
    "sector": "Technology",
-   "rs_score": 0.026675699169675587,
-   "perf_1m": -0.1001109995242877,
-   "perf_3m": -0.10545401925945674,
-   "perf_6m": -0.034097301378491984,
+   "rs_score": 0.026856611187150416,
+   "perf_1m": -0.09995242877530519,
+   "perf_3m": -0.10529639001174917,
+   "perf_6m": -0.03392709825979223,
    "above_50": false,
    "above_200": false,
    "rank": 6
@@ -164,30 +164,28 @@
   }
  ],
  "breadth": {
-  "liquid": 1588,
-  "tt_pass": 226,
-  "pct_above_200": 0.5182619647355163,
-  "pct_above_50": 0.5088161209068011,
-  "vcp_setups": 2,
+  "liquid": 1583,
+  "tt_pass": 253,
+  "pct_above_200": 0.5552747946936197,
+  "pct_above_50": 0.5647504737839545,
+  "vcp_setups": 3,
   "tt_pass_by_sector": {
-   "Health Care": 88,
-   "Technology": 39,
-   "Consumer Discretionary": 33,
-   "Financials": 19,
-   "Industrials": 19,
+   "Health Care": 76,
+   "Technology": 52,
+   "Consumer Discretionary": 35,
+   "Financials": 27,
+   "Industrials": 24,
    "Consumer Staples": 13,
+   "Energy": 11,
    "Communication Services": 9,
-   "Materials": 4,
-   "Energy": 1,
-   "Utilities": 1
+   "Materials": 6
   }
  },
  "correction": {
   "since": "2026-10-06",
   "spy_depth": 0.06257513881425758
  },
- "as_of": "2026-11-06",
- "weekly_scan_at": "2026-11-07 08:50 UTC",
- "daily_check_at": "2026-11-14 02:32 UTC",
- "daily_as_of": "2026-11-13"
+ "as_of": "2026-11-13",
+ "weekly_scan_at": "2026-11-14 08:52 UTC",
+ "daily_check_at": null
 }
