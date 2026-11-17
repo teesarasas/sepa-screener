@@ -77,7 +77,8 @@ def password_gate() -> None:
         return
     st.title("SEPA Screener")
     entered = st.text_input("Password", type="password")
-    if entered and hmac.compare_digest(entered, pw):
+    # compare as UTF-8 bytes: compare_digest rejects non-ASCII text (e.g. Thai characters)
+    if entered and hmac.compare_digest(entered.encode("utf-8"), pw.encode("utf-8")):
         st.session_state["auth_ok"] = True
         st.rerun()
     elif entered:
