@@ -271,7 +271,9 @@ GLOSSARY = {
     "sizing": """
 - **Shares** = (account × risk per trade) ÷ (entry − stop). This keeps every loss the same size in dollars, whatever the stock's price or stop distance.
 - **Risk per trade**: Minervini uses roughly 1–2.5% of the account. Start at the low end, and use quarter-size positions while the market banner isn't green.
-- **Warnings**: stop more than 10% away = don't take the trade. Position over 25% of the account = too concentrated.
+- **Position size**: Full, Half or Quarter. Defaults to a quarter-size "pilot" position unless the market banner is green.
+- **Warnings**: stop more than 10% away = don't take the trade. Positions are capped at 25% of the account.
+- **Take-profit plan**: targets in R (risk per share): sell half at **2R** and move the stop to breakeven; at **3R** set a back stop at +1R; then raise it 1R for each R gained. Once you have 5+ closed trades in the Journal, your own average winner is shown as a target too.
 """,
 }
 
@@ -666,43 +668,136 @@ def tab_sectors(mk: dict) -> None:
         st.plotly_chart(fig, width="stretch", theme="streamlit")
 
 
-def tab_sizing(wl: pd.DataFrame) -> None:
+SIZE_FRACTIONS = {"Full": 1.0, "Half": 0.5, "Quarter (pilot)": 0.25}
+
+
+def _journal_avg_gain(min_trades: int = 5) -> tuple[float, int] | None:
+    """Average winning trade % from the journal, once there are enough closed trades."""
+    url, key = secret("SUPABASE_URL"), secret("SUPABASE_SERVICE_KEY")
+    if not url or not key:
+        return None
+    try:
+        trades, exits = load_journal(url, key)
+    except Exception:
+        return None
+    t = J.enrich(trades, exits)
+    if t.empty:
+        return None
+    closed = t[t["status"] == "closed"]
+    perf = J.performance(closed)
+    if not perf or perf["trades"] < min_trades or math.isnan(perf["avg_gain"]):
+        return None
+    return perf["avg_gain"], perf["trades"]
+
+
+def tab_sizing(wl: pd.DataFrame, mk: dict | None = None) -> None:
     how_to_read("sizing")
-    st.caption("Shares = (account × risk per trade) ÷ (entry − stop). Default entry is the pivot, "
-               "or today's close if the stock is already above it.")
+    state = market_state(mk or {})
     syms = ["(manual)"] + (wl["symbol"].tolist() if not wl.empty else [])
     c0, c1, c2 = st.columns(3)
     sym = c0.selectbox("Symbol", syms)
     acct = c1.number_input("Account size ($)", min_value=0.0, value=10_000.0, step=1_000.0)
-    risk = c2.number_input("Risk per trade (%)", min_value=0.1, max_value=5.0, value=1.0, step=0.25)
-    entry_d, stop_d = 100.0, 93.0
+    risk = c2.number_input("Risk per trade (%)", min_value=0.1, max_value=5.0, value=1.0, step=0.25,
+                           help="Share of the account you lose if the stop is hit. Minervini: roughly 1–2.5%.")
+    entry_d, stop_d = 100.0, None
     if sym != "(manual)":
         r = wl[wl["symbol"] == sym].iloc[0]
         entry_d, stop_d = max(float(r["pivot"]), float(r["close"])), float(r["stop"])
-    c3, c4 = st.columns(2)
+    c3, c4, c5 = st.columns(3)
     entry = c3.number_input("Entry ($)", min_value=0.01, value=round(entry_d, 2), key=f"e_{sym}")
-    stop = c4.number_input("Stop ($)", min_value=0.0, value=round(stop_d, 2), key=f"s_{sym}")
+    if stop_d is None:
+        stop_d = entry * 0.93
+    stop = c4.number_input("Stop ($)", min_value=0.0, value=round(stop_d, 2), key=f"s_{sym}",
+                           help="From the setup when you pick a watchlist stock; otherwise 7% below entry. "
+                                "Size always depends on the stop: no stop, no position size.")
+    default_size = "Full" if state == "uptrend" else "Quarter (pilot)"
+    size_pick = c5.selectbox("Position size", list(SIZE_FRACTIONS),
+                             index=list(SIZE_FRACTIONS).index(default_size),
+                             help="Minervini starts with a quarter-size pilot position and only scales up after "
+                                  "wins. Defaults to Quarter unless the market banner is green.")
     if stop >= entry:
         st.error("Stop must be below entry.")
         return
+
     per_share = entry - stop
-    risk_usd = acct * risk / 100
-    shares = math.floor(risk_usd / per_share)
+    frac = SIZE_FRACTIONS[size_pick]
+    risk_usd = acct * risk / 100 * frac
+    shares = math.floor(risk_usd / per_share) if per_share > 0 else 0
+    capped = False
+    cap = math.floor(acct * 0.25 / entry) if acct else shares
+    if shares > cap:
+        shares, capped = cap, True
     value = shares * entry
+    actual_risk = shares * per_share
+    stop_pct = per_share / entry
+
+    st.markdown("#### Position")
     m = st.columns(4)
     m[0].metric("Shares", f"{shares:,}")
-    m[1].metric("Position value", money(value))
-    m[2].metric("Share of account", f"{value / acct:.0%}" if acct else "—")
-    m[3].metric("Max loss at stop", money(shares * per_share))
-    stop_pct = per_share / entry
+    m[1].metric("Position value", money(value), f"{value / acct:.0%} of account" if acct else None,
+                delta_color="off")
+    m[2].metric("Max loss at stop", money(actual_risk), f"{actual_risk / acct:.2%} of account" if acct else None,
+                delta_color="off")
+    m[3].metric("1R (risk per share)", money(per_share), f"stop {stop_pct:.1%} below entry", delta_color="off")
+    if frac < 1:
+        st.caption(f"{size_pick} size: risking {risk * frac:.2f}% of the account instead of {risk:.2f}%"
+                   + (f" because the market is in a {state}." if state in ("correction", "downtrend") else "."))
+    if capped:
+        st.info("Capped at 25% of the account: the stop is so tight that full risk would need an oversized "
+                "position. Minervini keeps single positions around 20–25%.")
     if stop_pct > 0.10:
         st.error(f"Stop is {stop_pct:.1%} below entry. Minervini's absolute limit is 10%; wait for a tighter setup.")
-    elif stop_pct > C.MAX_STOP_PCT:
+        return
+    if stop_pct > C.MAX_STOP_PCT:
         st.warning(f"Stop is {stop_pct:.1%} below entry, wider than the {C.MAX_STOP_PCT:.0%} default.")
-    if acct and value > acct:
-        st.warning("Position is larger than the account, so this needs margin. Lower the risk % or skip the trade.")
-    elif acct and value / acct > 0.25:
-        st.info("Position is over 25% of the account. Minervini caps single positions around 20–25%.")
+    if shares == 0:
+        st.warning("Position rounds down to 0 shares. Raise the account size or risk %, or pick a cheaper stock.")
+        return
+
+    # ---- take-profit plan ---------------------------------------------------
+    st.markdown("#### Take-profit plan")
+    st.caption("SEPA has no single fixed target. Profits are taken in stages measured in R (your risk per "
+               "share), and the rest rides a rising stop, so a big winner isn't capped.")
+    half = shares // 2
+    rest = shares - half
+    t2, t3, t4 = entry + 2 * per_share, entry + 3 * per_share, entry + 4 * per_share
+    rows = [
+        {"Stage": "Stop (if wrong)", "Price": stop, "Move": -stop_pct, "Action": f"Sell all {shares:,} shares",
+         "P&L": -actual_risk},
+        {"Stage": "Target 1: 2R", "Price": t2, "Move": t2 / entry - 1,
+         "Action": f"Sell half ({half:,} sh), raise stop on the rest to breakeven ${entry:,.2f}",
+         "P&L": half * 2 * per_share},
+        {"Stage": "Target 2: 3R", "Price": t3, "Move": t3 / entry - 1,
+         "Action": f"Set a back stop at +1R (${entry + per_share:,.2f}) on the {rest:,} shares left",
+         "P&L": None},
+        {"Stage": "4R and up", "Price": t4, "Move": t4 / entry - 1,
+         "Action": "Raise the back stop 1R for each R gained; sell into strength or on a sell signal",
+         "P&L": None},
+    ]
+    avg = _journal_avg_gain()
+    if avg:
+        g, n = avg
+        rows.insert(2, {"Stage": "Your average winner", "Price": entry * (1 + g), "Move": g,
+                        "Action": f"Average gain of your {n} closed trades: a realistic first target for you",
+                        "P&L": shares * entry * g})
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", column_config={
+        "Price": st.column_config.NumberColumn(format="$%.2f"),
+        "Move": st.column_config.NumberColumn("vs entry", format="percent"),
+        "P&L": st.column_config.NumberColumn("P&L at this stage", format="$%.2f"),
+    })
+
+    worst = -actual_risk
+    plan_min = half * 2 * per_share + rest * 1 * per_share       # half at 2R, rest stopped at +1R
+    plan_3r = half * 2 * per_share + rest * 3 * per_share        # half at 2R, rest sold at 3R
+    o = st.columns(3)
+    o[0].metric("If stopped out", money(worst), f"{worst / acct:+.2%} of account" if acct else None)
+    o[1].metric("Plan, minimum win", money(plan_min),
+                f"{plan_min / acct:+.2%}" if acct else None,
+                help="Half sold at 2R, the rest stopped at the +1R back stop.")
+    o[2].metric("Plan, rest sold at 3R", money(plan_3r), f"{plan_3r / acct:+.2%}" if acct else None,
+                help="Half at 2R, the rest at 3R. Bigger winners ride the back stop further.")
+    st.caption(f"Reward-to-risk: the minimum win is {plan_min / actual_risk:.1f}× the loss. Minervini aims for "
+               "average gains at least 2–3× average losses, so a 33–40% win rate can still make money.")
 
 
 # ---------------------------------------------------------------------------
@@ -979,8 +1074,9 @@ def tab_journal(sc: pd.DataFrame, wl: pd.DataFrame, mk: dict) -> None:
     with st.expander("Closed trades"):
         show = closed.assign(ret=closed["realized_pnl"] / (closed["entry_price"] * closed["shares"]),
                              r=closed["realized_pnl"] / closed["risk_dollars"])
-        st.dataframe(show[["symbol", "entry_date", "last_exit_date", "entry_price", "avg_exit", "shares",
-                           "realized_pnl", "ret", "r", "rs_line", "eps_pass", "market_state", "notes"]],
+        want = ["symbol", "entry_date", "last_exit_date", "entry_price", "avg_exit", "shares",
+                "realized_pnl", "ret", "r", "rs_line", "eps_pass", "market_state", "notes"]
+        st.dataframe(show[[c for c in want if c in show]],
                      hide_index=True, width="stretch", column_config={
                          "entry_price": st.column_config.NumberColumn("Entry", format="$%.2f"),
                          "avg_exit": st.column_config.NumberColumn("Avg exit", format="$%.2f"),
@@ -1019,7 +1115,7 @@ def main() -> None:
     with t4:
         tab_sectors(mk)
     with t5:
-        tab_sizing(wl)
+        tab_sizing(wl, mk)
     with t6:
         tab_journal(sc, wl, mk)
     st.divider()
