@@ -64,6 +64,7 @@ MAX_STOP_PCT = 0.08          # suggested stop never wider than 8% below pivot
 MIN_EPS_GROWTH = 0.25
 EPS_MIN_BASE = 0.05          # base-quarter EPS below $0.05 -> growth % not meaningful
 EARNINGS_REFRESH_DAYS = 100  # refetch at least this often, or after a report
+EARNINGS_WARN_DAYS = 7       # flag stocks reporting within this many trading days
 PROFILE_REFRESH_DAYS = 180
 FUNDAMENTAL_CREDIT_BUDGET = int(os.environ.get("TD_FUNDAMENTAL_BUDGET", "20000"))
 

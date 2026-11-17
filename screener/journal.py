@@ -27,7 +27,11 @@ class SupabaseJournal:
         if not url or not key:
             raise JournalError("SUPABASE_URL / SUPABASE_SERVICE_KEY missing in secrets")
         self.base = url.rstrip("/") + "/rest/v1/"
-        self.h = {"apikey": key, "Authorization": f"Bearer {key}", "Content-Type": "application/json"}
+        self.h = {"apikey": key, "Content-Type": "application/json"}
+        # Legacy service_role keys are JWTs and also go in Authorization. New
+        # secret keys (sb_secret_...) are not JWTs: send them on apikey only.
+        if key.startswith("eyJ"):
+            self.h["Authorization"] = f"Bearer {key}"
 
     def _req(self, method: str, table: str, params: dict | None = None, body=None, prefer: str | None = None):
         headers = dict(self.h)

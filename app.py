@@ -18,6 +18,7 @@ import streamlit as st
 from plotly.subplots import make_subplots
 
 import config as C
+from screener import journal as J
 from screener.td_client import values_to_frame
 
 # Defaults for settings added after the first release. If config.py on GitHub
@@ -259,6 +260,14 @@ GLOSSARY = {
 - **Table**: SPDR sector ETFs ranked by the same weighted performance used for stock RS. Prefer stocks from the top 2–3 sectors; avoid sectors below their 200-day line.
 - **Where the leaders are**: how many stocks in each sector pass all 8 Trend Template criteria. Leadership usually clusters in a few groups.
 """,
+    "journal": """
+- **Log a trade** when you buy. The setup at entry (signal, RS, RS line, EPS, sector, market state) is filled in from the dashboard automatically, so later you can see which kinds of setups actually make you money.
+- **R** = your initial risk per share (entry − initial stop). **+2R** means the stock has gained twice what you risked.
+- **Exit plan** (Minervini's "never let a good gain turn into a loss"): at **2R** sell half and raise the stop to breakeven; at **3R** set a back stop that locks in +1R, then +2R at 4R, and so on. Sell everything if the stop is hit.
+- **Record a sell** for every partial or full exit. The trade closes automatically when no shares are left.
+- **Stops only move up.** The form won't let you lower one.
+- **Performance** uses closed trades only. Win rate, average gain vs average loss, and average R are the numbers Minervini tracks; they tell you whether to trade bigger or smaller.
+""",
     "sizing": """
 - **Shares** = (account × risk per trade) ÷ (entry − stop). This keeps every loss the same size in dollars, whatever the stock's price or stop distance.
 - **Risk per trade**: Minervini uses roughly 1–2.5% of the account. Start at the low end, and use quarter-size positions while the market banner isn't green.
@@ -304,6 +313,18 @@ def header(mk: dict, meta: dict) -> None:
     age = days_old(as_of)
     if age is not None and age > 5:
         st.warning(f"Data is {age} days old. Check the GitHub Actions run history.", icon="⚠️")
+
+
+def market_state(mk: dict) -> str:
+    trend = {s: v.get("trend") for s, v in (mk.get("indexes") or {}).items()}
+    lead = [s for s in ("SPY", "QQQ") if s in trend]
+    if not lead:
+        return "unknown"
+    if all(trend[s] == "Uptrend" for s in lead):
+        return "uptrend"
+    if any(trend[s] == "Downtrend" for s in lead):
+        return "downtrend"
+    return "correction"
 
 
 def market_strip(mk: dict) -> None:
@@ -685,6 +706,291 @@ def tab_sizing(wl: pd.DataFrame) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Journal
+# ---------------------------------------------------------------------------
+def get_journal() -> J.SupabaseJournal | None:
+    url, key = secret("SUPABASE_URL"), secret("SUPABASE_SERVICE_KEY")
+    if not url or not key:
+        return None
+    return J.SupabaseJournal(url, key)
+
+
+@st.cache_data(ttl=60, show_spinner=False)
+def load_journal(url: str, _key: str) -> tuple[pd.DataFrame, pd.DataFrame]:
+    j = J.SupabaseJournal(url, _key)
+    return j.trades(), j.exits()
+
+
+def _rs_line_code(row: dict | None) -> str | None:
+    if not row:
+        return None
+    if truthy(row.get("rs_line_leads")):
+        return "leads"
+    if truthy(row.get("rs_line_high")):
+        return "high"
+    if row.get("rs_line_high") is None or (isinstance(row.get("rs_line_high"), float) and math.isnan(row["rs_line_high"])):
+        return None
+    return "no"
+
+
+def _clean(v):
+    if isinstance(v, float) and math.isnan(v):
+        return None
+    if hasattr(v, "item"):
+        v = v.item()
+    return v
+
+
+def tab_journal(sc: pd.DataFrame, wl: pd.DataFrame, mk: dict) -> None:
+    how_to_read("journal")
+    j = get_journal()
+    if j is None:
+        st.info("Connect your Supabase project to use the journal: add **SUPABASE_URL** and "
+                "**SUPABASE_SERVICE_KEY** to the app's secrets (Manage app → Settings → Secrets).")
+        return
+    if not secret("APP_PASSWORD"):
+        st.warning("The journal can change your database, but this app has no APP_PASSWORD. "
+                   "Add one in the app's secrets, and keep the app's sharing set to private.", icon="🔒")
+    try:
+        trades, exits = load_journal(secret("SUPABASE_URL"), secret("SUPABASE_SERVICE_KEY"))
+    except J.JournalError as e:
+        st.error(f"Couldn't read the journal: {e}")
+        return
+    t = J.enrich(trades, exits)
+    open_t = t[t["status"] == "open"] if not t.empty else t
+    closed = t[t["status"] == "closed"] if not t.empty else t
+
+    def refresh():
+        load_journal.clear()
+        st.rerun()
+
+    lookup = {}
+    for frame in (sc, wl):
+        if not frame.empty:
+            for r in frame.to_dict("records"):
+                lookup.setdefault(r["symbol"], {}).update(r)
+
+    # ---- open positions -----------------------------------------------------
+    st.subheader(f"Open positions ({len(open_t)})")
+    if open_t.empty:
+        st.caption("No open trades. Log one below when you buy.")
+    else:
+        key = secret("TWELVE_DATA_API_KEY")
+        rows, actions = [], []
+        for r in open_t.to_dict("records"):
+            sym = r["symbol"]
+            price, below50 = num(lookup.get(sym, {}).get("close")), None
+            if key:
+                try:
+                    bars = fetch_bars(sym, key)
+                    if bars is not None and len(bars):
+                        price = float(bars["close"].iloc[-1])
+                        if len(bars) >= 50:
+                            below50 = bool(bars["close"].iloc[-1] < bars["close"].rolling(50).mean().iloc[-1])
+                except Exception:
+                    pass
+            n = trading_days_until(lookup.get(sym, {}).get("next_report"))
+            warn = n if n is not None and 0 <= n <= C.EARNINGS_WARN_DAYS else None
+            stage, action = J.position_advice(r, price, warn, below50)
+            stop = num(r.get("current_stop"))
+            stop = num(r["initial_stop"]) if math.isnan(stop) else stop
+            rows.append({
+                "Symbol": sym, "Entered": r["entry_date"], "Entry": r["entry_price"], "Shares left": r["shares_left"],
+                "Stop": stop, "Price": price,
+                "Open P&L": (price - r["entry_price"]) * r["shares_left"] if not math.isnan(price) else None,
+                "Return": price / r["entry_price"] - 1 if not math.isnan(price) else None,
+                "Realized": r["realized_pnl"], "Stage": stage,
+            })
+            actions.append((sym, stage, action))
+        st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", column_config={
+            "Entry": st.column_config.NumberColumn(format="$%.2f"),
+            "Stop": st.column_config.NumberColumn(format="$%.2f"),
+            "Price": st.column_config.NumberColumn(format="$%.2f", help="Latest daily close"),
+            "Open P&L": st.column_config.NumberColumn(format="$%.2f"),
+            "Realized": st.column_config.NumberColumn(format="$%.2f", help="From partial sells so far"),
+            "Return": st.column_config.NumberColumn(format="percent"),
+            "Shares left": st.column_config.NumberColumn(format="%g"),
+        })
+        st.markdown("**Next actions**")
+        for sym, stage, action in actions:
+            st.markdown(f"- **{sym}** {stage}: {action}")
+
+    # ---- forms --------------------------------------------------------------
+    f_new, f_sell, f_stop, f_del = st.tabs(["Log a new trade", "Record a sell", "Raise a stop", "Delete"])
+
+    with f_new:
+        sym = st.text_input("Symbol", key="j_sym").strip().upper()
+        info = lookup.get(sym, {}) if sym else {}
+        if sym and info:
+            st.caption(f"From the dashboard: {STATUS_LABEL.get(info.get('vcp_status'), info.get('vcp_status') or 'no setup')}"
+                       f" · pivot {money(info.get('pivot'))} · stop {money(info.get('stop'))} · RS {num(info.get('rs_rating')):.0f}")
+        elif sym:
+            st.caption("Not on this week's screen, so no setup details will be recorded.")
+        with st.form("j_new", clear_on_submit=True):
+            c1, c2, c3, c4 = st.columns(4)
+            d = c1.date_input("Entry date", value=date.today())
+            price_default = num(info.get("close")) if info else math.nan
+            ep = c2.number_input("Entry price", min_value=0.0, step=0.01,
+                                 value=round(price_default, 2) if not math.isnan(price_default) else 0.0)
+            sh = c3.number_input("Shares", min_value=0.0, step=1.0)
+            stop_default = num(info.get("stop")) if info else math.nan
+            sp = c4.number_input("Initial stop", min_value=0.0, step=0.01,
+                                 value=round(stop_default, 2) if not math.isnan(stop_default) else 0.0)
+            notes = st.text_input("Notes (why you took it)")
+            if st.form_submit_button("Save trade", type="primary"):
+                if not sym:
+                    st.error("Enter a symbol.")
+                elif ep <= 0 or sh <= 0 or sp <= 0:
+                    st.error("Entry price, shares and stop must all be above zero.")
+                elif sp >= ep:
+                    st.error("The stop must be below the entry price.")
+                else:
+                    risk = (ep - sp) / ep
+                    row = {
+                        "symbol": sym, "entry_date": d.isoformat(), "entry_price": ep, "shares": sh,
+                        "initial_stop": sp, "current_stop": sp, "status": "open", "notes": notes or None,
+                        "signal_at_entry": _clean(info.get("vcp_status")) if info else None,
+                        "pivot": _clean(num(info.get("pivot"))) if info else None,
+                        "rs_rating": int(num(info.get("rs_rating"))) if info and not math.isnan(num(info.get("rs_rating"))) else None,
+                        "rs_line": _rs_line_code(info) if info else None,
+                        "eps_pass": bool(truthy(info.get("eps_pass"))) if info and info.get("eps_pass") is not None
+                                    and not (isinstance(info.get("eps_pass"), float) and math.isnan(info.get("eps_pass"))) else None,
+                        "market_state": market_state(mk),
+                        "sector": _clean(info.get("sector")) or None if info else None,
+                    }
+                    try:
+                        j.add_trade(row)
+                        if risk > 0.10:
+                            st.warning(f"Saved, but the stop is {risk:.1%} below entry, beyond Minervini's 10% limit.")
+                        refresh()
+                    except J.JournalError as e:
+                        st.error(str(e))
+
+    with f_sell:
+        if open_t.empty:
+            st.caption("No open trades.")
+        else:
+            opts = {f"{r['symbol']} · {r['shares_left']:g} shares left · entry ${r['entry_price']:,.2f} (#{r['id']})": r
+                    for r in open_t.to_dict("records")}
+            with st.form("j_sell", clear_on_submit=True):
+                pick = st.selectbox("Trade", list(opts))
+                r = opts[pick]
+                c1, c2, c3 = st.columns(3)
+                d = c1.date_input("Exit date", value=date.today())
+                xp = c2.number_input("Exit price", min_value=0.0, step=0.01)
+                xs = c3.number_input("Shares sold", min_value=0.0, step=1.0, value=float(r["shares_left"]))
+                reason = st.selectbox("Reason", ["2R: sold half", "Back stop hit", "Initial stop hit",
+                                                 "Sold into strength", "Sell signal", "Before earnings", "Other"])
+                if st.form_submit_button("Save sell", type="primary"):
+                    r = opts[pick]
+                    if xp <= 0 or xs <= 0:
+                        st.error("Exit price and shares must be above zero.")
+                    elif xs > r["shares_left"] + 1e-9:
+                        st.error(f"Only {r['shares_left']:g} shares are left in this trade.")
+                    else:
+                        try:
+                            j.add_exit({"trade_id": int(r["id"]), "exit_date": d.isoformat(), "exit_price": xp,
+                                        "shares": xs, "reason": reason})
+                            if r["shares_left"] - xs <= 1e-9:
+                                j.update_trade(int(r["id"]), {"status": "closed"})
+                            refresh()
+                        except J.JournalError as e:
+                            st.error(str(e))
+
+    with f_stop:
+        if open_t.empty:
+            st.caption("No open trades.")
+        else:
+            opts = {f"{r['symbol']} · stop ${num(r['current_stop']) if not math.isnan(num(r['current_stop'])) else num(r['initial_stop']):,.2f} (#{r['id']})": r
+                    for r in open_t.to_dict("records")}
+            with st.form("j_stop"):
+                pick = st.selectbox("Trade", list(opts))
+                new_stop = st.number_input("New stop", min_value=0.0, step=0.01)
+                if st.form_submit_button("Update stop", type="primary"):
+                    r = opts[pick]
+                    cur = num(r["current_stop"])
+                    cur = num(r["initial_stop"]) if math.isnan(cur) else cur
+                    if new_stop <= cur:
+                        st.error(f"Stops only move up. Current stop is ${cur:,.2f}.")
+                    else:
+                        try:
+                            j.update_trade(int(r["id"]), {"current_stop": new_stop})
+                            refresh()
+                        except J.JournalError as e:
+                            st.error(str(e))
+
+    with f_del:
+        if t.empty:
+            st.caption("Nothing to delete.")
+        else:
+            opts = {f"{r['symbol']} · {r['entry_date']} · {r['status']} (#{r['id']})": r for r in t.to_dict("records")}
+            with st.form("j_del"):
+                pick = st.selectbox("Trade", list(opts))
+                sure = st.checkbox("Yes, permanently delete this trade and its sells")
+                if st.form_submit_button("Delete"):
+                    if not sure:
+                        st.error("Tick the box to confirm.")
+                    else:
+                        try:
+                            j.delete_trade(int(opts[pick]["id"]))
+                            refresh()
+                        except J.JournalError as e:
+                            st.error(str(e))
+
+    # ---- performance --------------------------------------------------------
+    st.subheader("Performance (closed trades)")
+    perf = J.performance(closed)
+    if not perf:
+        st.caption("Shows once you've closed your first trade.")
+        return
+    m = st.columns(6)
+    m[0].metric("Trades", perf["trades"])
+    m[1].metric("Win rate", f"{perf['win_rate']:.0%}")
+    m[2].metric("Avg gain", pct(perf["avg_gain"]))
+    m[3].metric("Avg loss", pct(perf["avg_loss"]))
+    m[4].metric("Avg R", f"{perf['avg_r']:+.2f}R", help="Average result in multiples of initial risk. Above 0 = an edge.")
+    m[5].metric("Total P&L", money(perf["total_pnl"]))
+    ratio = perf["gain_loss_ratio"]
+    st.caption(f"Gain/loss ratio {ratio:.1f}× · best {perf['best']} · worst {perf['worst']}. "
+               "Minervini aims for average gains at least 2–3× average losses."
+               if not math.isnan(ratio) else f"Best {perf['best']} · worst {perf['worst']}.")
+
+    if not exits.empty:
+        e = exits.merge(trades[["id", "entry_price"]], left_on="trade_id", right_on="id")
+        e["pnl"] = (pd.to_numeric(e["exit_price"]) - pd.to_numeric(e["entry_price"])) * pd.to_numeric(e["shares"])
+        curve = e.groupby("exit_date")["pnl"].sum().sort_index().cumsum()
+        fig = go.Figure(go.Scatter(x=curve.index, y=curve.values, mode="lines+markers",
+                                   line=dict(color=MA_COLORS[theme_type()]["SMA50"], width=2),
+                                   hovertemplate="%{x}: $%{y:,.2f}<extra></extra>"))
+        fig.update_layout(height=260, margin=dict(l=8, r=8, t=8, b=8), yaxis_title="Realized P&L ($)")
+        st.plotly_chart(fig, width="stretch", theme="streamlit")
+
+    st.markdown("**Results by setup at entry**")
+    cols = st.columns(2)
+    for i, (col, label) in enumerate([("rs_line", "RS line"), ("eps_pass", "EPS ✓"),
+                                      ("market_state", "Market"), ("signal_at_entry", "Signal at entry")]):
+        tbl = J.by_setup(closed, col)
+        if not tbl.empty:
+            cols[i % 2].dataframe(tbl.rename(columns={col: label}), hide_index=True, width="stretch",
+                                  column_config={"win_rate": st.column_config.NumberColumn("Win rate", format="percent"),
+                                                 "avg_r": st.column_config.NumberColumn("Avg R", format="%+.2f"),
+                                                 "pnl": st.column_config.NumberColumn("P&L", format="$%.2f"),
+                                                 "trades": "Trades"})
+    with st.expander("Closed trades"):
+        show = closed.assign(ret=closed["realized_pnl"] / (closed["entry_price"] * closed["shares"]),
+                             r=closed["realized_pnl"] / closed["risk_dollars"])
+        st.dataframe(show[["symbol", "entry_date", "last_exit_date", "entry_price", "avg_exit", "shares",
+                           "realized_pnl", "ret", "r", "rs_line", "eps_pass", "market_state", "notes"]],
+                     hide_index=True, width="stretch", column_config={
+                         "entry_price": st.column_config.NumberColumn("Entry", format="$%.2f"),
+                         "avg_exit": st.column_config.NumberColumn("Avg exit", format="$%.2f"),
+                         "realized_pnl": st.column_config.NumberColumn("P&L", format="$%.2f"),
+                         "ret": st.column_config.NumberColumn("Return", format="percent"),
+                         "r": st.column_config.NumberColumn("R", format="%+.2f"),
+                     })
+
+
+# ---------------------------------------------------------------------------
 def main() -> None:
     password_gate()
     if _STALE_CONFIG:
@@ -703,7 +1009,7 @@ def main() -> None:
                              for sym, r in zip(wl["symbol"], wl["next_report"])]
     header(mk, meta)
     market_strip(mk)
-    t1, t2, t3, t4, t5 = st.tabs(["Signals", "Screener", "Chart", "Sectors", "Position size"])
+    t1, t2, t3, t4, t5, t6 = st.tabs(["Signals", "Screener", "Chart", "Sectors", "Position size", "Journal"])
     with t1:
         tab_signals(wl, sig)
     with t2:
@@ -714,6 +1020,8 @@ def main() -> None:
         tab_sectors(mk)
     with t5:
         tab_sizing(wl)
+    with t6:
+        tab_journal(sc, wl, mk)
     st.divider()
     st.caption("Screens a published method (Minervini's SEPA). It is not financial advice. "
                "VCP detection is a heuristic, so confirm every setup on the chart.")
