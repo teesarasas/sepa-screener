@@ -262,7 +262,7 @@ GLOSSARY = {
 - **Where the leaders are**: how many stocks in each sector pass all 8 Trend Template criteria. Leadership usually clusters in a few groups.
 """,
     "journal": """
-- **Log a trade** when you buy. The setup at entry (signal, RS, RS line, EPS, sector, market state) is filled in from the dashboard automatically, so later you can see which kinds of setups actually make you money.
+- **Log a trade** when you buy, with **Save to Journal** at the bottom of the Position size tab. The setup at entry (signal, RS, RS line, EPS, sector, market state) is filled in from the dashboard automatically, so later you can see which kinds of setups actually make you money.
 - **R** = your initial risk per share (entry − initial stop). **+2R** means the stock has gained twice what you risked.
 - **Exit plan** (Minervini's "never let a good gain turn into a loss"): at **2R** sell half and raise the stop to breakeven; at **3R** set a back stop that locks in +1R, then +2R at 4R, and so on. Sell everything if the stop is hit.
 - **Record a sell** for every partial or full exit. The trade closes automatically when no shares are left.
@@ -691,7 +691,7 @@ def _journal_avg_gain(min_trades: int = 5) -> tuple[float, int] | None:
     return perf["avg_gain"], perf["trades"]
 
 
-def tab_sizing(wl: pd.DataFrame, mk: dict | None = None) -> None:
+def tab_sizing(wl: pd.DataFrame, mk: dict | None = None, sc: pd.DataFrame | None = None) -> None:
     how_to_read("sizing")
     state = market_state(mk or {})
     syms = ["(manual)"] + (wl["symbol"].tolist() if not wl.empty else [])
@@ -800,6 +800,41 @@ def tab_sizing(wl: pd.DataFrame, mk: dict | None = None) -> None:
     st.caption(f"Reward-to-risk: the minimum win is {plan_min / actual_risk:.1f}× the loss. Minervini aims for "
                "average gains at least 2–3× average losses, so a 33–40% win rate can still make money.")
 
+    # ---- save to journal ----------------------------------------------------
+    st.markdown("#### Save to Journal")
+    j = get_journal()
+    if j is None:
+        st.caption("Connect Supabase (SUPABASE_URL and SUPABASE_SERVICE_KEY in the app's secrets) to save trades.")
+        return
+    st.caption("Only after you've actually bought. Adjust the price and shares to your real fill.")
+    info = {}
+    for frame in (sc, wl):
+        if frame is not None and not frame.empty and sym in set(frame["symbol"]):
+            info.update(frame[frame["symbol"] == sym].iloc[0].to_dict())
+    with st.form(f"save_trade_{sym}", clear_on_submit=False):
+        c1, c2, c3, c4 = st.columns(4)
+        ticker = c1.text_input("Symbol", value="" if sym == "(manual)" else sym).strip().upper()
+        d = c2.date_input("Entry date", value=date.today())
+        ep = c3.number_input("Price paid ($)", min_value=0.0, step=0.01, value=round(entry, 2))
+        sh = c4.number_input("Shares bought", min_value=0.0, step=1.0, value=float(shares))
+        notes = st.text_input("Notes (why you took it)")
+        st.caption(f"Initial stop ${stop:,.2f} (from above) · {size_pick} size · market {state}")
+        if st.form_submit_button("Save to Journal", type="primary"):
+            if not ticker:
+                st.error("Enter the symbol.")
+            elif ep <= 0 or sh <= 0:
+                st.error("Price and shares must be above zero.")
+            elif stop >= ep:
+                st.error("The stop must be below the price paid.")
+            else:
+                try:
+                    j.add_trade(trade_row(ticker, info if ticker == sym else {}, d, ep, sh, stop, notes, mk or {}))
+                    load_journal.clear()
+                    st.success(f"Saved {ticker}: {sh:g} shares at ${ep:,.2f}, stop ${stop:,.2f}. "
+                               "It's now tracked in the Journal tab and by the daily alerts.")
+                except J.JournalError as e:
+                    st.error(f"Couldn't save: {e}")
+
 
 # ---------------------------------------------------------------------------
 # Journal
@@ -815,6 +850,25 @@ def get_journal() -> J.SupabaseJournal | None:
 def load_journal(url: str, _key: str) -> tuple[pd.DataFrame, pd.DataFrame]:
     j = J.SupabaseJournal(url, _key)
     return j.trades(), j.exits()
+
+
+def trade_row(sym: str, info: dict, d, ep: float, sh: float, sp: float, notes: str, mk: dict) -> dict:
+    """A sepa_stock_trade row, with the setup at entry taken from the dashboard."""
+    eps = info.get("eps_pass") if info else None
+    if isinstance(eps, float) and math.isnan(eps):
+        eps = None
+    rs = num(info.get("rs_rating")) if info else math.nan
+    return {
+        "symbol": sym, "entry_date": d.isoformat(), "entry_price": float(ep), "shares": float(sh),
+        "initial_stop": float(sp), "current_stop": float(sp), "status": "open", "notes": notes or None,
+        "signal_at_entry": _clean(info.get("vcp_status")) if info else None,
+        "pivot": _clean(num(info.get("pivot"))) if info else None,
+        "rs_rating": int(rs) if not math.isnan(rs) else None,
+        "rs_line": _rs_line_code(info) if info else None,
+        "eps_pass": bool(truthy(eps)) if eps is not None else None,
+        "market_state": market_state(mk),
+        "sector": (_clean(info.get("sector")) or None) if info else None,
+    }
 
 
 def _rs_line_code(row: dict | None) -> str | None:
@@ -912,55 +966,8 @@ def tab_journal(sc: pd.DataFrame, wl: pd.DataFrame, mk: dict) -> None:
             st.markdown(f"- **{sym}** {stage}: {action}")
 
     # ---- forms --------------------------------------------------------------
-    f_new, f_sell, f_stop, f_del = st.tabs(["Log a new trade", "Record a sell", "Raise a stop", "Delete"])
-
-    with f_new:
-        sym = st.text_input("Symbol", key="j_sym").strip().upper()
-        info = lookup.get(sym, {}) if sym else {}
-        if sym and info:
-            st.caption(f"From the dashboard: {STATUS_LABEL.get(info.get('vcp_status'), info.get('vcp_status') or 'no setup')}"
-                       f" · pivot {money(info.get('pivot'))} · stop {money(info.get('stop'))} · RS {num(info.get('rs_rating')):.0f}")
-        elif sym:
-            st.caption("Not on this week's screen, so no setup details will be recorded.")
-        with st.form("j_new", clear_on_submit=True):
-            c1, c2, c3, c4 = st.columns(4)
-            d = c1.date_input("Entry date", value=date.today())
-            price_default = num(info.get("close")) if info else math.nan
-            ep = c2.number_input("Entry price", min_value=0.0, step=0.01,
-                                 value=round(price_default, 2) if not math.isnan(price_default) else 0.0)
-            sh = c3.number_input("Shares", min_value=0.0, step=1.0)
-            stop_default = num(info.get("stop")) if info else math.nan
-            sp = c4.number_input("Initial stop", min_value=0.0, step=0.01,
-                                 value=round(stop_default, 2) if not math.isnan(stop_default) else 0.0)
-            notes = st.text_input("Notes (why you took it)")
-            if st.form_submit_button("Save trade", type="primary"):
-                if not sym:
-                    st.error("Enter a symbol.")
-                elif ep <= 0 or sh <= 0 or sp <= 0:
-                    st.error("Entry price, shares and stop must all be above zero.")
-                elif sp >= ep:
-                    st.error("The stop must be below the entry price.")
-                else:
-                    risk = (ep - sp) / ep
-                    row = {
-                        "symbol": sym, "entry_date": d.isoformat(), "entry_price": ep, "shares": sh,
-                        "initial_stop": sp, "current_stop": sp, "status": "open", "notes": notes or None,
-                        "signal_at_entry": _clean(info.get("vcp_status")) if info else None,
-                        "pivot": _clean(num(info.get("pivot"))) if info else None,
-                        "rs_rating": int(num(info.get("rs_rating"))) if info and not math.isnan(num(info.get("rs_rating"))) else None,
-                        "rs_line": _rs_line_code(info) if info else None,
-                        "eps_pass": bool(truthy(info.get("eps_pass"))) if info and info.get("eps_pass") is not None
-                                    and not (isinstance(info.get("eps_pass"), float) and math.isnan(info.get("eps_pass"))) else None,
-                        "market_state": market_state(mk),
-                        "sector": _clean(info.get("sector")) or None if info else None,
-                    }
-                    try:
-                        j.add_trade(row)
-                        if risk > 0.10:
-                            st.warning(f"Saved, but the stop is {risk:.1%} below entry, beyond Minervini's 10% limit.")
-                        refresh()
-                    except J.JournalError as e:
-                        st.error(str(e))
+    st.caption("To log a new trade, use **Save to Journal** at the bottom of the **Position size** tab.")
+    f_sell, f_stop, f_del = st.tabs(["Record a sell", "Raise a stop", "Delete"])
 
     with f_sell:
         if open_t.empty:
@@ -1116,7 +1123,7 @@ def main() -> None:
     with t4:
         tab_sectors(mk)
     with t5:
-        tab_sizing(wl, mk)
+        tab_sizing(wl, mk, sc)
     with t6:
         tab_journal(sc, wl, mk)
     st.divider()
