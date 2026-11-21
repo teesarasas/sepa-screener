@@ -1,4 +1,4 @@
 symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,entry_risk,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,eps_note,next_report,corr_depth,corr_ratio,held_up,rs_line_high,rs_line_leads,added,tt_ok,updated
-INTA,Intapp Inc.,Technology,93,47.11,2026-11-12,45.39,0.0365103,42.43,-0.099342,0.0365103,Failed,,,4,21% → 10% → 8% → 4%,True,,,0.210832,2.49796,True,False,False,2026-11-13,True,2026-11-19
-VRNS,"Varonis Systems, Inc.",Technology,92,48.57,2026-10-14,45.65,0.0601194,49.14,0.0117356,0.0710216,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,1.09744,True,True,True,2026-11-06,True,2026-11-19
-UTZ,"Utz Brands, Inc. Class A Common Stock",Consumer Staples,89,7.65,2026-07-15,7.17,0.0627451,14.29,0.867974,0.498251,Extended,2026-07-21,31.2401,3,9% → 9% → 6%,False,turnaround (loss → profit),,0.00905292,0.10726,True,True,False,2026-11-13,True,2026-11-19
+INTA,Intapp Inc.,Technology,93,47.11,2026-11-12,45.39,0.0365103,43.45,-0.0776905,0.0365103,Failed,,,4,21% → 10% → 8% → 4%,True,,,0.210832,1.73705,True,False,False,2026-11-13,True,2026-11-20
+VRNS,"Varonis Systems, Inc.",Technology,92,48.57,2026-10-14,45.65,0.0601194,49.22,0.0133827,0.0725315,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,0.763146,True,True,True,2026-11-06,True,2026-11-20
+UTZ,"Utz Brands, Inc. Class A Common Stock",Consumer Staples,89,7.65,2026-07-15,7.17,0.0627451,14.29,0.867974,0.498251,Extended,2026-07-21,31.2401,3,9% → 9% → 6%,False,turnaround (loss → profit),,0.00905292,0.0745873,True,True,False,2026-11-13,True,2026-11-19
