@@ -1,27 +1,22 @@
 symbol,name,exchange
 A,"AgileThought, Inc. Class A Common Stock",NYSE
 AA,Alcoa Corporation,NYSE
-AADX,"Applied Aerospace & Defense, Inc.",NYSE
 AAL,American Airlines Group Inc.,NASDAQ
 AAOI,Applied Optoelectronics Inc.,NASDAQ
 AAON,"AAON, Inc.",NASDAQ
 AAP,Advance Auto Parts Inc.,NYSE
 AAPL,Apple Inc.,NASDAQ
-AAUC,Allied Gold Corporation,NYSE
 ABBV,AbbVie Inc.,NYSE
-ABCL,AbCellera Biologics Inc.,NASDAQ
 ABNB,Airbnb Inc. Class A Common Stock,NASDAQ
 ABT,Abbott Laboratories,NYSE
-ACA,"Arcosa, Inc.",NYSE
 ACAD,Acadia Pharmaceuticals Inc.,NASDAQ
 ACGL,Arch Capital Group Ltd.,NASDAQ
 ACHC,"Acadia Healthcare Company, Inc.",NASDAQ
 ACI,"Albertsons Companies, Inc.",NYSE
 ACIW,"ACI Worldwide, Inc.",NASDAQ
 ACM,AECOM,NYSE
-ACMR,"ACM Research, Inc. Class A Common Stock",NASDAQ
+ACMR,"ACM Research, Inc.",NASDAQ
 ACN,Accenture plc,NYSE
-ACVA,ACV Auctions Inc. Class A Common Stock,NYSE
 ADBE,Adobe Inc.,NASDAQ
 ADEA,Adeia Inc.,NASDAQ
 ADI,"Analog Devices, Inc.",NASDAQ
@@ -39,20 +34,17 @@ AEO,American Eagle Outfitters Inc.,NYSE
 AEP,"American Electric Power Company, Inc.",NASDAQ
 AER,AerCap Holdings N.V.,NYSE
 AES,The AES Corporation,NYSE
-AEVA,Aeva Technologies Inc.,NASDAQ
 AFL,Aflac Incorporated,NYSE
-AFRM,"Affirm Holdings, Inc. Class A Common Stock",NASDAQ
+AFRM,"Affirm Holdings, Inc.",NASDAQ
 AG,First Majestic Silver Corp.,NYSE
 AGCO,AGCO Corporation,NYSE
 AGI,Alamos Gold Inc. Class A Common Shares,NYSE
 AGIO,"Agios Pharmaceuticals, Inc.",NASDAQ
-AGRO,Adecoagro S.A.,NYSE
-AI,"C3.ai, Inc. Class A Common Stock",NYSE
 AIG,"American International Group, Inc.",NYSE
 AIP,Arteris Inc.,NASDAQ
 AIR,AAR Corp.,NYSE
 AJG,Arthur J. Gallagher & Co.,NYSE
-AKAM,Akamai Technologies Inc.,NASDAQ
+AKAM,"Akamai Technologies, Inc.",NASDAQ
 ALAB,"Astera Labs, Inc.",NASDAQ
 ALB,Albemarle Corporation,NYSE
 ALC,Alcon Inc.,NYSE
@@ -68,6 +60,7 @@ ALLE,Allegion plc,NYSE
 ALLY,Ally Financial Inc.,NYSE
 ALMR,Alamar Biosciences Inc.,NASDAQ
 ALNY,"Alnylam Pharmaceuticals, Inc.",NASDAQ
+ALRM,Alarm.com Holdings Inc.,NASDAQ
 ALSN,"Allison Transmission Holdings, Inc.",NYSE
 ALV,Autoliv Inc.,NYSE
 AM,Antero Midstream Corporation Common Stock,NYSE
@@ -75,7 +68,6 @@ AMAT,Applied Materials Inc.,NASDAQ
 AMBA,Ambarella Inc.,NASDAQ
 AMBQ,"Ambiq Micro, Inc.",NYSE
 AMCR,Amcor plc,NYSE
-AMCX,AMC Global Media Inc. Class A Common Stock,NASDAQ
 AMD,Advanced Micro Devices Inc.,NASDAQ
 AME,"AMETEK, Inc.",NYSE
 AMGN,Amgen Inc. Common Stock,NASDAQ
@@ -84,12 +76,11 @@ AMLX,"Amylyx Pharmaceuticals, Inc.",NASDAQ
 AMN,"AMN Healthcare Services, Inc.",NYSE
 AMP,Ameriprise Financial Inc.,NYSE
 AMPL,Amplitude Inc. Class A Common Stock,NASDAQ
-AMRC,Ameresco Inc Class A Common Stock,NYSE
+AMRC,"Ameresco, Inc.",NYSE
 AMRK,Gold.com Inc.,NASDAQ
 AMRX,"Amneal Pharmaceuticals, Inc.",NASDAQ
 AMRZ,Amrize Ltd,NYSE
 AMSC,American Superconductor Corp.,NASDAQ
-AMSF,Amerisafe Inc.,NASDAQ
 AMTM,"Amentum Holdings, Inc.",NYSE
 AMZN,Amazon.com Inc.,NASDAQ
 AN,"AutoNation, Inc.",NYSE
@@ -113,8 +104,9 @@ APPN,Appian Corp Class A Common Stock,NASDAQ
 APTV,Aptiv PLC,NYSE
 AR,Antero Resources Corporation,NYSE
 ARCC,Ares Capital Corp.,NASDAQ
-ARCT,Arcturus Therapeutics Holdings Inc.,NASDAQ
+ARDT,"Ardent Health, Inc.",NYSE
 ARES,Ares Management Corp. Class A Common Stock,NYSE
+ARHS,"Arhaus, Inc. Class A Common Stock",NASDAQ
 ARIS,Aris Mining Corporation,NYSE
 ARLO,"Arlo Technologies, Inc.",NYSE
 ARMK,Aramark,NYSE
@@ -133,12 +125,11 @@ ASND,Ascendis Pharma A/S,NASDAQ
 ASO,"Academy Sports and Outdoors, Inc.",NASDAQ
 ASST,"Strive, Inc. Class A Common Stock",NASDAQ
 ASTS,AST SpaceMobile Inc.,NASDAQ
-ATEC,"Alphatec Holdings, Inc.",NASDAQ
 ATEN,"A10 Networks, Inc.",NYSE
 ATI,ATI Inc.,NYSE
-ATKR,Atkore Inc.,NYSE
 ATMU,Atmus Filtration Technologies Inc.,NYSE
 ATO,Atmos Energy Corporation,NYSE
+ATR,AptarGroup Inc.,NYSE
 ATRC,AtriCure Inc.,NASDAQ
 ATRO,Astronics Corporation,NASDAQ
 AU,AngloGold Ashanti plc,NYSE
@@ -157,7 +148,6 @@ AVPT,AvePoint Inc. Class A Common Stock,NASDAQ
 AVT,Avnet Inc.,NASDAQ
 AVTE,Jade Biosciences Inc.,NASDAQ
 AVTR,"Avantor, Inc.",NYSE
-AVTX,"Avalo Therapeutics, Inc.",NASDAQ
 AVY,Avery Dennison Corporation,NYSE
 AWK,"American Water Works Company, Inc.",NYSE
 AXGN,"Axogen, Inc.",NASDAQ
@@ -182,11 +172,9 @@ BAX,Baxter International Inc.,NYSE
 BBIO,BridgeBio Pharma Inc.,NASDAQ
 BBNX,Beta Bionics Inc.,NASDAQ
 BBT,Beacon Financial Corp.,NYSE
-BBW,Build-A-Bear Workshop Inc.,NYSE
 BBWI,Bath & Body Works Inc.,NYSE
 BBY,"Best Buy Co., Inc.",NYSE
 BC,Brunswick Corporation,NYSE
-BCAX,Bicara Therapeutics Inc.,NASDAQ
 BCE,BCE Inc.,NYSE
 BCSF,"Bain Capital Specialty Finance, Inc.",NYSE
 BDX,"Becton, Dickinson and Company",NYSE
@@ -195,6 +183,7 @@ BEAM,Beam Therapeutics Inc.,NASDAQ
 BEN,Franklin Templeton Inc.,NYSE
 BEPC,Brookfield Renewable Corporation,NYSE
 BETA,BETA Technologies Inc. Class A Common Stock,NYSE
+BETR,Better Home & Finance Holding Company Class A Common Stock,NASDAQ
 BFAM,Bright Horizons Family Solutions Inc.,NYSE
 BF.B,Brown-Forman Corp. Class B Common Stock,NYSE
 BFH,"Bread Financial Holdings, Inc.",NYSE
@@ -208,7 +197,6 @@ BIPC,Brookfield Infrastructure Corporation Class A Shares,NYSE
 BIRK,Birkenstock Holding plc,NYSE
 BJ,"BJ's Wholesale Club Holdings, Inc.",NYSE
 BK,The Bank of New York Mellon Corporation,NYSE
-BKD,Brookdale Senior Living Inc.,NYSE
 BKH,Black Hills Corporation,NYSE
 BKNG,Booking Holdings Inc.,NASDAQ
 BKR,Baker Hughes Company,NASDAQ
@@ -217,8 +205,8 @@ BKU,BankUnited Inc.,NYSE
 BKV,BKV Corporation,NYSE
 BL,"BlackLine, Inc.",NASDAQ
 BLBD,Blue Bird Corporation,NASDAQ
+BLCO,Bausch + Lomb Corporation,NYSE
 BLDR,Builders FirstSource Inc.,NYSE
-BLFS,BioLife Solutions Inc.,NASDAQ
 BLK,"BlackRock, Inc.",NYSE
 BLLN,BillionToOne Inc. Class A Common Stock,NASDAQ
 BLSH,Bullish Inc.,NYSE
@@ -228,16 +216,18 @@ BMRN,BioMarin Pharmaceutical Inc.,NASDAQ
 BMY,Bristol-Myers Squibb Company,NYSE
 BN,Brookfield Corporation,NYSE
 BNS,Bank of Nova Scotia,NYSE
-BNY,Bank of New York Mellon Corp.,NYSE
 BOBS,"Bob's Discount Furniture, Inc.",NYSE
 BOOT,"Boot Barn Holdings, Inc.",NYSE
 BOX,Box Inc. Class A Common Stock,NYSE
+BPOP,"Popular, Inc.",NASDAQ
 BR,"Broadridge Financial Solutions, Inc.",NYSE
+BRBR,BellRing Brands Inc.,NYSE
 BRK.B,Berkshire Hathaway Inc. Class B,NYSE
 BRKR,Bruker Corp.,NASDAQ
 BRO,Brown & Brown Inc.,NYSE
 BROS,Dutch Bros Inc. Class A Common Stock,NYSE
 BRP,BRP Inc. Subordinate Voting Shares,NASDAQ
+BRVE,"Braveheart Bio, Inc.",NASDAQ
 BRZE,"Braze, Inc. Class A Common Stock",NASDAQ
 BSP,Bending Spoons S.p.A.,NASDAQ
 BSX,Boston Scientific Corp.,NYSE
@@ -246,23 +236,20 @@ BTSG,"BrightSpring Health Services, Inc.",NASDAQ
 BTU,Peabody Energy Corporation,NYSE
 BURL,Burlington Stores Inc.,NYSE
 BUSE,First Busey Corporation,NASDAQ
-BV,"BrightView Holdings, Inc.",NYSE
-BVS,Bioventus Inc. Class A Common Stock,NASDAQ
 BWA,BorgWarner Inc.,NYSE
-BWIN,"The Baldwin Insurance Group, Inc. Class A Common Stock",NASDAQ
 BWXT,"BWX Technologies, Inc.",NYSE
 BX,Blackstone Inc.,NYSE
 BXSL,Blackstone Secured Lending Fund,NYSE
 BYD,Boyd Gaming Corporation,NYSE
-BZH,"Beazer Homes USA, Inc.",NYSE
 C,Citigroup Inc.,NYSE
 CAE,CAE Inc.,NYSE
 CAG,Conagra Brands Inc.,NYSE
 CAH,"Cardinal Health, Inc.",NYSE
-CAI,"Caris Life Sciences, Inc. Common Stock",NASDAQ
+CAI,"Caris Life Sciences, Inc.",NASDAQ
 CAKE,The Cheesecake Factory Incorporated,NASDAQ
 CALM,"Cal-Maine Foods, Inc.",NASDAQ
 CALX,Calix Inc.,NYSE
+CAMT,Camtek Ltd.,NASDAQ
 CARG,CarGurus Inc. Class A Common Stock,NASDAQ
 CARR,Carrier Global Corp.,NYSE
 CARS,Cars.com Inc.,NYSE
@@ -284,25 +271,23 @@ CCK,Crown Holdings Inc.,NYSE
 CCL,Carnival Corporation Ltd.,NYSE
 CCXI,ChemoCentryx Inc,NASDAQ
 CDE,Coeur Mining Inc.,NYSE
-CDEV,Centennial Resource Development Inc-DE,NASDAQ
 CDNA,"CareDx, Inc.",NASDAQ
-CDNL,Cardinal Infrastructure Group Inc. Class A Common Stock,NASDAQ
 CDNS,"Cadence Design Systems, Inc.",NASDAQ
+CDRE,"Cadre Holdings, Inc.",NYSE
 CDW,CDW Corporation,NASDAQ
 CE,Celanese Corp. Common Stock,NYSE
-CECE,Ceco Environmental Corp.,NASDAQ
-CECO,CECO Environmental Corp.,NASDAQ
+CECE,CECO Environmental Corp.,NASDAQ
 CEG,Constellation Energy Corporation,NASDAQ
 CELC,Celcuity Inc.,NASDAQ
 CELH,Celsius Holdings Inc.,NASDAQ
 CENX,Century Aluminum Company,NASDAQ
+CERT,Certara Inc.,NASDAQ
 CEVA,"Ceva, Inc.",NASDAQ
 CF,"CF Industries Holdings, Inc.",NYSE
 CFG,Citizens Financial Group Inc.,NYSE
 CFX,Enovis Corporation,NYSE
 CG,The Carlyle Group Inc.,NASDAQ
 CGAU,Centerra Gold Inc.,NYSE
-CGEM,Cullinan Therapeutics Inc.,NASDAQ
 CGNX,Cognex Corporation,NASDAQ
 CGON,CG Oncology Inc.,NASDAQ
 CHD,"Church & Dwight Co., Inc.",NYSE
@@ -319,11 +304,11 @@ CI,The Cigna Group,NYSE
 CIEN,Ciena Corp.,NYSE
 CINF,Cincinnati Financial Corporation,NASDAQ
 CL,Colgate-Palmolive Co.,NYSE
-CLB,Core Laboratories Inc.,NYSE
 CLBK,Columbia Financial Inc.,NASDAQ
 CLBT,Cellebrite DI Ltd.,NASDAQ
 CLDX,Celldex Therapeutics Inc.,NASDAQ
 CLF,Cleveland-Cliffs Inc.,NYSE
+CLH,"Clean Harbors, Inc.",NYSE
 CLMT,"Calumet, Inc.",NASDAQ
 CLS,Celestica Inc.,NYSE
 CLX,The Clorox Company,NYSE
@@ -336,9 +321,9 @@ CMG,"Chipotle Mexican Grill, Inc.",NYSE
 CMI,Cummins Inc.,NYSE
 CMPO,"GPGI, Inc. Class A Common Stock",NASDAQ
 CMS,CMS Energy Corporation Common Stock,NYSE
+CNA,CNA Financial Corporation Common Stock,NYSE
 CNC,Centene Corp.,NYSE
 CNH,CNH Industrial N.V.,NYSE
-CNHI,CNH Industrial N.V.,NYSE
 CNI,Canadian National Railway Co.,NYSE
 CNK,"Cinemark Holdings, Inc.",NYSE
 CNM,Core & Main Inc.,NYSE
@@ -346,8 +331,10 @@ CNNE,"Cannae Holdings, Inc.",NYSE
 CNO,"CNO Financial Group, Inc.",NYSE
 CNP,"CenterPoint Energy, Inc.",NYSE
 CNQ,Canadian Natural Resources Ltd.,NYSE
+CNR,Core Natural Resources Inc.,NYSE
 CNX,CNX Resources Corporation,NYSE
 CNXC,Concentrix Corporation,NASDAQ
+COAG,"Hemab Therapeutics Holdings, Inc.",NASDAQ
 COCO,"The Vita Coco Company, Inc.",NASDAQ
 CODI,Compass Diversified Holdings,NYSE
 COF,Capital One Financial Corp.,NYSE
@@ -355,6 +342,7 @@ COGT,"Cogent Biosciences, Inc.",NASDAQ
 COHR,Coherent Corp.,NYSE
 COHU,"Cohu, Inc.",NASDAQ
 COIN,Coinbase Global Inc. Class A Common Stock,NASDAQ
+COKE,Coca-Cola Consolidated Inc.,NASDAQ
 COLB,"Columbia Banking System, Inc.",NASDAQ
 COLL,"Collegium Pharmaceutical, Inc.",NASDAQ
 COLM,Columbia Sportswear Company,NASDAQ
@@ -384,12 +372,12 @@ CROX,"Crocs, Inc.",NASDAQ
 CRS,Carpenter Technology Corporation,NYSE
 CRSP,CRISPR Therapeutics AG,NASDAQ
 CRSR,"Corsair Gaming, Inc.",NASDAQ
+CRTO,Criteo S.A.,NASDAQ
 CRUS,Cirrus Logic Inc.,NASDAQ
 CRWD,"CrowdStrike Holdings, Inc.",NASDAQ
 CRWV,CoreWeave Inc. Class A Common Stock,NASDAQ
 CSCO,"Cisco Systems, Inc.",NASDAQ
 CSGP,"CoStar Group, Inc.",NASDAQ
-CSL,Carlisle Companies Incorporated,NYSE
 CSQR,Csquare Inc.,NYSE
 CSTM,Constellium SE Class A Ordinary Shares,NYSE
 CSWC,Capital Southwest Corporation,NASDAQ
@@ -397,7 +385,6 @@ CSX,CSX Corporation,NASDAQ
 CTAS,Cintas Corporation,NASDAQ
 CTRI,"Centuri Holdings, Inc.",NYSE
 CTSH,Cognizant Technology Solutions Corp. Class A Common Stock,NASDAQ
-CTVA,Corteva Inc.,NYSE
 CVBF,CVB Financial Corp.,NASDAQ
 CVE,Cenovus Energy Inc.,NYSE
 CVI,CVR Energy Inc.,NYSE
@@ -410,20 +397,18 @@ CWK,Cushman & Wakefield Ltd.,NYSE
 CWST,"Casella Waste Systems, Inc. Class A Common Stock",NASDAQ
 CXT,"Crane NXT, Co.",NYSE
 CXW,"CoreCivic, Inc.",NYSE
-CYBN,Helus Pharma Inc.,NYSE
 CYRX,Cryoport Inc.,NASDAQ
 CYTK,"Cytokinetics, Incorporated",NASDAQ
 CZR,"Caesars Entertainment, Inc.",NASDAQ
 D,"Dominion Energy, Inc.",NYSE
-DAKT,Daktronics Inc.,NASDAQ
 DAL,"Delta Air Lines, Inc.",NYSE
 DAN,Dana Incorporated,NYSE
 DAR,Darling Ingredients Inc.,NYSE
 DASH,"DoorDash, Inc. Class A Common Stock",NASDAQ
 DB,Deutsche Bank AG,NYSE
-DBRG,DigitalBridge Group Inc. Class A Common Stock,NYSE
 DBX,Dropbox Inc. Class A Common Stock,NASDAQ
 DCI,"Donaldson Company, Inc.",NYSE
+DCTH,"Delcath Systems, Inc.",NASDAQ
 DD,"DuPont de Nemours, Inc.",NYSE
 DDOG,Datadog Inc. Class A,NASDAQ
 DE,Deere & Company,NYSE
@@ -436,7 +421,7 @@ DGX,Quest Diagnostics Incorporated,NYSE
 DHI,"D.R. Horton, Inc.",NYSE
 DHR,Danaher Corp.,NYSE
 DHT,"DHT Holdings, Inc.",NYSE
-DICE,"DICE Therapeutics, Inc.",NASDAQ
+DIN,Dine Brands Global Inc.,NYSE
 DINO,HF Sinclair Corporation,NYSE
 DIOD,Diodes Incorporated,NASDAQ
 DIS,The Walt Disney Company,NYSE
@@ -447,7 +432,6 @@ DLB,Dolby Laboratories Inc. Class A,NYSE
 DLO,dLocal Limited,NASDAQ
 DLTR,Dollar Tree Inc.,NASDAQ
 DMRA,"Damora Therapeutics, Inc.",NASDAQ
-DNA,"Ginkgo Bioworks Holdings, Inc. Class A Common Stock",NYSE
 DNLI,Denali Therapeutics Inc.,NASDAQ
 DNOW,DNOW Inc.,NYSE
 DNTH,Dianthus Therapeutics Inc.,NASDAQ
@@ -465,8 +449,8 @@ DRQ,"Innovex International, Inc.",NYSE
 DRS,Leonardo DRS Inc.,NASDAQ
 DRTS,Alpha Tau Medical Ltd.,NASDAQ
 DRVN,Driven Brands Holdings Inc.,NASDAQ
-DSGN,"Design Therapeutics, Inc.",NASDAQ
 DSGX,The Descartes Systems Group Inc.,NASDAQ
+DSP,Viant Technology Inc. Class A Common Stock,NASDAQ
 DT,Dynatrace Inc.,NYSE
 DTE,DTE Energy Company,NYSE
 DTM,"DT Midstream, Inc.",NYSE
@@ -479,13 +463,13 @@ DXC,DXC Technology Company,NYSE
 DXCM,DexCom Inc.,NASDAQ
 DY,"Dycom Industries, Inc.",NYSE
 DYN,"Dyne Therapeutics, Inc.",NASDAQ
-EAT,Brinker International Inc.,NYSE
+EAT,"Brinker International, Inc.",NYSE
 EBAY,eBay Inc.,NASDAQ
 EBC,"Eastern Bankshares, Inc.",NASDAQ
+ECG,"Everus Construction Group, Inc.",NYSE
 ECHO,EchoStar Corp. Class A Common Stock,NASDAQ
 ECL,Ecolab Inc.,NYSE
 ECO,Okeanis Eco Tankers Corp.,NYSE
-ECVT,Ecovyst Inc.,NYSE
 ED,Consolidated Edison Inc.,NYSE
 EEFT,Euronet Worldwide Inc.,NASDAQ
 EFOR,Everforth Inc.,NYSE
@@ -496,6 +480,7 @@ EHC,Encompass Health Corporation,NYSE
 EIX,Edison International,NYSE
 EL,The Estée Lauder Companies Inc. Class A Common Stock,NYSE
 ELAN,Elanco Animal Health Incorporated,NYSE
+ELE,Elemental Royalty Corporation Common Stock,NASDAQ
 ELF,"e.l.f. Beauty, Inc.",NYSE
 ELMT,Elmet Group Co. (The),NASDAQ
 ELV,"Elevance Health, Inc.",NYSE
@@ -504,7 +489,6 @@ EMA,Emera Inc.,NYSE
 EMN,Eastman Chemical Co.,NYSE
 EMR,Emerson Electric Co.,NYSE
 ENB,Enbridge Inc.,NYSE
-ENOV,Enovis Corporation,NYSE
 ENPH,"Enphase Energy, Inc.",NASDAQ
 ENR,Energizer Holdings Inc.,NYSE
 ENS,EnerSys,NYSE
@@ -515,7 +499,6 @@ EPC,Edgewell Personal Care Company,NYSE
 EQH,Equitable Holdings Inc.,NYSE
 EQPT,EquipmentShare.com Inc. Class A Common Stock,NASDAQ
 EQT,EQT Corporation,NYSE
-EQX,Equinox Gold Corp.,NYSE
 ERAS,Erasca Inc.,NASDAQ
 ERO,Ero Copper Corp.,NYSE
 ES,Eversource Energy,NYSE
@@ -529,7 +512,6 @@ ETON,"Eton Pharmaceuticals, Inc.",NASDAQ
 ETOR,eToro Group Ltd.,NASDAQ
 ETR,Entergy Corporation Common Stock,NYSE
 ETSY,Etsy Inc.,NASDAQ
-EURN,Euronav NV,NYSE
 EVER,EverQuote Inc. Class A Common Stock,NASDAQ
 EVR,Evercore Inc. Class A Common Stock,NYSE
 EVRG,Evergy Inc.,NASDAQ
@@ -542,6 +524,7 @@ EXEL,Exelixis Inc.,NASDAQ
 EXLS,"ExlService Holdings, Inc. Common Stock",NASDAQ
 EXPD,Expeditors International of Washington Inc.,NYSE
 EXPE,Expedia Group Inc.,NASDAQ
+EXPO,Exponent Inc.,NASDAQ
 EXTR,Extreme Networks Inc.,NASDAQ
 EYE,"National Vision Holdings, Inc.",NASDAQ
 EZPW,"EZCORP, Inc. Class A Non-Voting Common Stock",NASDAQ
@@ -550,11 +533,9 @@ FA,First Advantage Corporation,NASDAQ
 FAF,First American Financial Corporation,NYSE
 FANG,Diamondback Energy Inc.,NASDAQ
 FAST,Fastenal Co.,NASDAQ
-FBHS,Fortune Brands Home & Security Inc,NYSE
 FBIN,"Fortune Brands Innovations, Inc.",NYSE
 FBK,FB Financial Corporation,NYSE
 FBP,First BanCorp.,NYSE
-FCEL,FuelCell Energy Inc.,NASDAQ
 FCF,First Commonwealth Financial Corp.,NYSE
 FCX,Freeport-McMoRan Inc.,NYSE
 FDMT,"4D Molecular Therapeutics, Inc.",NASDAQ
@@ -575,19 +556,19 @@ FI,Fiserv Inc.,NYSE
 FIBK,"First Interstate BancSystem, Inc.",NASDAQ
 FICO,Fair Isaac Corp.,NYSE
 FIG,Figma Inc. Class A Common Stock,NYSE
-FIGR,"Figure Technology Solutions, Inc. Class A Common Stock",NASDAQ
+FIGR,"Figure Technology Solutions, Inc.",NASDAQ
 FIGS,FIGS Inc. Class A Common Stock,NYSE
 FIS,"Fidelity National Information Services, Inc.",NYSE
 FISV,"Fiserv, Inc.",NASDAQ
 FITB,Fifth Third Bancorp,NASDAQ
 FIVE,"Five Below, Inc.",NASDAQ
 FIVN,Five9 Inc.,NASDAQ
-FLAC,Frazier Lifesciences Acquisition Corporation,NASDAQ
+FIX,Comfort Systems USA Inc.,NYSE
 FLEX,Flex Ltd.,NASDAQ
-FLG,"Flagstar Bank, National Association",NYSE
 FLOC,Flowco Holdings Inc. Class A Common Stock,NYSE
 FLR,Fluor Corporation,NYSE
 FLS,Flowserve Corporation,NYSE
+FLT,Corpay Inc.,NYSE
 FLUT,Flutter Entertainment plc,NYSE
 FLY,Firefly Aerospace Inc.,NASDAQ
 FLYW,Flywire Corp Voting Common Stock,NASDAQ
@@ -602,7 +583,6 @@ FOX,Fox Corporation Class B Common Stock,NASDAQ
 FOXA,Fox Corporation Class A Common Stock,NASDAQ
 FOXF,Fox Factory Holding Corp.,NASDAQ
 FPS,Forgent Power Solutions Inc. Class A Common Stock,NYSE
-FRNM,Freenome Inc.,NASDAQ
 FRO,Frontline plc Ordinary Shares,NYSE
 FROG,JFrog Ltd.,NASDAQ
 FRPT,"Freshpet, Inc.",NASDAQ
@@ -610,17 +590,16 @@ FRSH,Freshworks Inc. Class A Common Stock,NASDAQ
 FSK,FS KKR Capital Corp.,NYSE
 FSLR,First Solar Inc.,NASDAQ
 FSLY,Fastly Inc. Class A Common Stock,NYSE
-FSM,Fortuna Mining Corp.,NYSE
 FTAI,FTAI Aviation Ltd.,NASDAQ
 FTDR,Frontdoor Inc.,NASDAQ
 FTI,TechnipFMC plc,NYSE
-FTK,"Flotek Industries, Inc. Common Stock",NYSE
 FTNT,"Fortinet, Inc.",NASDAQ
 FTRE,Fortrea Holdings Inc.,NASDAQ
 FTS,Fortis Inc.,NYSE
 FTV,Fortive Corporation,NYSE
 FUL,H.B. Fuller Company,NYSE
 FULT,Fulton Financial Corporation,NASDAQ
+FUN,Six Flags Entertainment Corp.,NYSE
 FWONK,Liberty Media Corporation Series C Liberty Formula One Common Stock,NASDAQ
 FWRG,First Watch Restaurant Group Inc.,NASDAQ
 G,Genpact Limited,NYSE
@@ -630,25 +609,25 @@ GBDC,"Golub Capital BDC, Inc.",NASDAQ
 GCT,GigaCloud Technology Inc Class A Ordinary Shares,NASDAQ
 GD,General Dynamics Corp.,NYSE
 GDDY,GoDaddy Inc. Class A Common Stock,NYSE
+GDYN,"Grid Dynamics Holdings, Inc. Class A Common Stock",NASDAQ
 GE,General Electric Company,NYSE
 GEHC,GE HealthCare Technologies Inc.,NASDAQ
 GEN,Gen Digital Inc.,NASDAQ
-GENB,"Generate Biomedicines, Inc.",NASDAQ
 GEO,"The GEO Group, Inc.",NYSE
 GEV,GE Vernova Inc.,NYSE
 GFL,GFL Environmental Inc.,NYSE
 GFS,GlobalFoundries Inc.,NASDAQ
 GGG,Graco Inc.,NYSE
-GH,Guardant Health Inc.,NASDAQ
+GH,"Guardant Health, Inc.",NASDAQ
 GIII,"G-III Apparel Group, Ltd.",NASDAQ
 GIL,Gildan Activewear Inc.,NYSE
 GILD,Gilead Sciences Inc.,NASDAQ
 GIS,General Mills Inc.,NYSE
 GKOS,Glaukos Corp.,NYSE
+GL,Globe Life Inc.,NYSE
 GLBE,Global-E Online Ltd.,NASDAQ
 GLNG,Golar LNG Limited,NASDAQ
 GLOB,Globant S.A.,NYSE
-GLTO,"Damora Therapeutics, Inc.",NASDAQ
 GLW,Corning Incorporated,NYSE
 GLXY,Galaxy Digital Inc. Class A Common Stock,NASDAQ
 GM,General Motors Co.,NYSE
@@ -665,18 +644,15 @@ GOOG,Alphabet Inc. Class C Common Stock,NASDAQ
 GOOGL,Alphabet Inc. Class A Common Stock,NASDAQ
 GPC,Genuine Parts Company,NYSE
 GPGI,"GPGI, Inc. Class A Common Stock",NYSE
+GPK,Graphic Packaging Holding Company,NYSE
 GPN,Global Payments Inc.,NYSE
 GPRE,Green Plains Inc.,NASDAQ
-GPRK,GeoPark Limited,NYSE
-GPS,"The Gap, Inc.",NYSE
 GRAL,"GRAIL, Inc.",NASDAQ
 GRDN,"Guardian Pharmacy Services, Inc. Class A Common Stock",NYSE
 GRMN,Garmin Ltd.,NYSE
 GRND,Grindr Inc.,NYSE
-GRPN,"Groupon, Inc.",NASDAQ
 GS,"The Goldman Sachs Group, Inc.",NYSE
 GSAT,Globalstar Inc.,NASDAQ
-GTE,Gran Tierra Energy Inc.,NYSE
 GTES,Gates Industrial Corporation plc,NYSE
 GTLB,GitLab Inc. Class A Common Stock,NASDAQ
 GTX,Garrett Motion Inc.,NASDAQ
@@ -685,10 +661,8 @@ GWRE,Guidewire Software Inc.,NYSE
 GXO,"GXO Logistics, Inc.",NYSE
 H,Hyatt Hotels Corporation Class A Common Stock,NYSE
 HAE,Haemonetics Corporation,NYSE
-HAFN,Hafnia Limited,NYSE
 HAL,Halliburton Company,NYSE
 HALO,Halozyme Therapeutics Inc.,NASDAQ
-HAPN,"Happen, Inc. Common Stock",NASDAQ
 HAS,"Hasbro, Inc.",NASDAQ
 HASI,"HA Sustainable Infrastructure Capital, Inc.",NYSE
 HAWK,"HawkEye 360, Inc.",NYSE
@@ -700,21 +674,22 @@ HCA,"HCA Healthcare, Inc.",NYSE
 HCC,"Warrior Met Coal, Inc.",NYSE
 HCSG,"Healthcare Services Group, Inc.",NASDAQ
 HD,"The Home Depot, Inc.",NYSE
-HELP,Helus Pharma Inc.,NASDAQ
+HELE,Helen of Troy Limited,NASDAQ
 HESM,Hess Midstream LP Class A,NYSE
+HGTY,"Hagerty, Inc. Class A Common Stock",NYSE
 HGV,Hilton Grand Vacations Inc.,NYSE
 HHH,Howard Hughes Holdings Inc.,NYSE
 HIG,"The Hartford Insurance Group, Inc.",NYSE
+HII,"Huntington Ingalls Industries, Inc.",NYSE
 HIMS,"Hims & Hers Health, Inc. Class A Common Stock",NYSE
 HL,Hecla Mining Company,NYSE
 HLF,Herbalife Ltd.,NYSE
 HLI,"Houlihan Lokey, Inc.",NYSE
-HLIT,Harmonic Inc.,NASDAQ
 HLNE,Hamilton Lane Inc. Class A,NASDAQ
 HLT,Hilton Worldwide Holdings Inc.,NYSE
+HMST,Mechanics Bancorp Class A Common Stock,NASDAQ
 HNGE,"Hinge Health, Inc. Class A Common Stock",NYSE
 HNI,HNI Corporation,NYSE
-HNRG,Hallador Energy Co.,NASDAQ
 HOG,"Harley-Davidson, Inc.",NYSE
 HOMB,"Home BancShares, Inc.",NYSE
 HON,Honeywell International Inc.,NASDAQ
@@ -723,7 +698,6 @@ HOOD,Robinhood Markets Inc. Class A Common Stock,NASDAQ
 HOPE,"Hope Bancorp, Inc.",NASDAQ
 HP,"Helmerich & Payne, Inc.",NYSE
 HPE,Hewlett Packard Enterprise Company,NYSE
-HPK,"HighPeak Energy, Inc. Common Stock",NASDAQ
 HPQ,HP Inc.,NYSE
 HQY,"HealthEquity, Inc.",NASDAQ
 HRB,H&R Block Inc.,NYSE
@@ -735,7 +709,8 @@ HSIC,"Henry Schein, Inc.",NASDAQ
 HSY,The Hershey Company Common Stock,NYSE
 HTFL,HeartFlow Inc.,NASDAQ
 HTGC,Hercules Capital Inc.,NYSE
-HTLD,"Heartland Express, Inc.",NASDAQ
+HTO,H2O America,NASDAQ
+HUBB,Hubbell Inc.,NYSE
 HUBG,Hub Group Inc.,NASDAQ
 HUBS,"HubSpot, Inc. Common Stock",NYSE
 HUM,Humana Inc.,NYSE
@@ -758,18 +733,16 @@ IDXX,"IDEXX Laboratories, Inc.",NASDAQ
 IDYA,IDEAYA Biosciences Inc.,NASDAQ
 IEX,IDEX Corporation,NYSE
 IFF,"International Flavors & Fragrances, Inc.",NYSE
-IIIV,i3 Verticals Inc. Class A Common Stock,NASDAQ
 ILMN,Illumina Inc.,NASDAQ
 IMAX,IMAX Corporation,NYSE
 IMNM,"Immunome, Inc.",NASDAQ
 IMO,Imperial Oil Limited,NYSE
 IMVT,Immunovant Inc.,NASDAQ
-IMXI,"International Money Express, Inc.",NASDAQ
 INCY,Incyte Corp.,NASDAQ
-INDV,"Indivior Pharmaceuticals, Inc.",NASDAQ
 INGM,Ingram Micro Holding Corporation Common Stock,NYSE
 INGR,Ingredion Incorporated,NYSE
 INIO,Innio N.V.,NASDAQ
+INMD,InMode Ltd.,NASDAQ
 INOD,Innodata Inc.,NASDAQ
 INSM,Insmed Incorporated,NASDAQ
 INSP,"Inspire Medical Systems, Inc.",NYSE
@@ -778,13 +751,11 @@ INTA,Intapp Inc.,NASDAQ
 INTC,Intel Corporation,NASDAQ
 INTU,Intuit Inc.,NASDAQ
 INVA,Innoviva Inc.,NASDAQ
-INVX,Innovex International Inc.,NYSE
+IOND,Ionic Digital Inc. Class A Common Stock,NASDAQ
 IONQ,"IonQ, Inc.",NYSE
 IONS,"Ionis Pharmaceuticals, Inc.",NASDAQ
 IOT,Samsara Inc. Class A Common Stock,NYSE
-IOVA,Iovance Biotherapeutics Inc.,NASDAQ
 IP,International Paper Co.,NYSE
-IPXX,"USA Rare Earth, Inc.",NASDAQ
 IQV,IQVIA Holdings Inc.,NYSE
 IR,Ingersoll Rand Inc.,NYSE
 IRDM,Iridium Communications Inc.,NASDAQ
@@ -799,7 +770,6 @@ ITT,ITT Inc.,NYSE
 ITW,Illinois Tool Works Inc.,NYSE
 IVZ,Invesco Ltd.,NYSE
 J,Jacobs Solutions Inc.,NYSE
-JACK,Jack in the Box Inc.,NASDAQ
 JAN,JanOne Inc,NASDAQ
 JANX,"Janux Therapeutics, Inc.",NASDAQ
 JAZZ,Jazz Pharmaceuticals plc,NASDAQ
@@ -812,6 +782,7 @@ JCI,Johnson Controls International plc,NYSE
 JEF,Jefferies Financial Group Inc.,NYSE
 JHX,James Hardie Industries plc,NYSE
 JKHY,"Jack Henry & Associates, Inc.",NASDAQ
+JMKE,Jersey Mike's Subs Inc. Class A Common Stock,NYSE
 JNJ,Johnson & Johnson,NYSE
 JPM,JPMorgan Chase & Co.,NYSE
 JXN,Jackson Financial Inc.,NYSE
@@ -821,6 +792,7 @@ KBH,KB Home,NYSE
 KBR,KBR Inc.,NYSE
 KD,Kyndryl Holdings Inc.,NYSE
 KDP,Keurig Dr Pepper Inc.,NASDAQ
+KEX,Kirby Corporation,NYSE
 KEY,KeyCorp,NYSE
 KEYS,"Keysight Technologies, Inc.",NYSE
 KFY,Korn Ferry,NYSE
@@ -857,11 +829,12 @@ LASR,"nLIGHT, Inc.",NASDAQ
 LAUR,"Laureate Education, Inc.",NASDAQ
 LAZ,"Lazard, Inc.",NYSE
 LBRT,Liberty Energy Inc.,NYSE
+LBTYA,Liberty Global Ltd. Class A Common Shares,NASDAQ
 LC,"Happen, Inc. Common Stock",NYSE
 LCLN,Lincoln International Inc. Class A Common Stock,NYSE
 LDOS,"Leidos Holdings, Inc.",NYSE
 LEA,Lear Corporation,NYSE
-LEN,Lennar Corp. Class A Common Stock,NYSE
+LEN,Lennar Corporation,NYSE
 LEU,Centrus Energy Corp. Class A Common Stock,NYSE
 LEVI,Levi Strauss & Co. Class A Common Stock,NYSE
 LFST,"LifeStance Health Group, Inc.",NASDAQ
@@ -871,6 +844,7 @@ LH,Labcorp Holdings Inc.,NYSE
 LHX,"L3Harris Technologies, Inc.",NYSE
 LIF,"Life360, Inc.",NASDAQ
 LIFE,Ethos Technologies Inc. Class A Common Stock,NASDAQ
+LII,Lennox International Inc.,NYSE
 LIN,Linde plc,NASDAQ
 LINC,Lincoln Educational Services Corporation,NASDAQ
 LIND,"Lindblad Expeditions Holdings, Inc.",NASDAQ
@@ -895,16 +869,14 @@ LQDA,Liquidia Corporation,NASDAQ
 LRCX,Lam Research Corp.,NASDAQ
 LRN,Stride Inc.,NYSE
 LSCC,Lattice Semiconductor Corporation,NASDAQ
-LSPD,Lightspeed Commerce Inc.,NYSE
 LTH,"Life Time Group Holdings, Inc.",NYSE
 LULU,lululemon athletica inc.,NASDAQ
-LUNR,"Intuitive Machines, Inc. Class A Common Stock",NASDAQ
 LUV,Southwest Airlines Co.,NYSE
 LVS,Las Vegas Sands Corp.,NYSE
 LW,"Lamb Weston Holdings, Inc.",NYSE
-LXU,"LSB Industries, Inc.",NYSE
 LYB,LyondellBasell Industries N.V.,NYSE
 LYFT,"Lyft, Inc. Class A Common Stock",NASDAQ
+LYNX,Lyntris Inc.,NYSE
 LYV,"Live Nation Entertainment, Inc.",NYSE
 LZB,La-Z-Boy Inc.,NYSE
 M,Macy's Inc.,NYSE
@@ -917,7 +889,6 @@ MANH,Manhattan Associates Inc.,NASDAQ
 MAR,"Marriott International, Inc. Class A Common Stock",NASDAQ
 MAS,Masco Corporation,NYSE
 MAT,Mattel Inc.,NASDAQ
-MATV,Mativ Holdings Inc,NYSE
 MATW,Matthews International Corp Class A Common Stock,NASDAQ
 MAX,MediaAlpha Inc. Class A Common Stock,NYSE
 MAZE,"Maze Therapeutics, Inc.",NASDAQ
@@ -943,7 +914,6 @@ MEOH,Methanex Corporation,NASDAQ
 MET,"MetLife, Inc.",NYSE
 META,Meta Platforms Inc. Class A Common Stock,NASDAQ
 MFC,Manulife Financial Corporation,NYSE
-MFP,"Midera Food Processing, Inc.",NASDAQ
 MGA,Magna International Inc.,NYSE
 MGM,MGM Resorts International,NYSE
 MGNI,"Magnite, Inc.",NASDAQ
@@ -963,6 +933,7 @@ MKTX,MarketAxess Holdings Inc.,NASDAQ
 MLI,"Mueller Industries, Inc.",NYSE
 MLKN,MillerKnoll Inc.,NASDAQ
 MLM,"Martin Marietta Materials, Inc.",NYSE
+MLTX,MoonLake Immunotherapeutics Class A Ordinary Shares,NASDAQ
 MLYS,"Mineralys Therapeutics, Inc.",NASDAQ
 MMC,"Marsh & McLennan Companies, Inc.",NYSE
 MMED,"MiniMed Group, Inc.",NASDAQ
@@ -972,9 +943,7 @@ MMSI,"Merit Medical Systems, Inc.",NASDAQ
 MMYT,MakeMyTrip Limited,NASDAQ
 MNDY,monday.com Ltd.,NASDAQ
 MNMD,Definium Therapeutics Inc.,NASDAQ
-MNRO,"Monro, Inc.",NASDAQ
 MNST,Monster Beverage Corporation,NASDAQ
-MNTN,MNTN Inc. Class A Common Stock,NYSE
 MO,"Altria Group, Inc.",NYSE
 MOD,Modine Manufacturing Company,NYSE
 MOH,Molina Healthcare Inc.,NYSE
@@ -983,7 +952,6 @@ MP,MP Materials Corp.,NYSE
 MPC,Marathon Petroleum Corp.,NYSE
 MPWR,Monolithic Power Systems Inc.,NASDAQ
 MQ,Marqeta Inc. Class A Common Stock,NASDAQ
-MRAM,"Everspin Technologies, Inc.",NASDAQ
 MRCY,Mercury Systems Inc.,NASDAQ
 MRK,"Merck & Co., Inc.",NYSE
 MRNA,Moderna Inc.,NASDAQ
@@ -993,11 +961,12 @@ MRVL,Marvell Technology Inc.,NASDAQ
 MRX,Marex Group plc,NASDAQ
 MS,Morgan Stanley Common Stock,NYSE
 MSCI,MSCI Inc.,NYSE
+MSDL,Morgan Stanley Direct Lending Fund,NYSE
 MSFT,Microsoft Corporation Common Stock,NASDAQ
 MSI,"Motorola Solutions, Inc.",NYSE
 MSM,"MSC Industrial Direct Co., Inc. Class A",NYSE
 MSTR,Strategy Inc.,NASDAQ
-MTB,"CareCloud, Inc.",NYSE
+MTB,M&T Bank Corporation,NYSE
 MTCH,Match Group Inc.,NASDAQ
 MTDR,Matador Resources Company,NYSE
 MTG,MGIC Investment Corp.,NYSE
@@ -1007,7 +976,6 @@ MTSI,"MACOM Technology Solutions Holdings, Inc.",NASDAQ
 MTZ,"MasTec, Inc.",NYSE
 MU,Micron Technology Inc.,NASDAQ
 MUR,Murphy Oil Corporation,NYSE
-MUX,McEwen Inc.,NYSE
 MWA,Mueller Water Products Inc. Class A,NYSE
 MWH,"SOLV Energy, Inc. Class A Common Stock",NASDAQ
 MXL,"MaxLinear, Inc.",NASDAQ
@@ -1027,7 +995,6 @@ NEO,"NeoGenomics, Inc.",NASDAQ
 NEOG,Neogen Corp.,NASDAQ
 NESR,National Energy Services Reunited Corp.,NASDAQ
 NET,"Cloudflare, Inc. Class A Common Stock",NYSE
-NEXA,Nexa Resources S.A.,NYSE
 NFG,National Fuel Gas Company,NYSE
 NFLX,Netflix Inc.,NASDAQ
 NI,NiSource Inc.,NYSE
@@ -1036,16 +1003,12 @@ NJR,New Jersey Resources Corporation,NYSE
 NKE,"Nike, Inc. Class B Common Stock",NYSE
 NKTR,Nektar Therapeutics,NASDAQ
 NMIH,"NMI Holdings, Inc.",NASDAQ
-NMRK,Newmark Group Inc. Class A Common Stock,NASDAQ
-NNE,Nano Nuclear Energy Inc.,NASDAQ
 NOC,Northrop Grumman Corporation,NYSE
 NOG,"Northern Oil and Gas, Inc.",NYSE
 NOMD,Nomad Foods Limited,NYSE
 NOV,NOV Inc.,NYSE
 NOW,ServiceNow Inc.,NYSE
-NPKI,NPK International Inc.,NYSE
-NR,NPK International Inc.,NYSE
-NRDS,NerdWallet Inc. Class A Common Stock,NASDAQ
+NP,Neptune Insurance Holdings Inc. Class A Common Stock,NYSE
 NRG,"NRG Energy, Inc.",NYSE
 NRIX,"Nurix Therapeutics, Inc.",NASDAQ
 NSC,Norfolk Southern Corp.,NYSE
@@ -1059,28 +1022,25 @@ NTRS,Northern Trust Corporation,NASDAQ
 NTSK,Netskope Inc. Class A Common Stock,NASDAQ
 NU,Nu Holdings Ltd. Class A Ordinary Shares,NYSE
 NUE,Nucor Corporation,NYSE
-NVAX,Novavax Inc.,NASDAQ
 NVCR,NovoCure Ltd.,NASDAQ
 NVDA,NVIDIA Corporation,NASDAQ
 NVST,Envista Holdings Corp.,NYSE
 NVT,nVent Electric plc,NYSE
 NWBI,"Northwest Bancshares, Inc.",NASDAQ
+NWE,"NorthWestern Energy Group, Inc.",NASDAQ
 NWS,News Corp Class B,NASDAQ
 NWSA,News Corp. Class A Common Stock,NASDAQ
 NXPI,NXP Semiconductors N.V.,NASDAQ
 NXT,Nextpower Inc. Class A Common Stock,NASDAQ
-NYCB,Flagstar Financial Corporation,NYSE
 NYT,New York Times Co. Class A Common Stock,NYSE
-OAS,Oasis Petroleum Inc,NASDAQ
 OBDC,Blue Owl Capital Corporation,NYSE
-OBE,Obsidian Energy Ltd.,NYSE
+OBX,Obsidian Therapeutics Inc.,NASDAQ
 OC,Owens Corning,NYSE
-OCANF,OceanaGold Corporation,NYSE
 OCFC,OceanFirst Financial Corp.,NASDAQ
-OCSL,Oaktree Specialty Lending Corp.,NASDAQ
 OCTV,Octave Intelligence plc Class B Ordinary Shares,NASDAQ
 ODD,Oddity Tech Ltd. Class A Ordinary Shares,NASDAQ
 ODFL,"Old Dominion Freight Line, Inc.",NASDAQ
+OFRM,"Once Upon a Farm, PBC",NYSE
 OGC,OceanaGold Corporation,NYSE
 OGE,OGE Energy Corp.,NYSE
 OGN,Organon & Co.,NYSE
@@ -1100,19 +1060,20 @@ OMF,"OneMain Holdings, Inc.",NYSE
 ON,ON Semiconductor Corporation,NASDAQ
 ONB,Old National Bancorp,NASDAQ
 ONON,On Holding AG Class A Ordinary Shares,NYSE
-ONT,"Onterris, Inc.",NYSE
 ONTO,Onto Innovation Inc.,NYSE
 OPCH,Option Care Health Inc.,NASDAQ
 OPLN,"OPENLANE, Inc.",NYSE
+OPRT,Oportun Financial Corporation,NASDAQ
 OR,OR Royalties Inc.,NYSE
 ORA,"Ormat Technologies, Inc.",NYSE
 ORCL,Oracle Corporation,NYSE
 ORI,Old Republic International Corp.,NYSE
-ORIC,"Oric Pharmaceuticals, Inc.",NASDAQ
 ORKA,"Oruka Therapeutics, Inc.",NASDAQ
 ORLY,O'Reilly Automotive Inc.,NASDAQ
+OSBC,"Old Second Bancorp, Inc.",NASDAQ
 OSCR,"Oscar Health, Inc. Class A Common Stock",NYSE
 OSK,Oshkosh Corporation,NYSE
+OSPN,OneSpan Inc.,NASDAQ
 OSW,OneSpaWorld Holdings Limited,NASDAQ
 OTEX,Open Text Corp.,NASDAQ
 OTIS,Otis Worldwide Corporation,NYSE
@@ -1124,16 +1085,14 @@ OZK,Bank OZK,NASDAQ
 P,Everpure Inc. Class A Common Stock,NYSE
 PAAS,Pan American Silver Corp.,NYSE
 PACS,"PACS Group, Inc.",NYSE
-PAGS,PagSeguro Digital Ltd. Class A Common Shares,NYSE
+PAG,Penske Automotive Group Inc.,NYSE
 PANW,"Palo Alto Networks, Inc.",NASDAQ
 PAR,Par Technology Corp.,NYSE
 PARR,Par Pacific Holdings Inc.,NYSE
 PATH,"UiPath, Inc. Class A Common Stock",NYSE
 PATK,"Patrick Industries, Inc.",NASDAQ
-PAX,Patria Investments Limited Class A Common Shares,NASDAQ
 PAY,"Paymentus Holdings, Inc. Class A Common Stock",NYSE
 PAYC,"Paycom Software, Inc.",NYSE
-PAYS,Paysign Inc.,NASDAQ
 PAYX,Paychex Inc.,NASDAQ
 PB,"Prosperity Bancshares, Inc.",NYSE
 PBA,Pembina Pipeline Corp.,NYSE
@@ -1154,6 +1113,7 @@ PEGA,Pegasystems Inc.,NASDAQ
 PENG,Penguin Solutions Inc.,NASDAQ
 PENN,"PENN Entertainment, Inc.",NASDAQ
 PEP,"PepsiCo, Inc.",NASDAQ
+PERI,Perion Network Ltd.,NASDAQ
 PFE,Pfizer Inc.,NYSE
 PFG,Principal Financial Group Inc.,NASDAQ
 PFGC,Performance Food Group Co.,NYSE
@@ -1167,18 +1127,15 @@ PH,Parker-Hannifin Corporation,NYSE
 PHM,"PulteGroup, Inc.",NYSE
 PHR,Phreesia Inc.,NYSE
 PHVS,Pharvaris N.V. Ordinary Shares,NASDAQ
-PICS,PicS N.V. Class A Common Shares,NASDAQ
 PII,Polaris Inc.,NYSE
-PINS,"Pinterest, Inc. Class A Common Stock",NYSE
+PINS,Pinterest Inc.,NYSE
 PIPR,Piper Sandler Companies,NYSE
 PKG,Packaging Corporation of America,NYSE
 PL,Planet Labs PBC,NYSE
 PLAB,Photronics Inc.,NASDAQ
 PLNT,Planet Fitness Inc. Class A Common Stock,NYSE
-PLSE,Pulse Biosciences Inc,NASDAQ
 PLTR,Palantir Technologies Inc. Class A Common Stock,NASDAQ
 PM,Philip Morris International Inc.,NYSE
-PMI,Picard Medical Inc.,NYSE
 PNC,"The PNC Financial Services Group, Inc.",NYSE
 PNFP,Pinnacle Financial Partners Inc.,NASDAQ
 PNM,PNM Resources Inc,NYSE
@@ -1193,9 +1150,10 @@ POWL,"Powell Industries, Inc.",NASDAQ
 PPC,Pilgrim's Pride Corporation,NASDAQ
 PPG,"PPG Industries, Inc.",NYSE
 PPL,PPL Corporation,NYSE
-PPLI,People Inc.,NASDAQ
 PPTA,Perpetua Resources Corp.,NASDAQ
 PR,Permian Resources Corp Class A Common Stock,NYSE
+PRAA,PRA Group Inc.,NASDAQ
+PRAX,"Praxis Precision Medicines, Inc.",NASDAQ
 PRCH,"Porch Group, Inc.",NASDAQ
 PRCT,PROCEPT BioRobotics Corp.,NASDAQ
 PRDO,Perdoceo Education Corporation,NASDAQ
@@ -1206,15 +1164,14 @@ PRIM,Primoris Services Corporation,NYSE
 PRKS,United Parks & Resorts Inc.,NYSE
 PRM,"Perimeter Solutions, Inc.",NYSE
 PRMB,Primo Brands Corporation Class A Common Stock,NYSE
-PRMW,Primo Water Corporation,NYSE
 PRU,"Prudential Financial, Inc.",NYSE
 PRVA,"Privia Health Group, Inc.",NASDAQ
+PS,Pluralsight Inc,NASDAQ
 PSN,Parsons Corporation,NYSE
-PSNL,Personalis Inc.,NASDAQ
+PSNL,"Personalis, Inc.",NASDAQ
 PSX,Phillips 66,NYSE
 PTC,PTC Inc.,NASDAQ
 PTCT,"PTC Therapeutics, Inc.",NASDAQ
-PTEN,"Patterson-UTI Energy, Inc. Common Stock",NASDAQ
 PTGX,"Protagonist Therapeutics, Inc.",NASDAQ
 PTRN,Pattern Group Inc. Series A Common Stock,NASDAQ
 PUBM,PubMatic Inc. Class A Common Stock,NASDAQ
@@ -1224,26 +1181,23 @@ PWR,"Quanta Services, Inc.",NYSE
 PYPL,"PayPal Holdings, Inc.",NASDAQ
 PZZA,"Papa John's International, Inc.",NASDAQ
 Q,Qnity Electronics Inc.,NYSE
-QBTS,D-Wave Quantum Inc.,NYSE
 QCOM,QUALCOMM Incorporated,NASDAQ
-QDEL,QuidelOrtho Corporation,NASDAQ
 QGEN,Qiagen N.V.,NYSE
 QLYS,"Qualys, Inc.",NASDAQ
 QMCO,Quantum Corporation,NASDAQ
 QNST,"QuinStreet, Inc.",NASDAQ
 QNT,Quantinuum Inc. Class A Common Stock,NASDAQ
-QRVO,Qorvo Inc.,NASDAQ
 QSR,Restaurant Brands International Inc.,NYSE
 QTWO,"Q2 Holdings, Inc.",NYSE
 QURE,uniQure N.V.,NASDAQ
 QXO,QXO Inc.,NYSE
 RAL,Ralliant Corporation,NYSE
 RAMP,"LiveRamp Holdings, Inc.",NYSE
+RAPP,"Rapport Therapeutics, Inc.",NASDAQ
 RARE,Ultragenyx Pharmaceutical Inc.,NASDAQ
 RBA,RB Global Inc.,NYSE
 RBLX,Roblox Corp. Class A Common Stock,NYSE
 RBRK,Rubrik Inc. Class A Common Stock,NYSE
-RCEL,"Avita Medical, Inc.",NASDAQ
 RCI,Rogers Communications Inc. Class B,NYSE
 RCL,Royal Caribbean Cruises Ltd.,NYSE
 RCUS,"Arcus Biosciences, Inc.",NYSE
@@ -1251,7 +1205,7 @@ RDDT,Reddit Inc. Class A Common Stock,NYSE
 RDN,Radian Group Inc.,NYSE
 RDNT,RadNet Inc.,NASDAQ
 REAL,The RealReal Inc.,NASDAQ
-REAX,Real Brokerage Inc.,NASDAQ
+REF,Reformation Inc.,NYSE
 REGN,"Regeneron Pharmaceuticals, Inc.",NASDAQ
 RELY,"Remitly Global, Inc.",NASDAQ
 REPL,"Replimune Group, Inc.",NASDAQ
@@ -1260,7 +1214,6 @@ REZI,Resideo Technologies Inc.,NYSE
 RF,Regions Financial Corp.,NYSE
 RGEN,Repligen Corporation,NASDAQ
 RGLD,"Royal Gold, Inc.",NASDAQ
-RGTI,"Rigetti Computing, Inc.",NASDAQ
 RH,RH Inc.,NYSE
 RHI,Robert Half Inc.,NYSE
 RIOT,"Riot Platforms, Inc.",NASDAQ
@@ -1299,6 +1252,7 @@ RXO,RXO Inc.,NYSE
 RY,Royal Bank of Canada,NYSE
 RYAN,Ryan Specialty Holdings Inc.,NYSE
 RYTM,"Rhythm Pharmaceuticals, Inc.",NASDAQ
+RYZ,Ryerson Holding Corporation Common Stock,NYSE
 S,Safe & Green Holdings Corp.,NYSE
 SA,Seabridge Gold Inc.,NYSE
 SAIL,"SailPoint, Inc.",NASDAQ
@@ -1306,6 +1260,7 @@ SANM,Sanmina Corporation,NASDAQ
 SARO,StandardAero Inc.,NYSE
 SATS,EchoStar Corporation,NASDAQ
 SBCF,Seacoast Banking Corporation of Florida,NASDAQ
+SBGI,"Sinclair, Inc. Class A Common Stock",NASDAQ
 SBH,"Sally Beauty Holdings, Inc.",NYSE
 SBLK,Star Bulk Carriers Corp.,NASDAQ
 SBUX,Starbucks Corp.,NASDAQ
@@ -1330,36 +1285,33 @@ SGHC,Super Group (SGHC) Limited,NYSE
 SGI,Somnigroup International Inc.,NYSE
 SGRY,Surgery Partners Inc.,NASDAQ
 SHAK,"Shake Shack, Inc. Class A Common Stock",NYSE
-SHAZ,"SharonAI Holdings, Inc. Class A Common Stock",NASDAQ
+SHAZ,SharonAI Holdings Inc.,NASDAQ
 SHC,Sotera Health Company,NASDAQ
-SHEN,Shenandoah Telecommunications Company,NASDAQ
-SHOE,Shoe Station Group Inc.,NASDAQ
 SHOO,Steven Madden Ltd.,NASDAQ
 SHOP,Shopify Inc.,NASDAQ
 SHW,The Sherwin-Williams Company,NYSE
 SIBN,"SI-BONE, Inc.",NASDAQ
 SIG,Signet Jewelers Limited,NYSE
+SIGI,"Selective Insurance Group, Inc.",NASDAQ
 SIRI,Sirius XM Holdings Inc.,NASDAQ
 SITE,"SiteOne Landscape Supply, Inc.",NYSE
+SITM,SiTime Corporation,NASDAQ
 SJM,The J. M. Smucker Company,NYSE
 SKE,Skeena Resources Limited,NYSE
 SKY,"Champion Homes, Inc.",NYSE
 SLB,SLB N.V.,NYSE
 SLDE,"Slide Insurance Holdings, Inc. Common Stock",NASDAQ
-SLF,Sun Life Financial Inc.,NYSE
 SLGN,Silgan Holdings Inc.,NYSE
 SLM,SLM Corp.,NASDAQ
+SLS,"SELLAS Life Sciences Group, Inc.",NASDAQ
 SM,SM Energy Company,NYSE
 SMCI,Super Micro Computer Inc.,NASDAQ
-SMFR,Sema4 Holdings Corp.,NASDAQ
 SMG,The Scotts Miracle-Gro Company,NYSE
-SMMT,Summit Therapeutics Inc.,NASDAQ
 SMPL,The Simply Good Foods Company,NASDAQ
 SMTC,Semtech Corporation,NASDAQ
 SN,"SharkNinja, Inc.",NYSE
 SNDK,Sandisk Corp.,NASDAQ
 SNDR,Schneider National Inc. Class B Common Stock,NYSE
-SNDX,"Syndax Pharmaceuticals, Inc.",NASDAQ
 SNEX,StoneX Group Inc.,NASDAQ
 SNOW,Snowflake Inc. Common Stock,NYSE
 SNPS,Synopsys Inc.,NASDAQ
@@ -1367,10 +1319,10 @@ SNX,TD SYNNEX Corporation,NYSE
 SO,The Southern Company,NYSE
 SOBO,South Bow Corporation,NYSE
 SOFI,"SoFi Technologies, Inc.",NASDAQ
-SOI,"Solaris Energy Infrastructure, Inc.",NYSE
 SOLS,Solstice Advanced Materials Inc.,NASDAQ
 SOLV,Solventum Corporation,NYSE
 SON,Sonoco Products Company,NYSE
+SONN,Sonnet Biotherapeutics Holdings Inc.,NASDAQ
 SONO,Sonos Inc.,NASDAQ
 SPCM,"Sound Point Acquisition Corp I, Ltd",NASDAQ
 SPCX,Space Exploration Technologies Corp. Class A Common Stock,NASDAQ
@@ -1378,43 +1330,42 @@ SPGI,S&P Global Inc.,NYSE
 SPHR,Sphere Entertainment Co. Class A Common Stock,NYSE
 SPNT,SiriusPoint Ltd.,NYSE
 SPOT,Spotify Technology S.A.,NYSE
-SPSC,"SPS Commerce, Inc.",NASDAQ
 SPT,Sprout Social Inc Class A Common Stock,NASDAQ
 SPXC,"SPX Technologies, Inc.",NYSE
 SQ,"Block, Inc.",NYSE
+SR,Spire Inc.,NYSE
 SRAD,Sportradar Group AG Class A Ordinary Shares,NASDAQ
 SRE,Sempra,NYSE
 SRPT,"Sarepta Therapeutics, Inc.",NASDAQ
 SRRK,Scholar Rock Holding Corporation Common Stock,NASDAQ
 SRZN,"Surrozen, Inc.",NASDAQ
 SSB,SouthState Bank Corporation Common Stock,NYSE
+SSMR,Sunshine Silver Mining & Refining Company,NYSE
 SSNC,"SS&C Technologies Holdings, Inc.",NASDAQ
 SSNT,SilverSun Technologies Inc,NASDAQ
 SSRM,SSR Mining Inc.,NASDAQ
 ST,Sensata Technologies Holding plc,NYSE
 STAA,STAAR Surgical Company,NASDAQ
-STDN,Standard Nuclear Inc Class A Common Stock,NYSE
+STC,Stewart Information Services Corp.,NYSE
 STE,STERIS plc,NYSE
 STEP,StepStone Group Inc. Class A Common Stock,NASDAQ
+STGW,Stagwell Inc. Class A Common Stock,NASDAQ
 STLD,"Steel Dynamics, Inc.",NASDAQ
-STNE,StoneCo Ltd. Class A Common Shares,NASDAQ
 STNG,Scorpio Tankers Inc.,NYSE
 STOK,"Stoke Therapeutics, Inc.",NASDAQ
 STRL,"Sterling Infrastructure, Inc.",NASDAQ
 STT,State Street Corporation Common Stock,NYSE
+STVN,Stevanato Group S.p.A.,NYSE
 STX,Seagate Technology Holdings plc,NASDAQ
 STZ,Constellation Brands Inc. Class A,NYSE
 SU,Suncor Energy Inc.,NYSE
-SUJA,Suja Life Inc. Class A Common Stock,NASDAQ
-SUNB,Sunbelt Rentals Holdings Inc.,NYSE
+SUNB,"Sunbelt Rentals Holdings, Inc.",NYSE
 SUPN,"Supernus Pharmaceuticals, Inc.",NASDAQ
-SVV,"Savers Value Village, Inc.",NYSE
 SW,Smurfit WestRock Plc,NYSE
 SWBI,"Smith & Wesson Brands, Inc.",NASDAQ
 SWK,Stanley Black & Decker Inc.,NYSE
 SWKS,"Skyworks Solutions, Inc.",NASDAQ
 SWX,"Southwest Gas Holdings, Inc.",NYSE
-SXC,SunCoke Energy Inc.,NYSE
 SYF,Synchrony Financial,NYSE
 SYK,Stryker Corp.,NYSE
 SYM,Symbotic Inc. Class A Common Stock,NASDAQ
@@ -1428,9 +1379,6 @@ TAP,Molson Coors Beverage Company Class B Common Stock,NYSE
 TARS,Tarsus Pharmaceuticals Inc.,NASDAQ
 TBBB,BBB Foods Inc. Class A Common Stock,NYSE
 TBBK,"The Bancorp, Inc.",NASDAQ
-TBPH,Theravance Biopharma Inc.,NASDAQ
-TCBI,Texas Capital Bancshares Inc.,NASDAQ
-TCNNF,Trulieve Cannabis Corp.,NYSE
 TD,Toronto-Dominion Bank,NYSE
 TDC,Teradata Corporation,NYSE
 TDS,"Telephone and Data Systems, Inc.",NYSE
@@ -1455,7 +1403,6 @@ THO,"Thor Industries, Inc.",NYSE
 THRM,Gentherm Inc.,NASDAQ
 TIGO,Millicom International Cellular S.A.,NASDAQ
 TILE,"Interface, Inc.",NASDAQ
-TJGC,TJGC Group Ltd. Class A,NASDAQ
 TJX,"The TJX Companies, Inc.",NYSE
 TK,Teekay Corporation Ltd. Common Stock,NYSE
 TKO,"TKO Group Holdings, Inc. Class A Common Stock",NYSE
@@ -1470,17 +1417,17 @@ TNL,Travel + Leisure Co.,NYSE
 TOL,"Toll Brothers, Inc.",NYSE
 TOST,"Toast, Inc. Class A Common Stock",NYSE
 TOWN,TowneBank,NASDAQ
+TPC,Tutor Perini Corp.,NYSE
 TPG,TPG Inc. Class A Common Stock,NASDAQ
 TPR,Tapestry Inc.,NYSE
-TPX,Tempur Sealy International Inc.,NYSE
 TRAX,"First Tracks Biotherapeutics, Inc.",NASDAQ
 TREX,"Trex Company, Inc.",NYSE
 TRGP,Targa Resources Corp.,NYSE
 TRI,Thomson Reuters Corporation,NASDAQ
 TRIN,Trinity Capital Inc.,NASDAQ
-TRLV,Trulieve Cannabis Corp.,NYSE
 TRMB,Trimble Inc.,NASDAQ
 TRMD,TORM plc Class A Common Stock,NASDAQ
+TRMK,Trustmark Corp.,NASDAQ
 TRN,Trinity Industries Inc.,NYSE
 TROW,T. Rowe Price Group Inc.,NASDAQ
 TRP,TC Energy Corporation,NYSE
@@ -1499,13 +1446,13 @@ TTE,TotalEnergies SE,NYSE
 TTEK,Tetra Tech Inc.,NASDAQ
 TTMI,"TTM Technologies, Inc.",NASDAQ
 TTWO,"Take-Two Interactive Software, Inc.",NASDAQ
+TU,TELUS Corporation,NYSE
 TVTX,Travere Therapeutics Inc.,NASDAQ
 TW,Tradeweb Markets Inc. Class A Common Stock,NASDAQ
 TWLO,Twilio Inc. Class A Common Stock,NYSE
 TWST,Twist Bioscience Corporation,NASDAQ
 TXG,10x Genomics Inc. Class A Common Stock,NASDAQ
 TXN,Texas Instruments Inc.,NASDAQ
-TXNM,"TXNM Energy, Inc.",NYSE
 TXRH,Texas Roadhouse Inc.,NASDAQ
 TXT,Textron Inc.,NYSE
 TYL,Tyler Technologies Inc.,NYSE
@@ -1516,13 +1463,10 @@ UBER,Uber Technologies Inc.,NYSE
 UBS,UBS Group AG,NYSE
 UBSI,United Bankshares Inc.,NASDAQ
 UCB,"United Community Banks, Inc.",NYSE
-UCBI,"United Community Banks, Inc.",NASDAQ
 UCTT,"Ultra Clean Holdings, Inc.",NASDAQ
 UGI,UGI Corporation,NYSE
 UHS,Universal Health Services Inc. Class B Common Stock,NYSE
 ULS,UL Solutions Inc. Class A Common Stock,NYSE
-ULTA,"Ulta Beauty, Inc.",NASDAQ
-UMAC,Unusual Machines Inc.,NYSE
 UMBF,UMB Financial Corporation,NASDAQ
 UNFI,United Natural Foods Inc.,NYSE
 UNH,UnitedHealth Group Inc.,NYSE
@@ -1533,20 +1477,19 @@ UPS,"United Parcel Service, Inc. Class B Common Stock",NYSE
 UPST,Upstart Holdings Inc.,NASDAQ
 URBN,Urban Outfitters Inc.,NASDAQ
 URGN,UroGen Pharma Ltd.,NASDAQ
-USAR,"USA Rare Earth, Inc.",NASDAQ
+URI,United Rentals Inc.,NYSE
 USB,U.S. Bancorp,NYSE
-USDE,StablecoinX Inc. Class A Common Stock,NASDAQ
 USFD,US Foods Holding Corp.,NYSE
-UTHR,United Therapeutics Corp.,NASDAQ
+UTHR,United Therapeutics Corporation,NASDAQ
 UTI,"Universal Technical Institute, Inc.",NYSE
 UTZ,"Utz Brands, Inc. Class A Common Stock",NYSE
 V,Visa Inc. Class A,NYSE
 VAL,Valaris Ltd.,NYSE
+VC,Visteon Corp.,NASDAQ
 VCEL,Vericel Corporation,NASDAQ
 VCTR,"Victory Capital Holdings, Inc. Class A Common Stock",NASDAQ
 VCYT,"Veracyte, Inc.",NASDAQ
 VECO,Veeco Instruments Inc.,NASDAQ
-VEEE,Twin Vee PowerCats Co. Common Stock,NASDAQ
 VEEV,Veeva Systems Inc.,NYSE
 VERA,"Vera Therapeutics, Inc. Class A Common Stock",NASDAQ
 VERX,Vertex Inc. Class A,NASDAQ
@@ -1563,8 +1506,8 @@ VKTX,"Viking Therapeutics, Inc.",NASDAQ
 VLO,Valero Energy Corporation,NYSE
 VLTO,Veralto Corporation,NYSE
 VLY,Valley National Bancorp Common Stock,NASDAQ
-VMC,Vulcan Materials Co.,NYSE
-VNOM,"Viper Energy, Inc. Class A Common Stock",NASDAQ
+VMC,Vulcan Materials Company,NYSE
+VNOM,"Viper Energy, Inc.",NASDAQ
 VNT,Vontier Corporation Common Stock,NYSE
 VOR,Vor Biopharma Inc.,NASDAQ
 VOYA,Voya Financial Inc.,NYSE
@@ -1577,14 +1520,15 @@ VRSN,"VeriSign, Inc.",NASDAQ
 VRT,Vertiv Holdings Co Class A Common Stock,NYSE
 VRTX,Vertex Pharmaceuticals Incorporated Common Stock,NASDAQ
 VSAT,Viasat Inc.,NASDAQ
+VSEC,VSE Corporation Common Stock,NASDAQ
 VSH,"Vishay Intertechnology, Inc.",NYSE
 VSNT,Versant Media Group Inc. Class A Common Stock,NASDAQ
 VST,Vistra Corp.,NYSE
 VSTS,Vestis Corporation Common Stock,NYSE
 VSXY,Victoria's Secret & Co.,NYSE
 VTRS,Viatris Inc.,NASDAQ
+VTS,Vitesse Energy Inc.,NYSE
 VVV,Valvoline Inc.,NYSE
-VVX,V2X Inc.,NYSE
 VZ,Verizon Communications Inc.,NYSE
 W,Wayfair Inc. Class A Common Stock,NYSE
 WAB,Wabtec Corporation,NYSE
@@ -1592,7 +1536,6 @@ WAFD,"WaFd, Inc.",NASDAQ
 WAL,Western Alliance Bancorporation Common Stock,NYSE
 WAT,Waters Corporation,NYSE
 WAY,Waystar Holding Corp.,NASDAQ
-WBD,"Warner Bros. Discovery, Inc.",NASDAQ
 WBI,WaterBridge Infrastructure LLC Class A,NYSE
 WCC,"WESCO International, Inc.",NYSE
 WCN,"Waste Connections, Inc.",NYSE
@@ -1601,7 +1544,6 @@ WDAY,Workday Inc Class A Common Stock,NASDAQ
 WDC,Western Digital Corp.,NASDAQ
 WEC,WEC Energy Group Inc.,NYSE
 WERN,Werner Enterprises Inc.,NASDAQ
-WETF,WisdomTree Investments Inc,NASDAQ
 WEX,WEX Inc.,NYSE
 WFC,Wells Fargo & Company,NYSE
 WFRD,Weatherford International plc,NASDAQ
@@ -1616,13 +1558,11 @@ WK,Workiva Inc. Class A Common Stock,NYSE
 WKC,World Kinect Corporation,NYSE
 WLK,Westlake Corporation,NYSE
 WLTH,Wealthfront Corporation,NYSE
-WLTW,Willis Towers Watson Public Limited Company,NASDAQ
 WM,Waste Management Inc.,NYSE
 WMB,"The Williams Companies, Inc.",NYSE
 WMG,Warner Music Group Corp.,NASDAQ
 WMS,"Advanced Drainage Systems, Inc.",NYSE
 WMT,Walmart Inc.,NASDAQ
-WNC,Wabash National Corp.,NYSE
 WOLF,Wolfspeed Inc.,NYSE
 WPM,Wheaton Precious Metals Corp.,NYSE
 WRB,W. R. Berkley Corporation,NYSE
@@ -1631,17 +1571,16 @@ WSBC,"WesBanco, Inc.",NASDAQ
 WSC,WillScot Holdings Corporation,NASDAQ
 WSE,Wise Group plc,NASDAQ
 WSM,"Williams-Sonoma, Inc.",NYSE
+WSO,Watsco Inc.,NYSE
 WST,West Pharmaceutical Services Inc.,NYSE
 WT,"WisdomTree, Inc. Common Stock",NYSE
+WTFC,Wintrust Financial Corporation,NASDAQ
 WTRG,Essential Utilities Inc.,NYSE
 WTTR,Select Water Solutions Inc. Class A,NYSE
 WTW,Willis Towers Watson Public Limited Company,NASDAQ
-WULF,TeraWulf Inc.,NASDAQ
 WWD,"Woodward, Inc.",NASDAQ
 WWW,"Wolverine World Wide, Inc.",NYSE
-WYFI,WhiteFiber Inc.,NASDAQ
 WYNN,"Wynn Resorts, Limited",NASDAQ
-XE,"X-Energy, Inc. Class A Common Stock",NASDAQ
 XEL,Xcel Energy Inc.,NASDAQ
 XENE,Xenon Pharmaceuticals Inc.,NASDAQ
 XERS,"Xeris Biopharma Holdings, Inc.",NASDAQ
@@ -1651,9 +1590,7 @@ XOM,ExxonMobil Holdings Corporation,NYSE
 XP,XP Inc. Class A Common Stock,NASDAQ
 XPO,"XPO, Inc.",NYSE
 XPRO,Expro Group Holdings N.V.,NYSE
-XRPN,Armada Acquisition Corp. II Class A Ordinary Shares,NASDAQ
 XYL,Xylem Inc.,NYSE
-XYZ,Block Inc. Class A Common Stock,NYSE
 YELP,Yelp Inc.,NYSE
 YETI,"YETI Holdings, Inc.",NYSE
 YOU,Clear Secure Inc. Class A Common Stock,NYSE

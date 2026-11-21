@@ -83,6 +83,12 @@
 "name": "The Allstate Corporation",
 "sector": "Financial Services"
 },
+"ALRM": {
+"fetched": "2026-11-21",
+"industry": "Software - Application",
+"name": "Alarm.com Holdings Inc.",
+"sector": "Technology"
+},
 "AMGN": {
 "fetched": "2026-10-19",
 "industry": "Drug Manufacturers - General",
@@ -142,6 +148,18 @@
 "industry": "Software - Infrastructure",
 "name": "Appian Corp Class A Common Stock",
 "sector": "Technology"
+},
+"ARDT": {
+"fetched": "2026-11-21",
+"industry": "Medical Care Facilities",
+"name": "Ardent Health, Inc.",
+"sector": "Healthcare"
+},
+"ARHS": {
+"fetched": "2026-11-21",
+"industry": "Specialty Retail",
+"name": "Arhaus, Inc. Class A Common Stock",
+"sector": "Consumer Cyclical"
 },
 "ARQT": {
 "fetched": "2026-11-14",
@@ -293,6 +311,12 @@
 "name": "Black Hills Corporation",
 "sector": "Utilities"
 },
+"BLCO": {
+"fetched": "2026-11-21",
+"industry": "Medical Instruments & Supplies",
+"name": "Bausch + Lomb Corporation",
+"sector": "Healthcare"
+},
 "BLFS": {
 "fetched": "2026-10-19",
 "industry": "Medical Instruments & Supplies",
@@ -377,6 +401,12 @@
 "name": "The Cheesecake Factory Incorporated",
 "sector": "Consumer Cyclical"
 },
+"CARS": {
+"fetched": "2026-11-21",
+"industry": "Internet Content & Information",
+"name": "Cars.com Inc.",
+"sector": "Communication Services"
+},
 "CART": {
 "fetched": "2026-10-19",
 "industry": "Internet Retail",
@@ -437,6 +467,12 @@
 "name": "CECO Environmental Corp.",
 "sector": "Industrials"
 },
+"CERT": {
+"fetched": "2026-11-21",
+"industry": "Health Information Services",
+"name": "Certara Inc.",
+"sector": "Healthcare"
+},
 "CF": {
 "fetched": "2026-11-14",
 "industry": "Agricultural Inputs",
@@ -460,6 +496,12 @@
 "industry": "Food Distribution",
 "name": "The Chefs' Warehouse, Inc.",
 "sector": "Consumer Defensive"
+},
+"CHH": {
+"fetched": "2026-11-21",
+"industry": "Lodging",
+"name": "Choice Hotels International, Inc.",
+"sector": "Consumer Cyclical"
 },
 "CHRD": {
 "fetched": "2026-10-19",
@@ -503,6 +545,24 @@
 "name": "Centene Corp.",
 "sector": "Healthcare"
 },
+"CNH": {
+"fetched": "2026-11-21",
+"industry": "Farm & Heavy Construction Machinery",
+"name": "CNH Industrial N.V.",
+"sector": "Industrials"
+},
+"CNHI": {
+"fetched": "2026-11-21",
+"industry": "Farm & Heavy Construction Machinery",
+"name": "CNH Industrial N.V.",
+"sector": "Industrials"
+},
+"CNI": {
+"fetched": "2026-11-21",
+"industry": "Railroads",
+"name": "Canadian National Railway Co.",
+"sector": "Industrials"
+},
 "CNK": {
 "fetched": "2026-10-19",
 "industry": "Entertainment",
@@ -533,6 +593,12 @@
 "name": "Compass Diversified Holdings",
 "sector": "Industrials"
 },
+"COLM": {
+"fetched": "2026-11-21",
+"industry": "Apparel Manufacturing",
+"name": "Columbia Sportswear Company",
+"sector": "Consumer Cyclical"
+},
 "CON": {
 "fetched": "2026-10-19",
 "industry": "Medical Care Facilities",
@@ -544,6 +610,12 @@
 "industry": "Oil & Gas E&P",
 "name": "ConocoPhillips",
 "sector": "Energy"
+},
+"CPAY": {
+"fetched": "2026-11-21",
+"industry": "Software - Infrastructure",
+"name": "Corpay Inc.",
+"sector": "Technology"
 },
 "CRBG": {
 "fetched": "2026-10-19",
@@ -623,6 +695,12 @@
 "name": "Dropbox Inc. Class A Common Stock",
 "sector": "Technology"
 },
+"DCTH": {
+"fetched": "2026-11-21",
+"industry": "Medical Devices",
+"name": "Delcath Systems, Inc.",
+"sector": "Healthcare"
+},
 "DDOG": {
 "fetched": "2026-10-19",
 "industry": "Software - Application",
@@ -682,6 +760,12 @@
 "industry": "Software - Application",
 "name": "DocuSign Inc.",
 "sector": "Technology"
+},
+"DRI": {
+"fetched": "2026-11-21",
+"industry": "Restaurants",
+"name": "Darden Restaurants, Inc.",
+"sector": "Consumer Cyclical"
 },
 "DRQ": {
 "fetched": "2026-11-14",
@@ -760,6 +844,12 @@
 "industry": "Medical Devices",
 "name": "Enovis Corporation",
 "sector": "Healthcare"
+},
+"ENR": {
+"fetched": "2026-11-21",
+"industry": "Electrical Equipment & Parts",
+"name": "Energizer Holdings Inc.",
+"sector": "Industrials"
 },
 "EOG": {
 "fetched": "2026-10-19",
@@ -917,6 +1007,12 @@
 "name": "Flagstar Bank, National Association",
 "sector": "Financial Services"
 },
+"FLT": {
+"fetched": "2026-11-21",
+"industry": "Software - Infrastructure",
+"name": "Corpay Inc.",
+"sector": "Technology"
+},
 "FLYW": {
 "fetched": "2026-10-19",
 "industry": "Software - Infrastructure",
@@ -969,6 +1065,12 @@
 "fetched": "2026-11-14",
 "industry": "Software - Infrastructure",
 "name": "GoDaddy Inc. Class A Common Stock",
+"sector": "Technology"
+},
+"GDYN": {
+"fetched": "2026-11-21",
+"industry": "Information Technology Services",
+"name": "Grid Dynamics Holdings, Inc. Class A Common Stock",
 "sector": "Technology"
 },
 "GEN": {
@@ -1109,6 +1211,18 @@
 "name": "Healthcare Services Group, Inc.",
 "sector": "Healthcare"
 },
+"HELE": {
+"fetched": "2026-11-21",
+"industry": "Household & Personal Products",
+"name": "Helen of Troy Limited",
+"sector": "Consumer Defensive"
+},
+"HGTY": {
+"fetched": "2026-11-21",
+"industry": "Insurance - Property & Casualty",
+"name": "Hagerty, Inc. Class A Common Stock",
+"sector": "Financial Services"
+},
 "HLT": {
 "fetched": "2026-11-07",
 "industry": "Lodging",
@@ -1120,6 +1234,12 @@
 "industry": "Health Information Services",
 "name": "Hinge Health, Inc. Class A Common Stock",
 "sector": "Healthcare"
+},
+"HNI": {
+"fetched": "2026-11-21",
+"industry": "Furnishings, Fixtures & Appliances",
+"name": "HNI Corporation",
+"sector": "Consumer Cyclical"
 },
 "HOG": {
 "fetched": "2026-11-07",
@@ -1151,11 +1271,23 @@
 "name": "Humana Inc.",
 "sector": "Healthcare"
 },
+"HZN": {
+"fetched": "2026-11-21",
+"industry": "Utilities - Regulated Gas",
+"name": "Bright Horizon Energy Corporation",
+"sector": "Utilities"
+},
 "HZO": {
 "fetched": "2026-10-19",
 "industry": "Specialty Retail",
 "name": "MarineMax Inc.",
 "sector": "Consumer Cyclical"
+},
+"IAC": {
+"fetched": "2026-11-21",
+"industry": "Internet Content & Information",
+"name": "People Inc.",
+"sector": "Communication Services"
 },
 "ICLR": {
 "fetched": "2026-11-07",
@@ -1306,6 +1438,12 @@
 "industry": "Department Stores",
 "name": "Kohl's Corporation Common Stock",
 "sector": "Consumer Cyclical"
+},
+"KVUE": {
+"fetched": "2026-11-21",
+"industry": "Household & Personal Products",
+"name": "Kenvue Inc.",
+"sector": "Consumer Defensive"
 },
 "KYMR": {
 "fetched": "2026-11-07",
@@ -1565,6 +1703,12 @@
 "name": "NewAmsterdam Pharma Company N.V.",
 "sector": "Healthcare"
 },
+"NATL": {
+"fetched": "2026-11-21",
+"industry": "Software - Application",
+"name": "NCR Atleos Corporation",
+"sector": "Technology"
+},
 "NAVN": {
 "fetched": "2026-10-19",
 "industry": "Software - Application",
@@ -1612,6 +1756,12 @@
 "industry": "Biotechnology",
 "name": "Novavax Inc.",
 "sector": "Healthcare"
+},
+"NWE": {
+"fetched": "2026-11-21",
+"industry": "Utilities - Regulated Electric",
+"name": "NorthWestern Energy Group, Inc.",
+"sector": "Utilities"
 },
 "NYCB": {
 "fetched": "2026-11-07",
@@ -1673,6 +1823,12 @@
 "name": "OPENLANE, Inc.",
 "sector": "Consumer Cyclical"
 },
+"OPRT": {
+"fetched": "2026-11-21",
+"industry": "Credit Services",
+"name": "Oportun Financial Corporation",
+"sector": "Financial Services"
+},
 "ORKA": {
 "fetched": "2026-11-07",
 "industry": "Biotechnology",
@@ -1684,6 +1840,18 @@
 "industry": "Healthcare Plans",
 "name": "Oscar Health, Inc. Class A Common Stock",
 "sector": "Healthcare"
+},
+"OSPN": {
+"fetched": "2026-11-21",
+"industry": "Software - Infrastructure",
+"name": "OneSpan Inc.",
+"sector": "Technology"
+},
+"OSW": {
+"fetched": "2026-11-21",
+"industry": "Leisure",
+"name": "OneSpaWorld Holdings Limited",
+"sector": "Consumer Cyclical"
 },
 "OVV": {
 "fetched": "2026-10-19",
@@ -1708,6 +1876,12 @@
 "industry": "Medical Care Facilities",
 "name": "PACS Group, Inc.",
 "sector": "Healthcare"
+},
+"PAG": {
+"fetched": "2026-11-21",
+"industry": "Auto & Truck Dealerships",
+"name": "Penske Automotive Group Inc.",
+"sector": "Consumer Cyclical"
 },
 "PARR": {
 "fetched": "2026-10-19",
@@ -1763,6 +1937,12 @@
 "name": "PagerDuty, Inc.",
 "sector": "Technology"
 },
+"PERI": {
+"fetched": "2026-11-21",
+"industry": "Advertising Agencies",
+"name": "Perion Network Ltd.",
+"sector": "Communication Services"
+},
 "PGNY": {
 "fetched": "2026-11-07",
 "industry": "Healthcare Plans",
@@ -1793,6 +1973,12 @@
 "name": "PNM Resources Inc",
 "sector": "Utilities"
 },
+"PPLI": {
+"fetched": "2026-11-21",
+"industry": "Internet Content & Information",
+"name": "People Inc.",
+"sector": "Communication Services"
+},
 "PR": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas E&P",
@@ -1817,6 +2003,18 @@
 "name": "Progress Software Corp.",
 "sector": "Technology"
 },
+"PRMB": {
+"fetched": "2026-11-21",
+"industry": "Beverages - Non-Alcoholic",
+"name": "Primo Brands Corporation Class A Common Stock",
+"sector": "Consumer Defensive"
+},
+"PRMW": {
+"fetched": "2026-11-21",
+"industry": "Banks - Regional",
+"name": "Primo Water Corporation",
+"sector": "Financial Services"
+},
 "PSX": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas Refining & Marketing",
@@ -1828,6 +2026,12 @@
 "industry": "Software - Application",
 "name": "PubMatic Inc. Class A Common Stock",
 "sector": "Technology"
+},
+"PVH": {
+"fetched": "2026-11-21",
+"industry": "Apparel Manufacturing",
+"name": "PVH Corp.",
+"sector": "Consumer Cyclical"
 },
 "QNST": {
 "fetched": "2026-11-07",
@@ -2033,6 +2237,12 @@
 "name": "Signet Jewelers Limited",
 "sector": "Consumer Cyclical"
 },
+"SIGI": {
+"fetched": "2026-11-21",
+"industry": "Insurance - Property & Casualty",
+"name": "Selective Insurance Group, Inc.",
+"sector": "Financial Services"
+},
 "SJM": {
 "fetched": "2026-10-19",
 "industry": "Packaged Foods",
@@ -2051,6 +2261,12 @@
 "name": "SM Energy Company",
 "sector": "Energy"
 },
+"SMFR": {
+"fetched": "2026-11-21",
+"industry": "",
+"name": "Sema4 Holdings Corp.",
+"sector": ""
+},
 "SN": {
 "fetched": "2026-10-19",
 "industry": "Furnishings, Fixtures & Appliances",
@@ -2067,6 +2283,12 @@
 "fetched": "2026-11-07",
 "industry": "Medical Instruments & Supplies",
 "name": "Solventum Corporation",
+"sector": "Healthcare"
+},
+"SONN": {
+"fetched": "2026-11-21",
+"industry": "Biotechnology",
+"name": "Sonnet Biotherapeutics Holdings Inc.",
 "sector": "Healthcare"
 },
 "SPNT": {
@@ -2098,6 +2320,12 @@
 "industry": "Software\u2014Application",
 "name": "SilverSun Technologies Inc",
 "sector": "Technology"
+},
+"STGW": {
+"fetched": "2026-11-21",
+"industry": "Advertising Agencies",
+"name": "Stagwell Inc. Class A Common Stock",
+"sector": "Communication Services"
 },
 "STLD": {
 "fetched": "2026-10-19",
@@ -2230,6 +2458,12 @@
 "industry": "Diagnostics & Research",
 "name": "Thermo Fisher Scientific Inc.",
 "sector": "Healthcare"
+},
+"TPC": {
+"fetched": "2026-11-21",
+"industry": "Engineering & Construction",
+"name": "Tutor Perini Corp.",
+"sector": "Industrials"
 },
 "TPX": {
 "fetched": "2026-11-07",
@@ -2447,6 +2681,18 @@
 "name": "Workday Inc Class A Common Stock",
 "sector": "Technology"
 },
+"WETF": {
+"fetched": "2026-11-21",
+"industry": "",
+"name": "WisdomTree Investments Inc",
+"sector": ""
+},
+"WGS": {
+"fetched": "2026-11-21",
+"industry": "Diagnostics & Research",
+"name": "GeneDx Holdings Corp. Class A Common Stock",
+"sector": "Healthcare"
+},
 "WKC": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas Refining & Marketing",
@@ -2459,6 +2705,12 @@
 "name": "Willis Towers Watson Public Limited Company",
 "sector": "Financial Services"
 },
+"WMG": {
+"fetched": "2026-11-21",
+"industry": "Entertainment",
+"name": "Warner Music Group Corp.",
+"sector": "Communication Services"
+},
 "WSM": {
 "fetched": "2026-10-19",
 "industry": "Specialty Retail",
@@ -2470,6 +2722,12 @@
 "industry": "Medical Instruments & Supplies",
 "name": "West Pharmaceutical Services Inc.",
 "sector": "Healthcare"
+},
+"WT": {
+"fetched": "2026-11-21",
+"industry": "Asset Management",
+"name": "WisdomTree, Inc. Common Stock",
+"sector": "Financial Services"
 },
 "WTW": {
 "fetched": "2026-11-07",
