@@ -1,7 +1,7 @@
 symbol,name,sector,rs_rating,pivot,pivot_date,stop,risk_pct,close,dist_to_pivot,entry_risk,vcp_status,breakout_date,breakout_vol_ratio,contractions,depths,eps_pass,eps_note,next_report,corr_depth,corr_ratio,held_up,rs_line_high,rs_line_leads,added,tt_ok,updated
-VRNS,"Varonis Systems, Inc.",Technology,95,48.57,2026-10-14,45.65,0.0601194,49.42,0.0175005,0.0762849,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,0.76313,True,False,False,2026-11-06,True,2026-11-25
+VRNS,"Varonis Systems, Inc.",Technology,95,48.57,2026-10-14,45.65,0.0601194,49.6,0.0212065,0.0796371,Breakout,2026-10-16,22.0946,2,9% → 6%,True,,,0.0926257,0.76313,True,False,False,2026-11-06,True,2026-11-27
 UTZ,"Utz Brands, Inc. Class A Common Stock",Consumer Staples,91,7.65,2026-07-15,7.17,0.0627451,14.29,0.867974,0.498251,Extended,2026-07-21,31.2401,3,9% → 9% → 6%,False,turnaround (loss → profit),,0.00905292,0.0745857,True,True,False,2026-11-13,True,2026-11-19
-CART,Maplebear Inc. Common Stock,Consumer Discretionary,89,59.76,2026-11-04,57.19,0.0430054,57.68,-0.0348059,0.0430054,Ready,,,2,15% → 4%,False,,,0.151452,1.24779,True,False,False,2026-11-20,True,2026-11-25
-WST,West Pharmaceutical Services Inc.,Health Care,89,420.66,2026-11-16,387.71,0.0783293,372.94,-0.113441,0.0783293,Failed,,,2,12% → 8%,True,,,0.152052,1.25274,True,False,False,2026-11-20,False,2026-11-25
-LNG,Cheniere Energy Inc.,Energy,83,313.13,2026-11-13,292,0.06748,301.99,-0.0355763,0.06748,Ready,,,2,17% → 7%,True,,,0.17286,1.42417,True,False,False,2026-11-20,True,2026-11-25
-PAG,Penske Automotive Group Inc.,Consumer Discretionary,80,198.7,2026-10-09,192.25,0.032461,213.13,0.072622,0.0979684,Extended,2026-10-15,8.61217,2,15% → 3%,False,,,0.0400459,0.329933,True,False,False,2026-11-20,True,2026-11-25
+CART,Maplebear Inc. Common Stock,Consumer Discretionary,89,59.76,2026-11-04,57.19,0.0430054,57.6,-0.0361446,0.0430054,Ready,,,2,15% → 4%,False,,,0.151452,1.24779,True,False,False,2026-11-20,True,2026-11-27
+WST,West Pharmaceutical Services Inc.,Health Care,89,420.66,2026-11-16,387.71,0.0783293,366.17,-0.129535,0.0783293,Failed,,,2,12% → 8%,True,,,0.169005,1.39241,True,False,False,2026-11-20,False,2026-11-27
+LNG,Cheniere Energy Inc.,Energy,83,313.13,2026-11-13,292,0.06748,305.04,-0.0258359,0.06748,Ready,,,2,17% → 7%,True,,,0.17286,1.42417,True,False,False,2026-11-20,True,2026-11-27
+PAG,Penske Automotive Group Inc.,Consumer Discretionary,80,198.7,2026-10-09,192.25,0.032461,213.4,0.0739808,0.0991096,Extended,2026-10-15,8.61217,2,15% → 3%,False,,,0.0400459,0.329933,True,False,False,2026-11-20,True,2026-11-27
