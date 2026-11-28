@@ -24,3 +24,7 @@ date,symbol,vcp_status,pivot,close,breakout_vol_ratio,stop
 2026-11-05,SPNT,Breakout,25.91,26.27,1.46131,24.68
 2026-11-06,VRNS,Breakout,48.57,48.8,22.0946,45.65
 2026-11-11,SPNT,Breakout (weak volume),26.11,27.05,1.24958,24.98
+2026-11-27,HOG,Breakout (weak volume),34.09,35.05,0.61276,32.43
+2026-11-27,LIVN,Breakout (weak volume),94.86,95.08,0.318053,90.15
+2026-11-27,EXPD,Breakout (weak volume),199.29,199.46,0.396532,191.87
+2026-11-27,AVNT,Breakout (weak volume),44.84,46.18,0.8929,42.96

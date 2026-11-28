@@ -164,21 +164,21 @@
   }
  ],
  "breadth": {
-  "liquid": 1612,
-  "tt_pass": 192,
-  "pct_above_200": 0.4032258064516129,
-  "pct_above_50": 0.34987593052109184,
-  "vcp_setups": 6,
+  "liquid": 1587,
+  "tt_pass": 258,
+  "pct_above_200": 0.5192186515437933,
+  "pct_above_50": 0.5299306868304978,
+  "vcp_setups": 18,
   "tt_pass_by_sector": {
-   "Health Care": 58,
-   "Technology": 40,
-   "Consumer Discretionary": 31,
-   "Financials": 16,
-   "Industrials": 16,
-   "Consumer Staples": 14,
-   "Communication Services": 12,
+   "Health Care": 76,
+   "Technology": 53,
+   "Consumer Discretionary": 37,
+   "Financials": 28,
+   "Industrials": 28,
+   "Communication Services": 17,
+   "Consumer Staples": 13,
+   "Materials": 3,
    "Energy": 2,
-   "Materials": 2,
    "Utilities": 1
   }
  },
@@ -186,8 +186,7 @@
   "since": "2026-10-06",
   "spy_depth": 0.12137611627133393
  },
- "as_of": "2026-11-20",
- "weekly_scan_at": "2026-11-21 09:40 UTC",
- "daily_check_at": "2026-11-28 04:02 UTC",
- "daily_as_of": "2026-11-27"
+ "as_of": "2026-11-27",
+ "weekly_scan_at": "2026-11-28 10:19 UTC",
+ "daily_check_at": null
 }

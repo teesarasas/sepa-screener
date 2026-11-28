@@ -83,6 +83,12 @@
 "name": "The Allstate Corporation",
 "sector": "Financial Services"
 },
+"ALLE": {
+"fetched": "2026-11-28",
+"industry": "Security & Protection Services",
+"name": "Allegion plc",
+"sector": "Industrials"
+},
 "ALRM": {
 "fetched": "2026-11-21",
 "industry": "Software - Application",
@@ -93,6 +99,12 @@
 "fetched": "2026-10-19",
 "industry": "Drug Manufacturers - General",
 "name": "Amgen Inc. Common Stock",
+"sector": "Healthcare"
+},
+"AMLX": {
+"fetched": "2026-11-28",
+"industry": "Drug Manufacturers - Specialty & Generic",
+"name": "Amylyx Pharmaceuticals, Inc.",
 "sector": "Healthcare"
 },
 "AMN": {
@@ -160,6 +172,12 @@
 "industry": "Specialty Retail",
 "name": "Arhaus, Inc. Class A Common Stock",
 "sector": "Consumer Cyclical"
+},
+"ARMK": {
+"fetched": "2026-11-28",
+"industry": "Specialty Business Services",
+"name": "Aramark",
+"sector": "Industrials"
 },
 "ARQT": {
 "fetched": "2026-11-14",
@@ -257,6 +275,12 @@
 "name": "Azenta, Inc.",
 "sector": "Healthcare"
 },
+"BATRK": {
+"fetched": "2026-11-28",
+"industry": "Entertainment",
+"name": "Atlanta Braves Holdings Inc. Series C Common Stock",
+"sector": "Communication Services"
+},
 "BAX": {
 "fetched": "2026-10-19",
 "industry": "Medical Instruments & Supplies",
@@ -279,6 +303,12 @@
 "fetched": "2026-11-07",
 "industry": "Asset Management",
 "name": "Franklin Templeton Inc.",
+"sector": "Financial Services"
+},
+"BGC": {
+"fetched": "2026-11-28",
+"industry": "Capital Markets",
+"name": "BGC Group, Inc. Class A Common Stock",
 "sector": "Financial Services"
 },
 "BHVN": {
@@ -413,6 +443,12 @@
 "name": "Maplebear Inc. Common Stock",
 "sector": "Consumer Cyclical"
 },
+"CB": {
+"fetched": "2026-11-28",
+"industry": "Insurance - Property & Casualty",
+"name": "Chubb Limited",
+"sector": "Financial Services"
+},
 "CBC": {
 "fetched": "2026-10-19",
 "industry": "Banks - Regional",
@@ -436,6 +472,12 @@
 "industry": "Beverages - Non-Alcoholic",
 "name": "Coca-Cola Europacific Partners PLC",
 "sector": "Consumer Defensive"
+},
+"CCK": {
+"fetched": "2026-11-28",
+"industry": "Packaging & Containers",
+"name": "Crown Holdings Inc.",
+"sector": "Consumer Cyclical"
 },
 "CDEV": {
 "fetched": "2026-10-19",
@@ -483,6 +525,12 @@
 "fetched": "2026-11-07",
 "industry": "Medical Devices",
 "name": "Enovis Corporation",
+"sector": "Healthcare"
+},
+"CGON": {
+"fetched": "2026-11-28",
+"industry": "Biotechnology",
+"name": "CG Oncology Inc.",
 "sector": "Healthcare"
 },
 "CHD": {
@@ -677,6 +725,12 @@
 "name": "Chevron Corporation",
 "sector": "Energy"
 },
+"CXT": {
+"fetched": "2026-11-28",
+"industry": "Specialty Industrial Machinery",
+"name": "Crane NXT, Co.",
+"sector": "Industrials"
+},
 "CYRX": {
 "fetched": "2026-10-19",
 "industry": "Integrated Freight & Logistics",
@@ -731,11 +785,23 @@
 "name": "DHT Holdings, Inc.",
 "sector": "Energy"
 },
+"DIN": {
+"fetched": "2026-11-28",
+"industry": "Restaurants",
+"name": "Dine Brands Global Inc.",
+"sector": "Consumer Cyclical"
+},
 "DINO": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas Refining & Marketing",
 "name": "HF Sinclair Corporation",
 "sector": "Energy"
+},
+"DIS": {
+"fetched": "2026-11-28",
+"industry": "Entertainment",
+"name": "The Walt Disney Company",
+"sector": "Communication Services"
 },
 "DK": {
 "fetched": "2026-10-19",
@@ -983,11 +1049,23 @@
 "name": "Federated Hermes, Inc. Common Stock",
 "sector": "Financial Services"
 },
+"FI": {
+"fetched": "2026-11-28",
+"industry": "Information Technology Services",
+"name": "Fiserv Inc.",
+"sector": "Technology"
+},
 "FIGS": {
 "fetched": "2026-10-19",
 "industry": "Apparel Manufacturing",
 "name": "FIGS Inc. Class A Common Stock",
 "sector": "Consumer Cyclical"
+},
+"FISV": {
+"fetched": "2026-11-28",
+"industry": "",
+"name": "Fiserv, Inc.",
+"sector": ""
 },
 "FIVE": {
 "fetched": "2026-11-07",
@@ -1084,6 +1162,12 @@
 "industry": "Security & Protection Services",
 "name": "The GEO Group, Inc.",
 "sector": "Industrials"
+},
+"GILD": {
+"fetched": "2026-11-28",
+"industry": "Drug Manufacturers - General",
+"name": "Gilead Sciences Inc.",
+"sector": "Healthcare"
 },
 "GKOS": {
 "fetched": "2026-11-07",
@@ -1199,6 +1283,12 @@
 "name": "Happen, Inc. Common Stock",
 "sector": "Financial Services"
 },
+"HAS": {
+"fetched": "2026-11-28",
+"industry": "Leisure",
+"name": "Hasbro, Inc.",
+"sector": "Consumer Cyclical"
+},
 "HBNC": {
 "fetched": "2026-11-14",
 "industry": "Banks - Regional",
@@ -1252,6 +1342,12 @@
 "industry": "Oil & Gas E&P",
 "name": "HighPeak Energy, Inc. Common Stock",
 "sector": "Energy"
+},
+"HPQ": {
+"fetched": "2026-11-28",
+"industry": "Computer Hardware",
+"name": "HP Inc.",
+"sector": "Technology"
 },
 "HRB": {
 "fetched": "2026-10-19",
@@ -1619,6 +1715,12 @@
 "name": "Marsh & McLennan Companies, Inc.",
 "sector": "Financial Services"
 },
+"MMM": {
+"fetched": "2026-11-28",
+"industry": "Conglomerates",
+"name": "3M Company",
+"sector": "Industrials"
+},
 "MNMD": {
 "fetched": "2026-11-07",
 "industry": "Biotechnology",
@@ -1811,6 +1913,12 @@
 "name": "Okta Inc. Class A Common Stock",
 "sector": "Technology"
 },
+"OMC": {
+"fetched": "2026-11-28",
+"industry": "Advertising Agencies",
+"name": "Omnicom Group Inc.",
+"sector": "Communication Services"
+},
 "ONT": {
 "fetched": "2026-11-07",
 "industry": "Waste Management",
@@ -1834,6 +1942,12 @@
 "industry": "Biotechnology",
 "name": "Oruka Therapeutics, Inc.",
 "sector": "Healthcare"
+},
+"OSBC": {
+"fetched": "2026-11-28",
+"industry": "Banks - Regional",
+"name": "Old Second Bancorp, Inc.",
+"sector": "Financial Services"
 },
 "OSCR": {
 "fetched": "2026-10-19",
@@ -1883,11 +1997,23 @@
 "name": "Penske Automotive Group Inc.",
 "sector": "Consumer Cyclical"
 },
+"PANW": {
+"fetched": "2026-11-28",
+"industry": "Software - Infrastructure",
+"name": "Palo Alto Networks, Inc.",
+"sector": "Technology"
+},
 "PARR": {
 "fetched": "2026-10-19",
 "industry": "Oil & Gas Refining & Marketing",
 "name": "Par Pacific Holdings Inc.",
 "sector": "Energy"
+},
+"PAY": {
+"fetched": "2026-11-28",
+"industry": "Software - Infrastructure",
+"name": "Paymentus Holdings, Inc. Class A Common Stock",
+"sector": "Technology"
 },
 "PAYC": {
 "fetched": "2026-10-19",
@@ -2021,6 +2147,12 @@
 "name": "Phillips 66",
 "sector": "Energy"
 },
+"PTC": {
+"fetched": "2026-11-28",
+"industry": "Software - Application",
+"name": "PTC Inc.",
+"sector": "Technology"
+},
 "PUBM": {
 "fetched": "2026-11-07",
 "industry": "Software - Application",
@@ -2032,6 +2164,18 @@
 "industry": "Apparel Manufacturing",
 "name": "PVH Corp.",
 "sector": "Consumer Cyclical"
+},
+"PYPL": {
+"fetched": "2026-11-28",
+"industry": "Credit Services",
+"name": "PayPal Holdings, Inc.",
+"sector": "Financial Services"
+},
+"QLYS": {
+"fetched": "2026-11-28",
+"industry": "Software - Infrastructure",
+"name": "Qualys, Inc.",
+"sector": "Technology"
 },
 "QNST": {
 "fetched": "2026-11-07",
@@ -2099,6 +2243,12 @@
 "name": "Relay Therapeutics Inc.",
 "sector": "Healthcare"
 },
+"RLI": {
+"fetched": "2026-11-28",
+"industry": "Insurance - Property & Casualty",
+"name": "RLI Corp.",
+"sector": "Financial Services"
+},
 "RNG": {
 "fetched": "2026-10-19",
 "industry": "Software - Application",
@@ -2158,6 +2308,18 @@
 "industry": "Trucking",
 "name": "RXO Inc.",
 "sector": "Industrials"
+},
+"RYZ": {
+"fetched": "2026-11-28",
+"industry": "Metal Fabrication",
+"name": "Ryerson Holding Corporation Common Stock",
+"sector": "Industrials"
+},
+"S": {
+"fetched": "2026-11-28",
+"industry": "Software - Infrastructure",
+"name": "Safe & Green Holdings Corp.",
+"sector": "Technology"
 },
 "SAIL": {
 "fetched": "2026-11-14",
@@ -2243,11 +2405,23 @@
 "name": "Selective Insurance Group, Inc.",
 "sector": "Financial Services"
 },
+"SIRI": {
+"fetched": "2026-11-28",
+"industry": "Entertainment",
+"name": "Sirius XM Holdings Inc.",
+"sector": "Communication Services"
+},
 "SJM": {
 "fetched": "2026-10-19",
 "industry": "Packaged Foods",
 "name": "The J. M. Smucker Company",
 "sector": "Consumer Defensive"
+},
+"SKY": {
+"fetched": "2026-11-28",
+"industry": "Residential Construction",
+"name": "Champion Homes, Inc.",
+"sector": "Consumer Cyclical"
 },
 "SLDE": {
 "fetched": "2026-10-19",
@@ -2543,6 +2717,12 @@
 "name": "United Community Banks, Inc.",
 "sector": "Financial Services"
 },
+"UPBD": {
+"fetched": "2026-11-28",
+"industry": "Software - Application",
+"name": "Upbound Group Inc.",
+"sector": "Technology"
+},
 "URBN": {
 "fetched": "2026-10-19",
 "industry": "Apparel Retail",
@@ -2554,6 +2734,12 @@
 "industry": "Food Distribution",
 "name": "US Foods Holding Corp.",
 "sector": "Consumer Defensive"
+},
+"UTHR": {
+"fetched": "2026-11-28",
+"industry": "Drug Manufacturers - Specialty & Generic",
+"name": "United Therapeutics Corporation",
+"sector": "Healthcare"
 },
 "UTZ": {
 "fetched": "2026-10-19",
@@ -2615,6 +2801,12 @@
 "name": "Veralto Corporation",
 "sector": "Industrials"
 },
+"VOR": {
+"fetched": "2026-11-28",
+"industry": "Biotechnology",
+"name": "Vor Biopharma Inc.",
+"sector": "Healthcare"
+},
 "VOYA": {
 "fetched": "2026-11-07",
 "industry": "Financial Conglomerates",
@@ -2668,6 +2860,12 @@
 "industry": "Internet Retail",
 "name": "Wayfair Inc. Class A Common Stock",
 "sector": "Consumer Cyclical"
+},
+"WAB": {
+"fetched": "2026-11-28",
+"industry": "Railroads",
+"name": "Wabtec Corporation",
+"sector": "Industrials"
 },
 "WAT": {
 "fetched": "2026-10-19",
@@ -2794,6 +2992,12 @@
 "industry": "Marine Shipping",
 "name": "ZIM Integrated Shipping Services Ltd.",
 "sector": "Industrials"
+},
+"ZS": {
+"fetched": "2026-11-28",
+"industry": "Software - Infrastructure",
+"name": "Zscaler Inc.",
+"sector": "Technology"
 },
 "ZYME": {
 "fetched": "2026-11-07",
